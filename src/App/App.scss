@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Roboto Slab', "微軟正黑體" ,"Microsoft JhengHei","儷黑 Pro","LiHei Pro","文泉驛正黑", "WenQuanYi Zen Hei",serif;
+}
+ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.header{
+  background: #000;
+  height: 320px;
+  position: relative;
+  #site-logo{
+    width: 16%;
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+  }
+}
+.site-menu {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  z-index: 99;
+  width: 100%;
+  top: 14px;
+  right: 14px;
+  li{
+    line-height: 10px;
+    font-size: 10pt;
+    a { 
+      font-size: 10pt;
+      padding: 0px 8px;
+      color: #fff;
+      /* border-left: 1px solid #fff; */
+      transition: opacity 0.2s;
+      opacity: 0.6;
+      text-decoration: none;
+      
+      img{
+        height: 14px;
+      }
+      &:hover{
+        opacity: 1;
+      }
+    }
+    span{
+      font-size: 10pt;
+      padding: 0px 8px;
+      color: #fff;
+      /* border-left: 1px solid #fff; */
+      transition: opacity 0.2s;
+      opacity: 0.6;
+    }
+  }
+}
+
+
+.catrgories{
+  ul{
+    display: flex;
+    background: rgb(73, 70, 70);
+    justify-content: center;
+    align-items: center;
+    li{
+      color: #fff;
+    }
+  }
+}

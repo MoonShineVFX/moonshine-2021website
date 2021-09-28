@@ -1,18 +1,28 @@
-import React,{useEffect,useState} from 'react'
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import { Route,  useHistory  } from 'react-router-dom';
+
+import Header from '../Components/Header'
+import Navbar from '../Components/Navbar'
+// style
+import './App.scss';
+
+// Front
+import Home from '../Pages/Front/Home'
 
 import {fetchWork} from '../Helper/fetch'
 
 function App() {
   
   useEffect(()=>{
-    fetchWork()
+    // fetchWork()
 
 },[])
   return (
-    <div className="App">
-      
-    </div>
+    <React.Fragment>
+      <Navbar/>
+      <Header/>
+      <Route path="/" exact component={Home} />
+    </React.Fragment>
   );
 }
 
