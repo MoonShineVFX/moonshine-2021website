@@ -6,9 +6,9 @@ export const fetchWork = async() =>{
       }
     }
   const response = await fetch('../data/data.json', requestOptions )
-  const courseResp = await response.json()
-
+  const dataResp = await response.json()
+  return  dataResp
   // setUserData(courseResp)
-  console.log(courseResp);
+  // console.log(courseResp);
   
 }

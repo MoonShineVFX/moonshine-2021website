@@ -3,6 +3,7 @@ body {
   padding: 0;
   height: 100%;
   font-family: 'Roboto Slab', "微軟正黑體" ,"Microsoft JhengHei","儷黑 Pro","LiHei Pro","文泉驛正黑", "WenQuanYi Zen Hei",serif;
+  position: relative;
 }
 ul{
   list-style-type: none;
@@ -10,7 +11,7 @@ ul{
   margin: 0;
 }
 .header{
-  background: #000;
+  background: rgb(34, 33, 33);
   height: 320px;
   position: relative;
   #site-logo{
@@ -67,11 +68,200 @@ ul{
 .catrgories{
   ul{
     display: flex;
-    background: rgb(73, 70, 70);
+    background: #000;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
+    position: relative;
     li{
       color: #fff;
+      padding: 20px 20px;
+      height: 98%;
+      &:hover{
+        border-bottom: 1px solid #fff;
+      }
     }
   }
+}
+
+.workContainer{
+  background-color: #000;
+  padding-left: 0.25vw;
+  ul{
+    display: flex;
+    flex-wrap: wrap;
+    li{
+      width: 19.5vw;
+      height: 20vw;
+      margin: 0.2vw 0.2vw 0 0;
+      overflow: hidden;
+      position: relative;
+      opacity: 0.8;
+      transition: 0.5s;
+      &:hover{
+        opacity: 1;
+        .imgRect{
+          transform: scale(1.2);
+        }
+      }
+      .imgRect{
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        transition: 0.5s;
+        font-size: 10pt;
+      }
+      .title{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 10px;
+        font-size: 8pt;
+        color: #fff;
+      }
+    }
+  }
+}
+
+
+/* Scroll Bar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background-color: #3c3c3c;
+} 
+::-webkit-scrollbar-thumb {
+  background-color: #666;
+}
+::-webkit-scrollbar-button {
+  background-color: #555;
+  height: 0;
+}
+::-webkit-scrollbar-corner {
+  background-color: #555;
+}
+
+
+.workitem{
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  .blackbg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transition: 0.2s;
+    opacity: 0;
+    &.active{
+      opacity: 1;
+    }
+  }
+  .closeBtn{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: -20px;
+    right: -20px;
+    z-index: 10;
+    background: #000;
+    color:#eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-weight: 300;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    &:hover{
+      background: rgb(26, 26, 26);
+    }
+  }
+  .itemContent{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    // transform: ;
+    z-index: 2;
+    width: 780px;
+    // height: 340px;
+    background: rgb(0, 0, 0);
+    color:white;
+    transition: 0.5s ease;
+    transform: translate(-50%,-40%);
+    opacity: 0;
+    display: flex;
+    flex-wrap: wrap;
+    &.active{
+      opacity: 1;
+      transform: translate(-50%,-50%);
+    }
+    .thumb{
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    article{
+      padding: 25px 25px;
+      box-sizing: border-box;
+      width: 100%;
+      
+      .title{
+        font-size: 16px;
+        margin-bottom: 15px;
+      }
+      .description{
+        font-size: 12px;
+        line-height: 21px;
+        color:#ddd;
+        height: 210px;
+        overflow-y: auto;
+        white-space: pre-line;
+      }
+      .author{
+        margin-top: 20px;
+        font-size: 14px;
+        color:#ddd;
+      }
+      .info{
+        margin-top: 20px;
+        font-size: 14px;
+        color:#ddd;
+      }
+      .social{
+        margin-top: 10px;
+        width: 50%;
+        display: flex;
+        font-size: 12px;
+        div{ margin-right: 12px;}
+        a{
+          text-decoration: none;
+          color:#999;
+          &:hover{
+            color:white;
+            border-bottom: 2px solid #fff;;
+          }
+        }
+      }
+    }
+  }
+}
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) */
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
 }

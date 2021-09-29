@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 
 function Navbar() {
   const [lang, setLang] = useState("eng");
-  const [currentLang, setCurrentLang] = useState("eng");
+  const [currentLang, setCurrentLang] = useState("");
   const navItem = [
     {id:1, engname:'Work',chtname:"作品"},
     {id:2, engname:'Lab',chtname:"Lab"},
@@ -18,12 +18,13 @@ function Navbar() {
     {id:5, name:'xin',img:"xinlogo.svg", link:'https://www.xinpianchang.com/u10430270'},
   ]
   const switchLang = (data) =>{
-    setLang(data)
+    // setLang(data)
     localStorage.setItem('lang' ,data)
-    setCurrentLang(localStorage.getItem('lang'))
+    setCurrentLang(localStorage.getItem('lang') ? localStorage.getItem('lang') : 'eng')
   }
   useEffect(()=>{
     // localStorage.setItem('lang' ,lang)
+    setCurrentLang(localStorage.getItem('lang') ? localStorage.getItem('lang') : 'eng')
   },[])
   return (
         <ul className="site-menu">
