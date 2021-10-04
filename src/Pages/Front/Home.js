@@ -1,20 +1,32 @@
 import React,{useState,useEffect} from 'react'
 
 
-function Home({workData , handler}) {
+function Home({workData , handler , categoryData ,currentLang , switchCategory}) {
   const handleClick= (dataId) =>{
     handler(dataId)
   }
+  const handleCategorySwitch = (id) =>{
+    switchCategory(id)
+  }
+
+
   
   return (
     <div className="home">
        
         <div className="catrgories">
           <ul>
-            <li>VFX</li>
-            <li>VFX</li>
-            <li>VFX</li>
-            <li>VFX</li>
+            {
+              categoryData ? 
+              categoryData.map((item,index)=>{
+                const{id, name , name_cht ,sort_num} = item
+                return(
+                  <li key={id} onClick={()=> handleCategorySwitch(id)}>
+                    {currentLang === 'eng' ? name : name_cht}
+                  </li>
+                )
+              }):<li>目前還沒有</li>
+            }
           </ul>
         </div>
         <div className="workContainer">

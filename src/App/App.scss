@@ -93,7 +93,7 @@ ul{
     li{
       width: 19.5vw;
       height: 20vw;
-      margin: 0.2vw 0.2vw 0 0;
+      margin: 0.25vw 0.25vw 0 0;
       overflow: hidden;
       position: relative;
       opacity: 0.8;
@@ -199,6 +199,7 @@ ul{
     opacity: 0;
     display: flex;
     flex-wrap: wrap;
+    border: 5px solid #6c6c6c;
     &.active{
       opacity: 1;
       transform: translate(-50%,-50%);

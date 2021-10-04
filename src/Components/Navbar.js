@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from 'react'
 
-function Navbar() {
+function Navbar({currentLang , switchLang}) {
   const [lang, setLang] = useState("eng");
-  const [currentLang, setCurrentLang] = useState("");
+  // const [currentLang, setCurrentLang] = useState("");
   const navItem = [
     {id:1, engname:'Work',chtname:"作品"},
     {id:2, engname:'Lab',chtname:"Lab"},
@@ -17,14 +17,12 @@ function Navbar() {
     {id:4, name:'ig',img:"ins.svg", link:'https://instagram.com/moonshine.tw/'},
     {id:5, name:'xin',img:"xinlogo.svg", link:'https://www.xinpianchang.com/u10430270'},
   ]
-  const switchLang = (data) =>{
-    // setLang(data)
-    localStorage.setItem('lang' ,data)
-    setCurrentLang(localStorage.getItem('lang') ? localStorage.getItem('lang') : 'eng')
+  const handleSwitch = (data)=>{
+    switchLang(data)
   }
   useEffect(()=>{
     // localStorage.setItem('lang' ,lang)
-    setCurrentLang(localStorage.getItem('lang') ? localStorage.getItem('lang') : 'eng')
+    // setCurrentLang(localStorage.getItem('lang') ? localStorage.getItem('lang') : 'eng')
   },[])
   return (
         <ul className="site-menu">
@@ -56,8 +54,8 @@ function Navbar() {
               )
             }) : <li>目前還沒有</li>
           }
-          <li onClick={()=> switchLang('eng')}><span>English</span></li>
-          <li onClick={()=> switchLang('cht')}><span>中文</span></li>
+          <li onClick={()=> handleSwitch('eng')}><span>English</span></li>
+          <li onClick={()=> handleSwitch('cht')}><span>中文</span></li>
         </ul>
         
   )

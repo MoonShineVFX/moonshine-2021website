@@ -1,0 +1,34 @@
+{
+  "category":[
+    {
+      "id":"1",
+      "name":"Feature",
+      "name_cht":"特色",
+      "sort_num":"9"
+    },
+    {
+      "id":"2",
+      "name":"Animation",
+      "name_cht":"角色",
+      "sort_num":"7"
+    },
+    {
+      "id":"3",
+      "name":"VFX",
+      "name_cht":"特效",
+      "sort_num":"8"
+    },
+    {
+      "id":"4",
+      "name":"Digital",
+      "name_cht":"數位",
+      "sort_num":"6"
+    },
+    {
+      "id":"5",
+      "name":"Creative",
+      "name_cht":"創意",
+      "sort_num":"6"
+    }
+  ]
+}
