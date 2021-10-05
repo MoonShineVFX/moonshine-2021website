@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react'
 
 function Navbar({currentLang , switchLang}) {
-  const [lang, setLang] = useState("eng");
   // const [currentLang, setCurrentLang] = useState("");
   const navItem = [
     {id:1, engname:'Work',chtname:"作品"},

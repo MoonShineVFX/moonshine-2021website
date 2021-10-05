@@ -21,7 +21,7 @@ function Home({workData , handler , categoryData ,currentLang , switchCategory})
               categoryData.map((item,index)=>{
                 const{id, name , name_cht ,sort_num} = item
                 return(
-                  <li key={id} onClick={()=> handleCategorySwitch(id)}>
+                  <li key={name+id} onClick={()=> handleCategorySwitch(id)}>
                     {currentLang === 'eng' ? name : name_cht}
                   </li>
                 )
@@ -36,7 +36,7 @@ function Home({workData , handler , categoryData ,currentLang , switchCategory})
                 const {id,title ,vimeo_id,img} = item
                 return(
                 
-                      <li key={id} className="work" onClick={()=> handleClick(id)}>
+                      <li key={title+id} className="work" onClick={()=> handleClick(id)}>
                         <div className="imgRect" style={{backgroundImage : `url(https://www.moonshine.tw/data/img_work/${img})`}}></div>
                         <div className="title">{title} </div>
                       </li>
