@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 
 
 function Home({workData , handler , categoryData ,currentLang , switchCategory}) {
@@ -21,7 +21,7 @@ function Home({workData , handler , categoryData ,currentLang , switchCategory})
               categoryData.map((item,index)=>{
                 const{id, name , name_cht ,sort_num} = item
                 return(
-                  <li key={name+id} onClick={()=> handleCategorySwitch(id)}>
+                  <li key={name+id} onClick={()=> handleCategorySwitch(id)} className="animate__animated animate__fadeIn">
                     {currentLang === 'eng' ? name : name_cht}
                   </li>
                 )

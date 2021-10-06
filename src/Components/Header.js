@@ -1,10 +1,14 @@
 import React from 'react'
 
-function Header() {
-
+function Header({headerItem,currentLang}) {
+  const {engname,chtname} = headerItem
   return (
     <div className="header">
-      <img id="site-logo" src="./img/msWebLogo.svg" alt="" />
+      <div id="site-logo">
+        <img  src="./img/msWebLogo.svg" alt="" />
+        <div>{currentLang === 'eng' ? engname : chtname}</div>
+      </div>
+
     </div>
   )
 }

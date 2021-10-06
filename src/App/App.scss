@@ -4,6 +4,7 @@ body {
   height: 100%;
   font-family: 'Roboto Slab', "微軟正黑體" ,"Microsoft JhengHei","儷黑 Pro","LiHei Pro","文泉驛正黑", "WenQuanYi Zen Hei",serif;
   position: relative;
+  background-color: #000;
 }
 ul{
   list-style-type: none;
@@ -20,6 +21,15 @@ ul{
     top: 50%;
     left:50%;
     transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    img{}
+    div{
+      margin-top: 15px;
+    }
   }
 }
 .site-menu {
@@ -37,6 +47,7 @@ ul{
   li{
     line-height: 10px;
     font-size: 10pt;
+    color:white;
     a { 
       font-size: 10pt;
       padding: 0px 8px;
@@ -265,4 +276,111 @@ ul{
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.cContainter{
+  width: 1150px;
+  margin: 0 auto;
+  font-family: 'Roboto Slab', "微軟正黑體" ,"Microsoft JhengHei","儷黑 Pro","LiHei Pro","文泉驛正黑", "WenQuanYi Zen Hei",serif;
+  padding-top: 50px;
+  color:white;
+  
+  .lab {
+    width: 50%;
+  }
+  h2{
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    position: relative;
+    margin-bottom: 25px;
+    margin-top: 60px;
+    &:after {
+      content: '';
+      width: 1px;
+      height: 20px;
+      background: #fff;
+      position: absolute;
+      margin-left: 19px;
+      top: 2.5px;
+    }
+  }
+  .content{
+    font-size: 15px;
+    text-align: justify;
+    line-height: 29px;
+    font-weight: lighter;
+  }
+}
+.stickyScroll {
+  display: flex;
+  .image{
+    flex: 1 1;
+    .image-inner{
+      height: 75vh;
+      max-height: 50rem;
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 90px;
+      .image-wrapper{
+        margin-right: 70px;
+        opacity: 0;
+        transition: 2s;
+        img{
+          width: 100%;
+        }
+      }
+      .image-wrapper.active{
+        opacity: 1;
+        position: absolute;
+        z-index: 1;
+      }
+    }
+  }
+  .text-sections{
+    flex: 1 1;
+    .text-section{
+      height: 75vh;
+      max-height: 50rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      a{
+        color: #63f4d4;
+      }
+    }
+  }
+}
+
+// 區塊等待讀取
+.text-placeholder {
+  background: #eee;
+  opacity: 0.8;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 1;
+  margin-bottom: 0;
+  height: 10px;
+}
+.text-placeholder:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100px;
+  background: linear-gradient(90deg, #eee, #f4f4f4, #eee);
+  animation: gradient 1s infinite ease-in-out;
+}
+
+@keyframes gradient {
+  form {
+    left: 0%;
+  }
+  
+  to {
+    left: 100%;
+  }
 }
