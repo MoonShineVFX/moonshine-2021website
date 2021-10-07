@@ -1,0 +1,82 @@
+{
+  "aboutstats":[
+    {
+      "id":"1",
+      "left":"Employees",
+      "left_cht":"員工",
+      "center":"150+",
+      "center_cht":"150+",
+      "right":"Know More",
+      "right_cht":"瞭解更多",
+      "link":"https://medium.com/moonshinevfx"
+    },
+    {
+      "id":"2",
+      "left":"Clients",
+      "left_cht":"客戶",
+      "center":"200+",
+      "center_cht":"200+",
+      "right":"--------",
+      "right_cht":"--------",
+      "link":""
+    },
+    {
+      "id":"3",
+      "left":"Projects",
+      "left_cht":"專案",
+      "center":"1200+",
+      "center_cht":"1200+",
+      "right":"Our Works",
+      "right_cht":"我們的作品",
+      "link":"https://vimeo.com/moonshinetw"
+    }
+  ],
+  "aboutinfo":{
+    "id" : "1",
+    "name": "About",
+    "name_cht":"關於",
+    "title_1":"About MoonShine Animation",
+    "title_1_cht":"關於夢想",
+    "description_1":"MoonShine Animation is an artist-centered VFX company based in Taiwan. We are an integrated collective of directors, designers, artists and technologists, collaborating on projects for the advertising, film and VR industries.\n\nFounded in 2012, MoonShine Animation has been through some challenges, and have done some cool things with our talents. We believe in the value of transparency and equity and constantly strive to deliver great work to the world.",
+    "description_1_cht":"夢想動畫是一間以藝術創作者為核心的公司，整合了導演、設計師、動畫師與研發人才，致力於廣告、影像與虛擬內容產製。\n\n創立於 2012 年，夢想經歷了許多挑戰，並且與所有夢想的藝術家一起完成了各種創作。我們相信透明與平等的價值，並且持續為這世界帶來好作品。",
+    "title_2":"Our Strength",
+    "title_2_cht":"夢想的優勢",
+    "description_2":"MoonShine is a team consisted of diverse artists: directors, project managers, animators, compositors, research developers and designers.\n\nWe offer 360-degree service from concept to screen. Being an integrated company, we are able to execute a project from script writing to concept art, from story board to animatic, from shoot to post-production.",
+    "description_2_cht":"夢想動畫的團隊包含導演、專案經理、概念設計師、動畫師、合成師、 特效師、研發⼯程師、互動設計師等。夢想的能⼒觸⾓相當廣泛，並且提供影像的全⽅位服務；從前期創意發想到概念美術；從靜態腳本到動態腳本；從拍攝到後期製作，都可以在夢想內部獨立產製。",
+    "strengthinfo":[
+      {
+        "id":"1",
+        "title":"SOLID PIPELINE",
+        "title_cht":"完整的製作流程",
+        "description":"From pre-production to post production, MoonShine has developed a mature production process.",
+        "description_cht":"從製作前期、製作到後製，每個階段均有成熟的流程",
+        "image":"https://www.moonshine.tw/data/img/about-s01.png"
+      },
+      {
+        "id":"2",
+        "title":"ASSURED QUALITY",
+        "title_cht":"穩定的品質",
+        "description":"FWe strive for constantly making great visual works.",
+        "description_cht":"任何案型，都提供⾼品質的作品",
+        "image":"https://www.moonshine.tw/data/img/about-s02.png"
+      },
+      {
+        "id":"3",
+        "title":"DIVERSITY WORKS",
+        "title_cht":"多元的作品類型",
+        "description":"Virtual, digital, realistic…We demonstrate different style in all formats.",
+        "description_cht":"可愛、寫實、數位、虛擬、互動...作品風格及類型十分多樣",
+        "image":"https://www.moonshine.tw/data/img/about-s03.png"
+      },
+      {
+        "id":"4",
+        "title":"RESEARCH DEVELOPMENT",
+        "title_cht":"完整的開發能力",
+        "description":"With our talented R&D technologists, we have developed our own tools and effects.",
+        "description_cht":"專業團隊開發工具、流程與特殊效果",
+        "image":"https://www.moonshine.tw/data/img/about-s04.png"
+      }
+    ]
+
+  }
+}

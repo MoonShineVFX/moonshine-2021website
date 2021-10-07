@@ -3,6 +3,8 @@ import { Route} from 'react-router-dom';
 
 import Header from '../Components/Header'
 import Navbar from '../Components/Navbar'
+import Footer from '../Components/Footer'
+
 // style
 import './App.scss';
 
@@ -10,11 +12,18 @@ import './App.scss';
 import Home from '../Pages/Front/Home'
 import Lab from '../Pages/Front/Lab'
 import WorkItem from '../Components/WorkItem'
-
+import About from '../Pages/Front/About'
+import Blog from '../Pages/Front/Blog'
+import Contact from '../Pages/Front/Contact'
 //firebase
 import db from '../Config/firebase'
 import {onSnapshot,collection} from "firebase/firestore"
 import labData from '../Pages/Front/Lab.json'
+import aboutData from '../Pages/Front/About.json'
+import contactData from '../Pages/Front/Contact.json'
+import footerData from '../Components/footer.json'
+import headerData from '../Components/Header.json'
+ 
 
 function App() {
   const [isOpen , setIsOpen] = useState(false)
@@ -100,13 +109,23 @@ function App() {
           isOpen ?  <WorkItem data={searchResults} handler={handleOpen} visible={isOpen} /> : null
         }
       <Navbar currentLang={currentLang} switchLang={switchLang} navitemData={navitemData} socialitemData={socialitemData} switchHeaderName={switchHeaderName}/>
-      <Header currentLang={currentLang} headerItem={headerItem}/>
+      <Header currentLang={currentLang} headerItem={headerItem} headerData={headerData}/>
       <Route path="/" exact  >
         <Home workData={filteredWorkData} categoryData={categoryData} handler={handleAddClick} currentLang={currentLang} switchCategory={switchCategory}/>
       </Route>
       <Route path="/lab"   >
         <Lab currentLang={currentLang} labData={labData}/>
       </Route>
+      <Route path="/about"   >
+        <About currentLang={currentLang} aboutData={aboutData}/>
+      </Route>
+      <Route path="/blog"   >
+        <Blog />
+      </Route>
+      <Route path="/contact"   >
+        <Contact currentLang={currentLang} contactData={contactData }/>
+      </Route>
+      <Footer currentLang={currentLang}  footerData={footerData} socialitemData={socialitemData}/>
     </React.Fragment>
   );
 }

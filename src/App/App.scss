@@ -11,10 +11,23 @@ ul{
   padding: 0;
   margin: 0;
 }
+a {
+  text-decoration: none;
+}
+.mt30{
+  margin-top: 30px;
+}
 .header{
   background: rgb(34, 33, 33);
   height: 320px;
   position: relative;
+  overflow: hidden;
+  #intro_bg_video{
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    opacity: 0.5;
+  }
   #site-logo{
     width: 16%;
     position: absolute;
@@ -84,12 +97,20 @@ ul{
     align-items: center;
     box-sizing: border-box;
     position: relative;
+    li.active{
+      color: rgba(255, 255, 255, 1);
+    }
     li{
-      color: #fff;
+      font-size: 14px;
+      transition: 0.3s;
+      color: rgba(255, 255, 255, 0.75);
       padding: 20px 20px;
       height: 98%;
+      cursor: pointer;
       &:hover{
         border-bottom: 1px solid #fff;
+
+        color: rgba(255, 255, 255, 1);
       }
     }
   }
@@ -182,8 +203,8 @@ ul{
     top: -20px;
     right: -20px;
     z-index: 10;
-    background: #000;
-    color:#eee;
+    background: #332f2fc9;
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -210,7 +231,7 @@ ul{
     opacity: 0;
     display: flex;
     flex-wrap: wrap;
-    border: 5px solid #6c6c6c;
+    border: 5px solid #3d3d3d;
     &.active{
       opacity: 1;
       transform: translate(-50%,-50%);
@@ -311,6 +332,133 @@ ul{
     line-height: 29px;
     font-weight: lighter;
   }
+  .jsonContent{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .card{
+      width: 48%;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #454545;
+      .thumb {
+        width: 100%;
+        height: 258px;
+        display: block;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        transition: 0.3s;
+      }
+      .card-body{
+        .card-title {
+          margin-bottom: 10px;
+          a {
+            text-decoration: none;
+            color: #ddd;
+            font-size: 20px;
+            &:hover{
+              color: white;
+            }
+          }
+        }
+        .card-text{
+          font-size: 14px;
+          color: #a9a8a8;
+          margin-bottom: 15px;
+        }
+        .card-date{
+          font-size: 14px;
+          color: #ddd;
+          margin-bottom: 15px;
+        }
+      }
+      
+    }
+  }
+  
+}
+.uContainer{
+  width: 879px;
+  margin: 0 auto;
+  font-family: 'Roboto Slab', "微軟正黑體" ,"Microsoft JhengHei","儷黑 Pro","LiHei Pro","文泉驛正黑", "WenQuanYi Zen Hei",serif;
+  padding-top: 50px;
+  color:white;
+  .office{
+    img{
+      width: 100%;
+    }
+  }
+  .stats{
+    display: flex;
+    justify-content: space-between;
+    align-items: inherit;
+    margin-top: 25px;
+    .statsLeft{
+      text-align: center;
+      font-size: 18px;
+    }
+    .statsCenter{font-size: 57px;}
+    .statsright{    
+      text-align: center;
+      a{
+        color: #879595;
+        transition: 0.7s;
+        &:hover{
+          color: #d8b414;
+        }
+      }
+    }
+  }
+  .about{
+    
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      position: relative;
+      margin-bottom: 25px;
+      margin-top: 60px;
+      &:after {
+        content: '';
+        width: 1px;
+        height: 20px;
+        background: #fff;
+        position: absolute;
+        margin-left: 19px;
+        top: 2.5px;
+      }
+    }
+    .content {
+      font-size: 15px;
+      text-align: justify;
+      line-height: 29px;
+      font-weight: lighter;
+      white-space: pre-line;
+    }
+  }
+  .strength{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-top: 80px;
+    .strengthContent{
+      width: 42%;
+      margin-bottom: 50px;
+      .title{
+        padding-bottom: 10px;
+        border-bottom: 1px solid #999;
+      }
+      .description{
+        margin-top: 20px;
+        margin-bottom: 25px;
+      }
+      .img{
+        img{width: 100%;}
+      }
+    }
+  }
 }
 .stickyScroll {
   display: flex;
@@ -348,11 +496,163 @@ ul{
       justify-content: center;
       a{
         color: #63f4d4;
+        text-decoration: none;
       }
     }
   }
 }
 
+
+#map {
+  width: 100%;
+  height: 320px;
+  margin-bottom: 50px;
+}
+.cInfo{
+    color: white;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 31px;
+    margin-bottom: 65px;
+  .infoIcon{
+    margin-bottom: 30px;
+    img{
+      width: 35px;
+    }
+  }
+  .infoArea{
+    .width1{width: 20%;}
+    .width2{width: 60%;}
+    .infoContent{
+      display: inline-block;
+      box-sizing: border-box;
+      font-size: 15px;
+      position: relative;
+      &:first-child , &:nth-child(2){
+         &:after{
+          content: '';
+          position: absolute;
+          background: #fff;
+          width: 1px;
+          height: 100%;
+          right: 35px;
+          top: 0;
+         } 
+        
+      }
+      p{
+        margin-bottom: 0px;
+        margin-top: 0px;
+      }
+    }
+  }
+}
+.cForm{
+  .formContent{
+    .fs15{
+      font-size: 18px;
+      line-height: 32px;
+    }
+    .fs13{
+      font-size: 13px;
+      opacity: 0.7;
+    }
+  }
+  .formArea{
+    font-size: 0;
+    position: relative;
+    vertical-align: top;
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+    .flex-md-wrap{
+      display: flex;
+    }
+    .flex-md-wrap .mc-field-group{
+      width: 40%;
+      margin-right: 19px;
+    }
+    input {
+      background: #000;
+      border: none;
+      border-bottom: 1px solid #fff;
+      width: 100%;
+      line-height: 40px;
+      color: white;
+      &:focus{
+        outline: none;
+      }
+    }
+    input.submit {
+      font-size: 13px;
+      color: white;
+      /* border-radius: 6px; */
+      border-width: 1px 1px 1px 1px;
+      border-style: solid solid solid solid;
+      border-color: #fff #fff #fff #fff;
+      padding: 7px 14px;
+      /* width: 68px; */
+      /* position: absolute; */
+      /* bottom: 0px; */
+      /* right: 0px; */
+      letter-spacing: 1px;
+      text-align: center;
+      cursor: pointer;
+      line-height: 25px;
+      &:hover{
+        transform: translate(-1px,-1px);
+      }
+    }
+  }
+}
+footer {
+  font-family: 'Roboto Slab', "微軟正黑體" ,"Microsoft JhengHei","儷黑 Pro","LiHei Pro","文泉驛正黑", "WenQuanYi Zen Hei",serif;
+  color: white;
+  border-top: 1px solid #fff;
+  margin: 45px 25px 25px 25px;
+  font-size: 13px;
+  .companyInfo {
+    margin-top: 30px;
+    p{
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+  }
+  .logos {
+    line-height: 57px;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 15px;
+    display: flex;
+    .social {
+      margin-right: 5px;
+      a{
+        opacity: 0.8;
+        transition: 0.2s;
+        img {
+          height: 15px;
+          vertical-align: bottom;
+          transition: 0.2s;
+        }
+        &:hover{
+          opacity: 1;
+        }  
+      } 
+    }
+    .mslogo{
+      margin-left: auto;
+      img{
+        width: 70px;
+        vertical-align: bottom;
+      }
+    }
+  }
+}
 // 區塊等待讀取
 .text-placeholder {
   background: #eee;

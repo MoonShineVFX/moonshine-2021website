@@ -1,0 +1,19 @@
+{
+  "contact":{
+    "id":"1",
+    "tel_title":"Tel",
+    "tel_title_cht":"電話",
+    "tel_content":"02-2785-7037",
+    "email_title":"Email",
+    "email_title_cht":"Email",
+    "email_content":"info@moonshine.tw",
+    "address_title":"Address",
+    "address_title_cht":"地址",
+    "address_content":"3F, No.481, Sec. 6, Zhongxiao E. Rd., Nangang Dist., Taipei City 115, Taiwan (R.O.C.)",
+    "address_content_cht":"115 台北市南港區忠孝東路六段481號3樓",
+    "subcribe_title":"Subscribe To Our Newsletter",
+    "subcribe_title_cht":"訂閱夢想的消息",
+    "subcribe_content":"Subscribe to our newsletter and stay updated on the latest lectures, forums and articles.",
+    "subcribe_content_cht":"留下你的 email，我們將會不定時分享夢想的課程、講座、影像好文給你。"
+  }
+}
