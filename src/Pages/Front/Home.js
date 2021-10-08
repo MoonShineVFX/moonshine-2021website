@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-
+import WorkItem from '../../Components/WorkItem'
 
 function Home({workData , handler , categoryData ,currentLang , switchCategory}) {
   const [active ,setActive] = useState('0')
@@ -15,7 +15,6 @@ function Home({workData , handler , categoryData ,currentLang , switchCategory})
   
   return (
     <div className="home">
-       
         <div className="catrgories">
           <ul>
             {

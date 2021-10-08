@@ -6,7 +6,11 @@ function Header({headerItem,currentLang,headerData}) {
   return (
     <div className="header">
       <div id="intro_bg_video">
-        <iframe src={`${header.video}?loop=1$title=0&background=1&muted=1&autoplay=1#t=3s`} style={{position:"absolute" , top:"0",left:"0",width:"100%",height:"100%"}} frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <iframe 
+          src={`${header.video}?loop=1$title=0&background=1&muted=1&autoplay=1#t=3s`} 
+          style={{position:"absolute" , top:"0",left:"0",width:"100%",height:"100%"}} 
+          frameBorder="0" allowFullScreen
+          ></iframe>
       </div>
       <div id="site-logo" className="animate__animated animate__fadeIn">
         <img  src={process.env.PUBLIC_URL + '/img/'+header.img} alt="" />

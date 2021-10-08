@@ -24,7 +24,7 @@ function Footer({currentLang,footerData,socialitemData}) {
               )
             }) : <div></div>
         }
-        <div class="mslogo"><img src={process.env.PUBLIC_URL + '/img/logo.svg'} alt=""/></div>
+        <div className="mslogo"><img src={process.env.PUBLIC_URL + '/img/logo.svg'} alt=""/></div>
       </div>
       
     </footer>
