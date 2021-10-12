@@ -24,12 +24,12 @@ function Blog() {
             console.log(item)
             const{guid,thumbnail,title,link,description,pubDate} = item
             return(
-              <div className="card animate__animated animate__fadeIn">
+              <div className="blogCard animate__animated animate__fadeIn">
                 <a href={link} className="thumb" style={{backgroundImage:`url(${thumbnail})`}} target="_blank" rel="noreferrer" ></a>
-                <div className="card-body">
-                  <h5 className="card-title"><a href={link} target="_blank" rel="noreferrer" >{title}</a></h5>
-                  <div className="card-text">{description.replace(/(<([^>]+)>)/ig,"").substr(0,120)}...</div>
-                  <div className="card-date">{pubDate.substr(0,10)}</div>
+                <div className="blogCard-body">
+                  <h5 className="blogCard-title"><a href={link} target="_blank" rel="noreferrer" >{title}</a></h5>
+                  <div className="blogCard-text">{description.replace(/(<([^>]+)>)/ig,"").substr(0,120)}...</div>
+                  <div className="blogCard-date">{pubDate.substr(0,10)}</div>
                 </div>
               </div>
 

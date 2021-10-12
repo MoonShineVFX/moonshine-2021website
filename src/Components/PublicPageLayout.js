@@ -15,8 +15,7 @@ import WorkItem from './WorkItem'
 import About from '../Pages/Front/About'
 import Blog from '../Pages/Front/Blog'
 import Contact from '../Pages/Front/Contact'
-// back
-import Index from '../Pages/Back/index'
+
 //firebase
 import db from '../Config/firebase'
 import {onSnapshot,collection} from "firebase/firestore"
@@ -104,9 +103,8 @@ function PublicPageLayout() {
     setCurrentLang(localStorage.getItem('lang') ? localStorage.getItem('lang') : 'eng')
   },[])
   return (
-    <React.Fragment>
-      
-      {
+    <React.Fragment>  
+        {
           isOpen ?  <WorkItem data={searchResults} handler={handleOpen} visible={isOpen} /> : null
         }
       <Navbar currentLang={currentLang} switchLang={switchLang} navitemData={navitemData} socialitemData={socialitemData} switchHeaderName={switchHeaderName}/>

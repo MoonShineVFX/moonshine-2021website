@@ -14,6 +14,14 @@ ul{
 a {
   text-decoration: none;
 }
+* {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+#root{
+  background: #000;
+}
 .mt30{
   margin-top: 30px;
 }
@@ -97,6 +105,7 @@ a {
     align-items: center;
     box-sizing: border-box;
     position: relative;
+    margin: 0;
     li.active{
       color: rgba(255, 255, 255, 1);
     }
@@ -122,6 +131,7 @@ a {
   ul{
     display: flex;
     flex-wrap: wrap;
+    padding-left: 0;
     li{
       width: 19.5vw;
       height: 20vw;
@@ -336,7 +346,7 @@ a {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    .card{
+    .blogCard{
       width: 48%;
       margin-bottom: 20px;
       padding-bottom: 20px;
@@ -349,9 +359,14 @@ a {
         background-position: center;
         background-size: cover;
         transition: 0.3s;
+        filter: brightness(0.8);
+        &:hover{
+          filter: brightness(1.2);
+        }
       }
-      .card-body{
-        .card-title {
+      .blogCard-body{
+        .blogCard-title {
+          margin-top: 10px;
           margin-bottom: 10px;
           a {
             text-decoration: none;
@@ -362,12 +377,12 @@ a {
             }
           }
         }
-        .card-text{
+        .blogCard-text{
           font-size: 14px;
           color: #a9a8a8;
           margin-bottom: 15px;
         }
-        .card-date{
+        .blogCard-date{
           font-size: 14px;
           color: #ddd;
           margin-bottom: 15px;
@@ -611,12 +626,13 @@ a {
     }
   }
 }
-footer {
+.footer {
   font-family: 'Roboto Slab', "微軟正黑體" ,"Microsoft JhengHei","儷黑 Pro","LiHei Pro","文泉驛正黑", "WenQuanYi Zen Hei",serif;
   color: white;
   border-top: 1px solid #fff;
-  margin: 45px 25px 25px 25px;
+  margin: 45px 25px 0px 25px;
   font-size: 13px;
+  padding-bottom: 25px;
   .companyInfo {
     margin-top: 30px;
     p{
@@ -651,6 +667,11 @@ footer {
         vertical-align: bottom;
       }
     }
+  }
+  .copyright {
+    font-size: 12px;
+    text-align: right;
+    margin-top: 10px;
   }
 }
 // 區塊等待讀取

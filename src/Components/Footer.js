@@ -1,9 +1,9 @@
 import React from 'react'
 
 function Footer({currentLang,footerData,socialitemData}) {
-  const {footer} =footerData
+  const {footer} = footerData
   return (
-    <footer>
+    <div className="footer">
       <div className="companyInfo">
         <p>{currentLang === 'eng' ? footer.tel : footer.tel_cht }</p>
         <p>{currentLang === 'eng' ? footer.email : footer.email_cht }</p>
@@ -26,8 +26,8 @@ function Footer({currentLang,footerData,socialitemData}) {
         }
         <div className="mslogo"><img src={process.env.PUBLIC_URL + '/img/logo.svg'} alt=""/></div>
       </div>
-      
-    </footer>
+      <div className="copyright">{currentLang === 'eng' ? footer.copyright : footer.copyright_cht }</div> 
+    </div>
   )
 }
 
