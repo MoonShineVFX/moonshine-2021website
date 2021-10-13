@@ -9,7 +9,6 @@ export const useStorage = (file) => {
     const [progress, setProgress] = useState(0);
     const [error, setError] = useState(null);
     const [url, setUrl] = useState(null);
-    const [rename, setRename] = useState(null);
     const resizeFile = (file) =>
     new Promise((resolve) => {
       Resizer.imageFileResizer(
@@ -33,8 +32,8 @@ export const useStorage = (file) => {
             // storage ref
             (async () => {  
               const newTimeName = Date.now()
-              const image = await resizeFile(file);
-              const storageRef =await ref(db, 'data/'+ newTimeName+'.jpg');
+              const image = await resizeFile(file.file);
+              const storageRef =await ref(db, file.filename);
               const uploadTask =uploadBytesResumable(storageRef, image);
               uploadTask.on('state_changed', (snapshot) => {
                   // Observe state change events such as progress, pause, and resume
@@ -61,7 +60,6 @@ export const useStorage = (file) => {
                   getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     console.log('File available at', downloadURL);
                     setUrl(downloadURL)
-                    setRename(newTimeName+'.jpg')
                   });
                 }
               ); 
@@ -82,5 +80,5 @@ export const useStorage = (file) => {
         }
     }, [file]);
 
-    return { progress, url, error ,rename};
+    return { progress, url, error};
 };

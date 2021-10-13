@@ -1,0 +1,24 @@
+.cmsWork{
+  font-family: arial;
+  font-size: 15px;
+  tr{
+    td{
+      img{
+          width: 100px;  
+      }
+      .categoryList{
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        display: flex;
+        li{
+          margin-right: 6px;
+        };
+      }
+    }
+    td.title{
+      width: 20%;
+    }
+  }
+
+}

@@ -7,30 +7,58 @@ import AddWork from '../Pages/Back/AddWork'
 
 //firebase
 import db from '../Config/firebase'
-import {onSnapshot,collection,addDoc } from "firebase/firestore"
+import {onSnapshot,collection,addDoc, updateDoc, doc,deleteDoc } from "firebase/firestore"
 function DashboardLayout() {
-  const handleAddWork = async(data) =>{
-    const collectionRef = collection(db ,"test")
+  const [workData, setWorkData] = useState([]);
+  const [categoryData, setCategoryData] = useState([]);
+  
+  const handleCreateWork = async(data) =>{
+    const collectionRef = collection(db ,"data")
     await addDoc(collectionRef,data)
-  } 
+  }
+  const handleDeleteWork = async(uid)=>{
+    const workDoc = doc(db , 'data' , uid)
+    await deleteDoc(workDoc)
+  }
+  const handleUpdateWork = async(uid)=>{
+    
+    
+  }
+  const handleUpdateWorkDisplay = async(uid,display)=>{
+    const workDoc = doc(db , 'data' , uid)
+    var newField = {display:"0"}
+    if(display==="1"){
+      newField.display="0"
+    }else{
+      newField.display="1"
+    }
+    await updateDoc( workDoc ,newField)
+
+  }
   useEffect(()=>{
-    onSnapshot(collection(db,"test"),(snapshot)=>{
-      console.log(snapshot.docs.map(doc=> doc.data()))
+    onSnapshot(collection(db,"data"),(snapshot)=>{
+      setWorkData(snapshot.docs.map(doc=> ({...doc.data() ,uid:doc.id })))
     })
+    // switchCategory()
+    onSnapshot(collection(db,"category"),(snapshot)=>{
+      setCategoryData(snapshot.docs.map(doc=> doc.data()))
+    })
+
   },[])
   return (
     <div className="dashboard container-fluid">
       {/* 增加選單 管理作品  管理選單  管理介紹  管理分類 */}
       <div className="row">
         <AdminNav/>
-        <Switch>
-          <div className="main col-md-9 ms-sm-auto col-lg-10 px-md-4" style={{minHeight:'100vh'}}>
-            <Route path="/admin/addwork"   >
-              <AddWork handleAddWork={handleAddWork}/>
-            </Route>
+          <div className="main col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-4" style={{minHeight:'100vh'}}>
+            <Switch>
+                <Route path="/admin">
+                  <AddWork handleCreateWork={handleCreateWork} workData={workData} categoryData={categoryData} handleDeleteWork={handleDeleteWork} handleUpdateWork={handleUpdateWork}
+                  handleUpdateWorkDisplay={handleUpdateWorkDisplay}/> 
+                </Route>
+              
+            </Switch>
           </div>
-        </Switch>
-
       </div>
 
     </div>
