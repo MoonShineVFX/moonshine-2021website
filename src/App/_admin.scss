@@ -1,6 +1,11 @@
 .cmsWork{
   font-family: arial;
   font-size: 15px;
+  border: 1px solid;
+  .thead-color{
+    background: #e6eaee;
+    color: #242424;
+  }
   tr{
     td{
       img{
@@ -15,6 +20,9 @@
           margin-right: 6px;
         };
       }
+    }
+    td.id{
+      font-size: 12px;
     }
     td.title{
       width: 20%;

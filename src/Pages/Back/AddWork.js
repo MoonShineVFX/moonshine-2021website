@@ -9,11 +9,12 @@ function Addwork({handleCreateWork , workData , categoryData,handleDeleteWork , 
   const [error, setError] = useState(null);
   const types = ["image/png", "image/jpeg", "image/jpg"];
   const [isChecked, setIsChecked] = useState(false);
+  console.log(workData)
   const onSubmit = data =>{
     let selectedFile = data.file[0];
     const imgFileName = Date.now()+'.jpg'
     const currentData ={
-      "id": Date.now(),
+      "id": Date.now().toString(36),
       "time_added": new Date().toISOString(),
       "title": data.title,
       "intro": data.description,
@@ -60,15 +61,16 @@ function Addwork({handleCreateWork , workData , categoryData,handleDeleteWork , 
     // console.log( e.target.defaultChecked)
     // e.target.defaultChecked = false
   };
+
   
   // Getting the progress and url from the hook
   const { progress, url } = useStorage(file);
   return (
     <div className="row">
-      <div className="col-9">
+      <div className="col-12">
         <h3>作品列表</h3>
         <table className="table cmsWork table-hover ">
-          <thead>
+          <thead className="thead-color">
               <tr>
                 <th scope="col">#id</th>
                 <th scope="col">作品縮圖</th>
@@ -82,12 +84,12 @@ function Addwork({handleCreateWork , workData , categoryData,handleDeleteWork , 
             <tbody>
             {workData ? 
               workData.map((item,index)=>{
-                const {uid,id,title ,img,vimeo_id,display} = item
+                const {uid,id,title ,img,vimeo_id,display,imgpath} = item
                 return(
                 
                   <tr key={title+id}>
-                    <td>{id}</td>
-                    <td > <img src={`https://www.moonshine.tw/data/img_work/${img}`} alt="" /></td>
+                    <td className="id">{id}</td>
+                    <td > <img src="" alt="" />  </td>
                     <td className="title">{title} </td>
                     <td> <a href={`https://vimeo.com/${vimeo_id}`} target="_blank" rel="noreferrer" >{vimeo_id}</a></td>
                     <td>

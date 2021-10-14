@@ -1,0 +1,27 @@
+.cmsWork {
+  font-family: arial;
+  font-size: 15px;
+  border: 1px solid;
+}
+.cmsWork .thead-color {
+  background: #e6eaee;
+  color: #242424;
+}
+.cmsWork tr td img {
+  width: 100px;
+}
+.cmsWork tr td .categoryList {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+}
+.cmsWork tr td .categoryList li {
+  margin-right: 6px;
+}
+.cmsWork tr td.id {
+  font-size: 12px;
+}
+.cmsWork tr td.title {
+  width: 20%;
+}
