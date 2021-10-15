@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Resizer from "react-image-file-resizer";
 //firebase
 import db from '../Config/firestorage'
-import {ref,uploadBytesResumable, getDownloadURL ,getMetadata } from "firebase/storage"
+import {ref,uploadBytesResumable, getDownloadURL,getStorage  } from "firebase/storage"
 
 
 export const useStorage = (file) => {
@@ -48,6 +48,8 @@ export const useStorage = (file) => {
                     case 'running':
                       console.log('Upload is running');
                       break;
+                    default:
+                      console.log(' ')
                   }
                 }, 
                 (error) => {
@@ -82,3 +84,37 @@ export const useStorage = (file) => {
 
     return { progress, url, error};
 };
+
+
+
+export const useImageUrl = (img)=>{
+  const [url, setUrl] = useState(null);
+  const storage = getStorage();
+//'data/14607268903042.jpg'
+  // console.log(`data/${img}`)
+  const imagesRef = ref(storage, `data/${img}`);
+  getDownloadURL(imagesRef).then((url)=>{ 
+    setUrl(url)
+  })
+  .catch((error) => {
+    switch (error.code) {
+      case 'storage/object-not-found':
+        // File doesn't exist
+        break;
+      case 'storage/unauthorized':
+        // User doesn't have permission to access the object
+        break;
+      case 'storage/canceled':
+        // User canceled the upload
+        break;
+  
+      case 'storage/unknown':
+        // Unknown error occurred, inspect the server response
+        break;
+      default:
+        console.log('')
+    }
+  })
+
+  return url 
+}

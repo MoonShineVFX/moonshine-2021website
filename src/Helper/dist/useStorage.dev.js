@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.useStorage = void 0;
+exports.useImageUrl = exports.useStorage = void 0;
 
 var _react = require("react");
 
@@ -39,11 +39,6 @@ var useStorage = function useStorage(file) {
       url = _useState6[0],
       setUrl = _useState6[1];
 
-  var _useState7 = (0, _react.useState)(null),
-      _useState8 = _slicedToArray(_useState7, 2),
-      rename = _useState8[0],
-      setRename = _useState8[1];
-
   var resizeFile = function resizeFile(file) {
     return new Promise(function (resolve) {
       _reactImageFileResizer["default"].imageFileResizer(file, 500, 300, "JPEG", 80, 0, function (uri) {
@@ -66,12 +61,12 @@ var useStorage = function useStorage(file) {
               case 0:
                 newTimeName = Date.now();
                 _context.next = 3;
-                return regeneratorRuntime.awrap(resizeFile(file));
+                return regeneratorRuntime.awrap(resizeFile(file.file));
 
               case 3:
                 image = _context.sent;
                 _context.next = 6;
-                return regeneratorRuntime.awrap((0, _storage.ref)(_firestorage["default"], 'data/' + newTimeName + '.jpg'));
+                return regeneratorRuntime.awrap((0, _storage.ref)(_firestorage["default"], file.filename));
 
               case 6:
                 storageRef = _context.sent;
@@ -91,6 +86,9 @@ var useStorage = function useStorage(file) {
                     case 'running':
                       console.log('Upload is running');
                       break;
+
+                    default:
+                      console.log(' ');
                   }
                 }, function (error) {
                   // Handle unsuccessful uploads
@@ -101,7 +99,6 @@ var useStorage = function useStorage(file) {
                   (0, _storage.getDownloadURL)(uploadTask.snapshot.ref).then(function (downloadURL) {
                     console.log('File available at', downloadURL);
                     setUrl(downloadURL);
-                    setRename(newTimeName + '.jpg');
                   });
                 });
 
@@ -117,9 +114,47 @@ var useStorage = function useStorage(file) {
   return {
     progress: progress,
     url: url,
-    error: error,
-    rename: rename
+    error: error
   };
 };
 
 exports.useStorage = useStorage;
+
+var useImageUrl = function useImageUrl(img) {
+  var _useState7 = (0, _react.useState)(null),
+      _useState8 = _slicedToArray(_useState7, 2),
+      url = _useState8[0],
+      setUrl = _useState8[1];
+
+  var storage = (0, _storage.getStorage)(); //'data/14607268903042.jpg'
+  // console.log(`data/${img}`)
+
+  var imagesRef = (0, _storage.ref)(storage, "data/".concat(img));
+  (0, _storage.getDownloadURL)(imagesRef).then(function (url) {
+    setUrl(url);
+  })["catch"](function (error) {
+    switch (error.code) {
+      case 'storage/object-not-found':
+        // File doesn't exist
+        break;
+
+      case 'storage/unauthorized':
+        // User doesn't have permission to access the object
+        break;
+
+      case 'storage/canceled':
+        // User canceled the upload
+        break;
+
+      case 'storage/unknown':
+        // Unknown error occurred, inspect the server response
+        break;
+
+      default:
+        console.log('');
+    }
+  });
+  return url;
+};
+
+exports.useImageUrl = useImageUrl;

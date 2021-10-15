@@ -3,13 +3,16 @@ import { useForm } from "react-hook-form";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import { useStorage } from "../../Helper/useStorage";
-function Addwork({handleCreateWork , workData , categoryData,handleDeleteWork , handleUpdateWork,handleUpdateWorkDisplay}) {
+
+function Addwork({handleCreateWork , workData , categoryData,handleDeleteWork , handleUpdateWork,handleUpdateWorkDisplay,handleUpdateWorkCatrgory}) {
   const {register,handleSubmit } = useForm()
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const types = ["image/png", "image/jpeg", "image/jpg"];
   const [isChecked, setIsChecked] = useState(false);
-  console.log(workData)
+
+  
+
   const onSubmit = data =>{
     let selectedFile = data.file[0];
     const imgFileName = Date.now()+'.jpg'
@@ -61,6 +64,10 @@ function Addwork({handleCreateWork , workData , categoryData,handleDeleteWork , 
     // console.log( e.target.defaultChecked)
     // e.target.defaultChecked = false
   };
+  const handleCategoryId = (id,uid) => {
+    handleUpdateWorkCatrgory(id,uid)
+  } 
+
 
   
   // Getting the progress and url from the hook
@@ -82,14 +89,14 @@ function Addwork({handleCreateWork , workData , categoryData,handleDeleteWork , 
               </tr>
             </thead>
             <tbody>
-            {workData ? 
+            {workData.length>0 ? 
               workData.map((item,index)=>{
-                const {uid,id,title ,img,vimeo_id,display,imgpath} = item
+                const {uid,id,title ,img,vimeo_id,display,imgpath , category} = item
                 return(
                 
                   <tr key={title+id}>
                     <td className="id">{id}</td>
-                    <td > <img src="" alt="" />  </td>
+                    <td > <img src={imgpath} alt="" /></td>
                     <td className="title">{title} </td>
                     <td> <a href={`https://vimeo.com/${vimeo_id}`} target="_blank" rel="noreferrer" >{vimeo_id}</a></td>
                     <td>
@@ -99,11 +106,15 @@ function Addwork({handleCreateWork , workData , categoryData,handleDeleteWork , 
                           categoryData.map((item,index)=>{
                             const{id, name , name_cht } = item
                             return(
-                              <li key={name+id}>
+                              <li 
+                                key={name+id} 
+                                className={id ===category ? 'active' : ''}
+                                onClick={()=>{handleCategoryId(id,uid)}}
+                              >
                                 {name}
                               </li>
                             )
-                          }):<li>目前還沒有</li>
+                          }):'資料讀取中...'
                         }
                       </ul>
                     </td>
@@ -122,7 +133,11 @@ function Addwork({handleCreateWork , workData , categoryData,handleDeleteWork , 
                   </tr>
                   
                 )
-              }) : <li>目前還沒有</li>
+              }) :  <tr class="d-flex justify-content-center">
+                      <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </tr>
             }
             </tbody>
         </table>

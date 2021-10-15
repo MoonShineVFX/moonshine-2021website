@@ -19,6 +19,7 @@ import Contact from '../Pages/Front/Contact'
 //firebase
 import db from '../Config/firebase'
 import {onSnapshot,collection} from "firebase/firestore"
+
 import labData from '../Pages/Front/Lab.json'
 import aboutData from '../Pages/Front/About.json'
 import contactData from '../Pages/Front/Contact.json'
@@ -35,7 +36,7 @@ function PublicPageLayout() {
   const [navitemData, setNavitemData] = useState([]);
   const [socialitemData, setSocialitemData] = useState([]);
   const [headerItem, setHeaderItem] = useState([]);
-  
+
   // 開啟單作品
   const handleAddClick = (dataId) => {
     const results  =   workData.find((d)=>{

@@ -18,10 +18,31 @@
 }
 .cmsWork tr td .categoryList li {
   margin-right: 6px;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.715);
+}
+.cmsWork tr td .categoryList li:hover {
+  font-weight: bold;
+  color: brown;
+}
+.cmsWork tr td .categoryList li.active {
+  font-weight: bold;
+  color: brown;
 }
 .cmsWork tr td.id {
   font-size: 12px;
 }
 .cmsWork tr td.title {
   width: 20%;
+}
+
+.miniForm {
+  background: #e6eaee;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+}
+.miniForm h3 {
+  font-size: 18px;
+  font-weight: bold;
 }

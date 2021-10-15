@@ -18,7 +18,17 @@
         display: flex;
         li{
           margin-right: 6px;
+          cursor: pointer;
+          color:rgba(0, 0, 0, 0.715);
+          &:hover{
+            font-weight: bold;
+            color:brown;
+          }
         };
+        li.active{
+          font-weight: bold;
+          color:brown;
+        }
       }
     }
     td.id{
@@ -29,4 +39,15 @@
     }
   }
 
+}
+
+.miniForm{
+  background: #e6eaee;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  h3{
+    font-size: 18px;
+    font-weight: bold;
+  }
 }
