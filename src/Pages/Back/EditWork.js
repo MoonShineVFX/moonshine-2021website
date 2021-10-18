@@ -1,23 +1,31 @@
-import React,{useState} from 'react'
+/* eslint-disable jsx-a11y/alt-text */
+import React,{useState,useEffect} from 'react'
 import { useForm } from "react-hook-form";
 import { useStorage } from "../../Helper/useStorage";
-function AddWrok({handleCreateWork}) {
-  const {register,handleSubmit } = useForm()
+//firebase
+import db from '../../Config/firebase'
+import { doc,getDoc  } from "firebase/firestore"
+function EditWork({handleUpdateWork,uid,workData}) {
+  const {register,handleSubmit,reset } = useForm({defaultValues: { title: "", intro: "",vimeo_id:"" }})
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const types = ["image/png", "image/jpeg", "image/jpg"];
+  const [ singleData , setSingleData] = useState({});
   const onSubmit = data =>{
     let selectedFile = data.file[0];
     const imgFileName = Date.now()+'.jpg'
-    const currentData ={
-      "id": Date.now().toString(36),
-      "time_added": new Date().toISOString(),
+    const currentDataWithFile ={
       "title": data.title,
-      "intro": data.description,
-      "vimeo_id": data.vimeoid,
+      "intro": data.intro,
+      "vimeo_id": data.vimeo_id,
       "img": imgFileName,
       "sort_num":"0",
       "display":"1"
+    }
+    const currentDataWithoutFile ={
+      "title": data.title,
+      "intro": data.intro,
+      "vimeo_id": data.vimeo_id,
     }
     if (selectedFile) {
         if (types.includes(selectedFile.type)) {
@@ -30,27 +38,42 @@ function AddWrok({handleCreateWork}) {
             setFile(null);
             setError("Please select an image file (png or jpg)");
         }
+        handleUpdateWork(uid,currentDataWithFile)
+    }else{
+        handleUpdateWork(uid,currentDataWithoutFile)
     }
-    handleCreateWork(currentData)
+    
   }
+  const getADoc = async(uid) =>{
+    
+    var findLike = workData.find(function(item){
+      return item.uid === uid;  // 取得陣列 like === '蘿蔔泥'
+    });
+    reset(findLike)
+    setSingleData(findLike)
+  }
+  useEffect(()=>{
+    getADoc(uid)
+
+  },[uid])
     // Getting the progress and url from the hook
   const { progress, url } = useStorage(file);
   return (
     <div>
-      <h3>新增作品</h3>
+      <h3>編輯作品</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
           <label htmlFor="title">名稱</label>
           <input type="text" className="form-control" id="title"  {...register('title', { required: true })}/>
         </div>
         <div className="mb-3">
-          <label htmlFor="vimeoid">vimeo 影片 ID (example: 594440744)</label>
-          <input type="text" className="form-control" id="vimeoid"  {...register('vimeoid', { required: true })}/>
+          <label htmlFor="vimeo_id">vimeo 影片 ID (example: 594440744)</label>
+          <input type="text" className="form-control" id="vimeo_id"  {...register('vimeo_id', { required: true })}/>
 
         </div>
         <div className="mb-3">
           <label htmlFor="file">圖片</label>
-          <input type="file" className="form-control" id="file"  {...register('file', { required: true })} />
+          <input type="file" className="form-control" id="file"  {...register('file')} />
           
           {error && <p>{error}</p>} 
           <div className="preview">
@@ -61,13 +84,14 @@ function AddWrok({handleCreateWork}) {
                         <a href={url} className="text-break">{url}</a>
                       </p>
             )}
-            {url && <img src={url} className="img-fluid"/>}
+            {url ? <img src={url} className="img-fluid"/>  
+                  : <img src={singleData ? singleData.imgpath :　"1"} className="img-fluid" />}
           </div>
 
         </div>
         <div className="mb-3">
-          <label htmlFor="description">簡介(credit)</label>
-          <textarea name="description" className="form-control" id="description" cols="30" rows="10" {...register('description', { required: true })}></textarea>
+          <label htmlFor="intro">簡介(credit)</label>
+          <textarea name="intro" className="form-control" id="intro" cols="30" rows="10" {...register('intro', { required: true })}></textarea>
         </div>
         <div className="d-grid gap-2 d-md-block">
           <button type="submit" className="btn btn-primary">儲存</button>
@@ -79,4 +103,4 @@ function AddWrok({handleCreateWork}) {
   )
 }
 
-export default AddWrok
+export default EditWork

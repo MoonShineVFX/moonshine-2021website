@@ -36,16 +36,20 @@
     }
     td.title{
       width: 20%;
+      p{
+        font-weight: bold;
+        margin-bottom: 1px;
+      }
+      span{
+        font-size: 12px;
+      }
     }
   }
 
 }
 
 .miniForm{
-  background: #e6eaee;
-  padding: 20px;
   margin-bottom: 15px;
-  border-radius: 4px;
   h3{
     font-size: 18px;
     font-weight: bold;

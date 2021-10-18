@@ -35,12 +35,16 @@
 .cmsWork tr td.title {
   width: 20%;
 }
+.cmsWork tr td.title p {
+  font-weight: bold;
+  margin-bottom: 1px;
+}
+.cmsWork tr td.title span {
+  font-size: 12px;
+}
 
 .miniForm {
-  background: #e6eaee;
-  padding: 20px;
   margin-bottom: 15px;
-  border-radius: 4px;
 }
 .miniForm h3 {
   font-size: 18px;
