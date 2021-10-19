@@ -92,7 +92,7 @@ function Contact({currentLang,contactData}) {
             <div className="fs15">{currentLang === 'eng' ? contact.subcribe_title : contact.subcribe_title_cht }</div>
             <div className="fs13">{currentLang === 'eng' ? contact.subcribe_content : contact.subcribe_content_cht }</div>
           </div>
-          <div class="formIcon"><span id="formMessages"></span></div>
+          <div className="formIcon"><span id="formMessages"></span></div>
           <div className="formArea">
             <div id="mc_embed_signup">
               <form
@@ -100,23 +100,23 @@ function Contact({currentLang,contactData}) {
                 method="get"
                 id="mc-embedded-subscribe-form"
                 name="mc-embedded-subscribe-form"
-                class="validate"
-                target="_blank" novalidate>
+                className="validate"
+                target="_blank" noValidate>
 
-                <div class="sr-only" aria-hidden="true">
-                  <input type="text" name="b_d714004cfd866022b7dd8d3ff_98cc66f81b" tabindex="-1" value="" />
+                <div className="sr-only" aria-hidden="true">
+                  <input type="text" name="b_d714004cfd866022b7dd8d3ff_98cc66f81b" tabIndex="-1" value="" />
                 </div>
 
                 <div id="mc_embed_signup_scroll">
-                  <div class="flex-md-wrap">
-                    <div class="mc-field-group flex-md-1">
-                      <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Email Address" autocomplete='email' />
+                  <div className="flex-md-wrap">
+                    <div className="mc-field-group flex-md-1">
+                      <input type="email"  name="EMAIL" className="required email" id="mce-EMAIL" placeholder="Email Address" autoComplete='email' />
                     </div>
-                    <div class="mc-field-group flex-md-1">
-                      <input type="text" value="" name="FNAME" class="required" id="mce-FNAME" placeholder="Name" autocomplete='given-name' />
+                    <div className="mc-field-group flex-md-1">
+                      <input type="text"  name="FNAME" className="required" id="mce-FNAME" placeholder="Name" autoComplete='given-name' />
                     </div>
                     <div>
-                      <input type="submit" value="Keep Me Updated" name="subscribe" id="mc-embedded-subscribe" class="submit" />
+                      <input type="submit" value="Keep Me Updated" name="subscribe" id="mc-embedded-subscribe" className="submit" />
                     </div>
                   </div>
                 </div>

@@ -33,7 +33,7 @@ export const useStorage = (file) => {
             (async () => {  
               const newTimeName = Date.now()
               const image = await resizeFile(file.file);
-              const storageRef =await ref(db, 'data/'+file.filename);
+              const storageRef =await ref(db, file.folder+file.filename);
               const uploadTask =uploadBytesResumable(storageRef, image);
               uploadTask.on('state_changed', (snapshot) => {
                   // Observe state change events such as progress, pause, and resume

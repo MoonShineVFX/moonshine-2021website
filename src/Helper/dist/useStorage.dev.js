@@ -66,7 +66,7 @@ var useStorage = function useStorage(file) {
               case 3:
                 image = _context.sent;
                 _context.next = 6;
-                return regeneratorRuntime.awrap((0, _storage.ref)(_firestorage["default"], 'data/' + file.filename));
+                return regeneratorRuntime.awrap((0, _storage.ref)(_firestorage["default"], file.folder + file.filename));
 
               case 6:
                 storageRef = _context.sent;

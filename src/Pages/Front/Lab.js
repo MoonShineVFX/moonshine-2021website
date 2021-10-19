@@ -46,7 +46,7 @@ function Lab({labData , currentLang}) {
                  <div className="image">
                     <div className="image-inner">
                       <div className="image-wrapper active" id={`image${id}`}>
-                        <img src={`https://www.moonshine.tw/data/img/${image}`} alt="" />
+                        <img src={`https://www.moonshine.tw/data/img/${image}`} alt="" className="img-fluid" />
                       </div>
                       <div className="image-wrapper" id={`video${id}`}>
 

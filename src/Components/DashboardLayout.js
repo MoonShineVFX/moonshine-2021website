@@ -8,16 +8,29 @@ import Category from "../Pages/Back/Category"
 import Lab from '../Pages/Back/Lab'
 //firebase
 import db from '../Config/firebase'
-import {onSnapshot,collection,addDoc, updateDoc, doc,deleteDoc,orderBy  } from "firebase/firestore"
-import { getStorage, ref, getDownloadURL,getMetadata  } from "firebase/storage";
+import {onSnapshot,collection,addDoc, updateDoc, doc,deleteDoc  } from "firebase/firestore"
+import { getStorage, ref, getDownloadURL,  } from "firebase/storage";
 
 function DashboardLayout() {
   const [workData, setWorkData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
   const [labinfoData, setLabinfoData] = useState([]);
   const [labData, setLabData] = useState([]);
-  const [imgPath,setImgPath] = useState('')
   const storage = getStorage();
+  //LAB CURD
+  const handleCreateLab = async(data)=>{
+    const collectionRef = collection(db ,"labdata")
+    await addDoc(collectionRef,data)
+  }
+  const handleDeleteLab = async(uid)=>{
+    const labDoc = doc(db , 'labdata' , uid)
+    await deleteDoc(labDoc)
+  }
+  const handleUpdateLab = async(uid,currentData)=>{
+    const labDoc = doc(db , 'labdata' , uid)
+    await updateDoc( labDoc ,currentData)
+
+  }
   //CATEGORY CURD
   const handleCreateCategory = async(data)=>{
     const collectionRef = collection(db ,"category")
@@ -61,12 +74,10 @@ function DashboardLayout() {
     var newField = {category:id}
     await updateDoc( workDoc ,newField)
   }
+  //處理作品檔案的圖片路徑
   const mapWorkData =async (data)=>{
-    console.log(data)
-    
+
     const twoarr= data.map( async (element) => {
-      // console.log(await getImageUrl(element.img)) 
-      // console.log(...element)
       const imagesRef = ref(storage, `data/${element.img}`);
       const newimgurl =await getDownloadURL(imagesRef).catch((error) => {
         switch (error.code) {
@@ -90,19 +101,14 @@ function DashboardLayout() {
       return {...element , imgpath :newimgurl}
      
     })
-
-
     setWorkData(await Promise.all(twoarr))
-
-    
-    
   }
-  const getImageUrl =  async(img)=>{
-      //'data/14607268903042.jpg'
-      // console.log(`data/${img}`)
-      const imagesRef = ref(storage, `data/${img}`);
-      const imgurl =await  getDownloadURL(imagesRef)
-      .catch((error) => {
+  //處理LAB的圖片路徑
+  const mapLabData =async (data)=>{
+
+    const twoarr= data.map( async (element) => {
+      const imagesRef = ref(storage, `img_lab/${element.image}`);
+      const newimgurl =await getDownloadURL(imagesRef).catch((error) => {
         switch (error.code) {
           case 'storage/object-not-found':
             // File doesn't exist
@@ -121,11 +127,13 @@ function DashboardLayout() {
             console.log('')
         }
       })
-
-      // console.log(imgurl)
-      return imgurl
-
+      return {...element , imgpath :newimgurl}
+     
+    })
+    setLabData(await Promise.all(twoarr))
   }
+  
+
 
   useEffect(()=>{
     // const dataRef = collection(db, "data");
@@ -144,12 +152,12 @@ function DashboardLayout() {
       setCategoryData(snapshot.docs.map(doc=> ({...doc.data(),uid:doc.id})))
     })
 
-    //  lab
-    onSnapshot(collection(db,"labinfo"),(snapshot)=>{
-      setLabinfoData(snapshot.docs.map(doc=> ({...doc.data(),uid:doc.id})))
-    })
+    //  labinfo
+    // onSnapshot(collection(db,"labinfo"),(snapshot)=>{
+    //   setLabinfoData(snapshot.docs.map(doc=> ({...doc.data(),uid:doc.id})))
+    // })
     onSnapshot(collection(db,"labdata"),(snapshot)=>{
-      setLabData(snapshot.docs.map(doc=> ({...doc.data(),uid:doc.id})))
+      mapLabData(snapshot.docs.map(doc=> ({...doc.data(),uid:doc.id})))
     })
 
   },[])
@@ -168,7 +176,7 @@ function DashboardLayout() {
                   <Category  categoryData={categoryData} handleCreateCategory={handleCreateCategory} handleDeleteCategory={handleDeleteCategory} handleUpdateCategory={handleUpdateCategory}/>
                 </Route>
                 <Route path="/admin/lab">
-                  <Lab  labinfoData={labinfoData} labData={labData}/>
+                  <Lab  labinfoData={labinfoData} labData={labData} handleCreateLab={handleCreateLab} handleDeleteLab={handleDeleteLab} handleUpdateLab={handleUpdateLab}/>
                 </Route>
               
             </Switch>

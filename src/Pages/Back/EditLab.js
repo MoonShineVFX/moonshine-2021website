@@ -1,18 +1,30 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { useForm } from "react-hook-form";
 import { useStorage } from "../../Helper/useStorage";
-function AddLab({handleCreateLab}) {
-  const {register,handleSubmit } = useForm()
+
+function EditLab({labData,handleUpdateLab,uid}) {
+  const {register,handleSubmit,reset } = useForm({defaultValues: { 
+    name: "", 
+    name_cht: "",
+    title_1:"",
+    title_1_cht:"",
+    description_1:"",
+    description_1_cht:"",
+    title_2:"",
+    title_2_cht:"",
+    description_2:"",
+    description_2_cht:"",
+    video:"",
+    sitelink:"",
+  }})
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const types = ["image/png", "image/jpeg", "image/jpg"];
+  const [ singleData , setSingleData] = useState({});
   const onSubmit = data =>{
-    console.log(data)
     let selectedFile = data.file[0];
     const imgFileName = Date.now()+'.jpg'
-    const currentData ={
-      "id": Date.now().toString(36),
-      "time_added": new Date().toISOString(),
+    const currentDataWithFile ={
       "name": data.name,
       "name_cht": data.name_cht,
       "title_1": data.title_1,
@@ -26,29 +38,54 @@ function AddLab({handleCreateLab}) {
       "video": data.video,
       "sitelink":data.sitelink,
       "image": imgFileName,
-      "sort_num":"0",
-      "display":"1"
+    }
+    const currentDataWithoutFile ={
+      "name": data.name,
+      "name_cht": data.name_cht,
+      "title_1": data.title_1,
+      "title_1_cht": data.title_1_cht,
+      "description_1": data.description_1,
+      "description_1_cht": data.description_1_cht,
+      "title_2": data.title_2,
+      "title_2_cht": data.title_2_cht,
+      "description_2": data.description_2,
+      "description_2_cht": data.description_2_cht,
+      "video": data.video,
+      "sitelink":data.sitelink,
     }
     if (selectedFile) {
         if (types.includes(selectedFile.type)) {
             setError(null);
             setFile({
               "filename":imgFileName,
-              "file":selectedFile,
-              "folder":'img_lab/'
+              "file":selectedFile
             });
         } else {
             setFile(null);
             setError("Please select an image file (png or jpg)");
         }
+        handleUpdateLab(uid,currentDataWithFile)
+    }else{
+        handleUpdateLab(uid,currentDataWithoutFile)
     }
-    handleCreateLab(currentData)
-
+    
   }
+  const getADoc = async(uid) =>{
+    
+    var findLike = labData.find(function(item){
+      return item.uid === uid;  // 取得陣列 like === '蘿蔔泥'
+    });
+    reset(findLike)
+    setSingleData(findLike)
+  }
+  useEffect(()=>{
+    getADoc(uid)
+
+  },[uid])
   const { progress, url } = useStorage(file);
   return (
     <div className="miniForm">
-      <h3>新增LAB</h3>
+      <h3>編輯LAB</h3>
       <form onSubmit={handleSubmit(onSubmit)} className="row">
         <div className="mb-3 col input-group-sm">
           <label htmlFor="name" className="form-label">英文名稱</label>
@@ -64,7 +101,7 @@ function AddLab({handleCreateLab}) {
         </div>
         <div className="mb-3 input-group-sm">
           <label htmlFor="file">圖片</label>
-          <input type="file" className="form-control" id="file"  {...register('file', { required: true })} />
+          <input type="file" className="form-control" id="file"  {...register('file')} />
           
           {error && <p>{error}</p>} 
           <div className="preview">
@@ -75,7 +112,8 @@ function AddLab({handleCreateLab}) {
                         <a href={url} className="text-break">{url}</a>
                       </p>
             )}
-            {url && <img src={url} className="img-fluid"/>}
+            {url ? <img src={url} className="img-fluid"/>
+                :   <img src={singleData ? singleData.imgpath :　"1"} className="img-fluid" />}
           </div>
 
         </div>
@@ -139,4 +177,4 @@ function AddLab({handleCreateLab}) {
   )
 }
 
-export default AddLab
+export default EditLab

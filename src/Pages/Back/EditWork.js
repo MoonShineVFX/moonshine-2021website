@@ -3,8 +3,6 @@ import React,{useState,useEffect} from 'react'
 import { useForm } from "react-hook-form";
 import { useStorage } from "../../Helper/useStorage";
 //firebase
-import db from '../../Config/firebase'
-import { doc,getDoc  } from "firebase/firestore"
 function EditWork({handleUpdateWork,uid,workData}) {
   const {register,handleSubmit,reset } = useForm({defaultValues: { title: "", intro: "",vimeo_id:"" }})
   const [file, setFile] = useState(null);
@@ -19,8 +17,6 @@ function EditWork({handleUpdateWork,uid,workData}) {
       "intro": data.intro,
       "vimeo_id": data.vimeo_id,
       "img": imgFileName,
-      "sort_num":"0",
-      "display":"1"
     }
     const currentDataWithoutFile ={
       "title": data.title,

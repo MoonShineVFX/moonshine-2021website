@@ -509,6 +509,14 @@ a {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      h3{
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        position: relative;
+        margin-bottom: 25px;
+        margin-top: 60px;
+      }
       a{
         color: #63f4d4;
         text-decoration: none;
@@ -600,6 +608,7 @@ a {
       width: 100%;
       line-height: 40px;
       color: white;
+      font-size: 12px;
       &:focus{
         outline: none;
       }
@@ -712,4 +721,5 @@ a {
   height: 100vh;
 }
 
-@import 'admin'
+@import 'admin';
+@import 'mobile';

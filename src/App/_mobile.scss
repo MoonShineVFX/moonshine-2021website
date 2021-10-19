@@ -1,0 +1,192 @@
+.mobile-menu{display: none;}
+@media (max-width: 414px){
+  .cContainter{
+    width: 100%;
+    padding: 25px;
+    .lab{
+      width: 100%;
+    }
+    .jsonContent {
+      flex-direction: column;
+      .blogCard{
+        width: 100%;
+        .thumb{
+          height: 174px;
+        }
+      }
+    }
+    .cInfo {
+      .infoArea {
+        .infoContent{
+          display: block;
+          margin-bottom: 25px;
+          &:first-child , &:nth-child(2){
+            &:after{
+              width: 0;
+            }
+          }
+        }
+        .width1,.width2{
+          width: 100%;
+        }
+        
+      }
+    }
+    .cForm {
+      .formArea {
+        .flex-md-wrap{
+          flex-direction: column;
+          .mc-field-group{
+            width: 100%;
+            color: white;
+            margin-bottom: 15px;
+          }
+        }
+      }
+    }
+  }
+  .uContainer{    
+    width: 100%;
+    padding: 25px;
+    .stats{
+      .statsLeft,.statsright{
+        font-size: 13px;
+      }
+      .statsCenter{
+        font-size: 30px;
+      }
+
+    }
+    .strength {
+      .strengthContent{
+        width: 100%;
+      }
+    }
+  }
+  .header{
+    background-image: url(https://www.moonshine.tw/sites/main/view/img/bg.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 200px;
+    #intro_bg_video{
+      display: none;
+    }
+    #site-logo {
+      width: 27%;
+      max-width: 500px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .site-menu{
+    display: none;
+  }
+  .mobile-menu {
+    display: block;
+    position: fixed;
+    top: -1000px;
+    left: 0;
+    padding: 50px 0 20px 0;
+    width: 100%;
+    list-style: none;
+    background-color: #000;
+    z-index: 20;
+    transition: 0.5s;
+    overflow: hidden;
+    color: #fff;
+    li{
+      a{
+        display: block;
+        padding: 15px 35px;
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+    li.langChange{
+      padding-left: 35px;
+      padding-bottom: 15px;
+      padding-top: 15px;
+      span{
+        margin-right: 15px;
+      }
+    }
+    .mobile-menu-icon{
+      display: flex;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      li{
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        a{
+          img{
+            height: 14px;
+          }
+        }
+      }
+    }
+  }
+  .mobile-menu.active{
+    top:0;
+  }
+  .catrgories{
+    overflow-x: auto;
+    ul{
+      li{
+        padding: 20px 11px;
+      }
+    }
+  }
+  .workContainer{
+    ul{
+      li{
+        width: 48.5vw;
+        height: 40vw;
+        margin: 1vw 1vw 0 0;
+      }
+    }
+  }
+  .workitem{
+    .itemContent {
+      width: 90%;
+    }
+  }
+  .mobile-menu-btn-bar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 21;
+    .btn{
+      display: block;
+      padding: 5px;
+      img{
+        display: block;
+        width: 30px;
+      }
+    }
+  }
+  .stickyScroll {
+    .image{
+      display: none;
+    }
+    .text-sections{
+      .text-section{
+        height:auto;
+        max-height: 50rem;
+        margin-top: 50px;
+        .content{
+          text-align: left;
+        }
+      }
+    }
+  }
+  
+
+}
+@media (min-width: 720px){
+  .mobile-menu-btn-bar {
+      display: none;
+  }
+}
