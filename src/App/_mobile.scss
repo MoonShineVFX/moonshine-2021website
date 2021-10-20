@@ -5,6 +5,9 @@
     padding: 25px;
     .lab{
       width: 100%;
+      .content{
+        text-align: left;
+      }
     }
     .jsonContent {
       flex-direction: column;
@@ -175,7 +178,15 @@
       .text-section{
         height:auto;
         max-height: 50rem;
-        margin-top: 50px;
+        margin-top: 0px;
+        margin-bottom: 35px;
+        h3{
+          font-size: 18px;
+          font-weight: 200;
+          margin-bottom: 15px;
+          line-height: 26px;
+          margin-top: 0px;
+        }
         .content{
           text-align: left;
         }

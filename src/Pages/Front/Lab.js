@@ -1,8 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import ReactPlayer from 'react-player'
-function Lab({labData , currentLang}) {
+function Lab({labData , currentLang , labInfoData}) {
   const [ height , setHeight] = useState("")
-  const {labinfo , labdata}=labData
   const onScroll = (e) => {
     setHeight(e.target.documentElement.scrollTop)
   }
@@ -16,17 +15,17 @@ function Lab({labData , currentLang}) {
     
     <div className="cContainter">
       <div className="animate__animated animate__fadeIn lab">
-        <h2>{currentLang === 'eng' ? labinfo.name : labinfo.name_cht }</h2>
+        <h2>{currentLang === 'eng' ? labInfoData[0].name : labInfoData[0].name_cht }</h2>
         
         <div className="content">
-          {currentLang === 'eng' ? labinfo.description : labinfo.description_cht }
+          {currentLang === 'eng' ? labInfoData[0].description : labInfoData[0].description_cht }
         </div>
       </div>
       <div className="animate__animated animate__fadeIn">
         {
-          labdata ?
-          labdata.map((item,index)=>{
-            const{id,name,name_cht,image,video,title_1,title_1_cht,description_1,description_1_cht,title_2,title_2_cht,description_2,description_2_cht,sitelink} = item
+          labData ?
+          labData.map((item,index)=>{
+            const{id,name,name_cht,image,video,title_1,title_1_cht,description_1,description_1_cht,title_2,title_2_cht,description_2,description_2_cht,sitelink,imgpath} = item
             return(
              <div 
                 key={id} 
@@ -46,7 +45,7 @@ function Lab({labData , currentLang}) {
                  <div className="image">
                     <div className="image-inner">
                       <div className="image-wrapper active" id={`image${id}`}>
-                        <img src={`https://www.moonshine.tw/data/img/${image}`} alt="" className="img-fluid" />
+                        <img src={imgpath} alt="" className="img-fluid" />
                       </div>
                       <div className="image-wrapper" id={`video${id}`}>
 

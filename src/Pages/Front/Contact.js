@@ -1,7 +1,7 @@
 import React from 'react'
 import { GoogleMap, LoadScript ,Marker} from '@react-google-maps/api';
 function Contact({currentLang,contactData}) {
-  const {contact}=contactData
+  
   const containerStyle = {
     width: '100%',
     height: '320px',
@@ -9,22 +9,22 @@ function Contact({currentLang,contactData}) {
   const styles =[
     {
       "stylers": [
-            {
-                "hue": "#ff1a00"
-            },
-            {
-                "invert_lightness": true
-            },
-            {
-                "saturation": -100
-            },
-            {
-                "lightness": 33
-            },
-            {
-                "gamma": 0.5
-            }
-          ]
+          {
+              "hue": "#ff1a00"
+          },
+          {
+              "invert_lightness": true
+          },
+          {
+              "saturation": -100
+          },
+          {
+              "lightness": 33
+          },
+          {
+              "gamma": 0.5
+          }
+        ]
       },
       {
           "featureType": "water",
@@ -42,6 +42,7 @@ function Contact({currentLang,contactData}) {
     lng: 121.594860
   };
   return (
+    
     <div className="cContainter">
       <div id="map" className="mt30">
         <LoadScript
@@ -74,23 +75,23 @@ function Contact({currentLang,contactData}) {
         </div>
         <div className="infoArea">
           <div className="infoContent width1">
-              <p>{currentLang === 'eng' ? contact.tel_title : contact.tel_title_cht }</p>
-              <p>{contact.tel_content}</p>
+              <p>{currentLang === 'eng' ? contactData.tel_title : contactData.tel_title_cht }</p>
+              <p>{contactData.tel_content}</p>
           </div>
           <div className="infoContent width1">
-              <p>{currentLang === 'eng' ? contact.email_title : contact.email_title_cht }</p>
-              <p>{contact.email_content}</p>
+              <p>{currentLang === 'eng' ? contactData.email_title : contactData.email_title_cht }</p>
+              <p>{contactData.email_content}</p>
           </div>
           <div className="infoContent width2">
-              <p>{currentLang === 'eng' ? contact.address_title : contact.address_title_cht }</p>
-              <p>{currentLang === 'eng' ? contact.address_content : contact.address_content_cht }</p>
+              <p>{currentLang === 'eng' ? contactData.address_title : contactData.address_title_cht }</p>
+              <p>{currentLang === 'eng' ? contactData.address_content : contactData.address_content_cht }</p>
           </div>
         </div>
       </div>
       <div className="cForm">
           <div className="formContent">
-            <div className="fs15">{currentLang === 'eng' ? contact.subcribe_title : contact.subcribe_title_cht }</div>
-            <div className="fs13">{currentLang === 'eng' ? contact.subcribe_content : contact.subcribe_content_cht }</div>
+            <div className="fs15">{currentLang === 'eng' ? contactData.subcribe_title : contactData.subcribe_title_cht }</div>
+            <div className="fs13">{currentLang === 'eng' ? contactData.subcribe_content : contactData.subcribe_content_cht }</div>
           </div>
           <div className="formIcon"><span id="formMessages"></span></div>
           <div className="formArea">

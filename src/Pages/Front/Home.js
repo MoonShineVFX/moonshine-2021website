@@ -10,7 +10,6 @@ function Home({workData , handler , categoryData ,currentLang , switchCategory})
     setActive(id)
     switchCategory(id)
   }
-  console.log(workData)
 
 
   

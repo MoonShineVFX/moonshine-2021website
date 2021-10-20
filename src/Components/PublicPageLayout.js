@@ -23,9 +23,6 @@ import Contact from '../Pages/Front/Contact'
 import db from '../Config/firebase'
 import {onSnapshot,collection} from "firebase/firestore"
 import { getStorage, ref, getDownloadURL,  } from "firebase/storage";
-import labData from '../Pages/Front/Lab.json'
-import aboutData from '../Pages/Front/About.json'
-import contactData from '../Pages/Front/Contact.json'
 import footerData from './footer.json'
 import headerData from './Header.json'
 function PublicPageLayout() {
@@ -34,7 +31,12 @@ function PublicPageLayout() {
   const [workData, setWorkData] = useState([]);
   const [filteredWorkData, setFilteredWorkData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
-
+  const [labData, setLabData] = useState([]);
+  const [labInfoData, setLabInfoData] = useState([]);
+  const [aboutStatsData, setAboutStatsData] = useState([]);
+  const [aboutInfoData, setAboutInfoData] = useState([]);
+  const [aboutStrengthData, setAboutStrengthData] = useState([]);
+  const [contactData, setContactData] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [currentLang, setCurrentLang] = useState("");
   const [navitemData, setNavitemData] = useState([]);
@@ -84,23 +86,17 @@ function PublicPageLayout() {
   }
   //處理作品檔案的圖片路徑
   const mapWorkData =async (data)=>{
-
     const twoarr= data.map( async (element) => {
       const imagesRef = ref(storage, `data/${element.img}`);
       const newimgurl =await getDownloadURL(imagesRef).catch((error) => {
         switch (error.code) {
           case 'storage/object-not-found':
-            // File doesn't exist
             break;
           case 'storage/unauthorized':
-            // User doesn't have permission to access the object
             break;
           case 'storage/canceled':
-            // User canceled the upload
             break;
-      
           case 'storage/unknown':
-            // Unknown error occurred, inspect the server response
             break;
           default:
             console.log('')
@@ -112,7 +108,73 @@ function PublicPageLayout() {
     setWorkData(await Promise.all(twoarr))
     setFilteredWorkData(await Promise.all(twoarr))
   }
-
+  const mapSoicalItemData = async(data)=>{
+    const twoarr= data.map( async (element) => {
+      const imagesRef = ref(storage, `img_icon/${element.img}`);
+      const newimgurl =await getDownloadURL(imagesRef).catch((error) => {
+        switch (error.code) {
+          case 'storage/object-not-found':
+            break;
+          case 'storage/unauthorized':
+            break;
+          case 'storage/canceled':
+            break;
+          case 'storage/unknown':
+            break;
+          default:
+            console.log('')
+        }
+      })
+      return {...element , imgpath :newimgurl}
+     
+    })
+    setSocialitemData(await Promise.all(twoarr))
+  }
+  const mapLabData = async(data)=>{
+    const twoarr= data.map( async (element) => {
+      const imagesRef = ref(storage, `img_lab/${element.image}`);
+      const newimgurl =await getDownloadURL(imagesRef).catch((error) => {
+        switch (error.code) {
+          case 'storage/object-not-found':
+            break;
+          case 'storage/unauthorized':
+            break;
+          case 'storage/canceled':
+            break;
+          case 'storage/unknown':
+            break;
+          default:
+            console.log('')
+        }
+      })
+      return {...element , imgpath :newimgurl}
+     
+    })
+    setLabData(await Promise.all(twoarr))
+  }
+  const mapAboutStrengthData = async(data)=>{
+    // console.log(data.strengthinfo)
+    const twoarr= data.map( async (element) => {
+      const imagesRef = ref(storage, `img_about/${element.image}`);
+      const newimgurl =await getDownloadURL(imagesRef).catch((error) => {
+        switch (error.code) {
+          case 'storage/object-not-found':
+            break;
+          case 'storage/unauthorized':
+            break;
+          case 'storage/canceled':
+            break;
+          case 'storage/unknown':
+            break;
+          default:
+            console.log('')
+        }
+      })
+      return {...element , imgpath :newimgurl}
+     
+    })
+    setAboutStrengthData(await Promise.all(twoarr))
+  }
   //執行撈資料
   useEffect(()=>{
     // fetchWork().then((d)=>{
@@ -133,7 +195,30 @@ function PublicPageLayout() {
     })
      // setCocialitem()
      onSnapshot(collection(db,"socialitem"),(snapshot)=>{
-      setSocialitemData(snapshot.docs.map(doc=> doc.data()))
+      mapSoicalItemData(snapshot.docs.map(doc=> doc.data()))
+    })
+
+    // setlab
+    onSnapshot(collection(db,"labdata"),(snapshot)=>{
+      mapLabData(snapshot.docs.map(doc=> doc.data()))
+    })
+    onSnapshot(collection(db,"labinfo"),(snapshot)=>{
+      setLabInfoData(snapshot.docs.map(doc=> doc.data()))
+    })
+
+    // setAbout
+    onSnapshot(collection(db,"aboutstats"),(snapshot)=>{
+      setAboutStatsData(snapshot.docs.map(doc=> doc.data()))
+    })
+
+    onSnapshot(collection(db,"aboutinfo"),(snapshot)=>{
+      setAboutInfoData(snapshot.docs.map(doc=> doc.data()))
+    })
+    onSnapshot(collection(db,"aboutstrength"),(snapshot)=>{
+      mapAboutStrengthData(snapshot.docs.map(doc=> doc.data()));
+    })
+    onSnapshot(collection(db,"contact"),(snapshot)=>{
+      setContactData(snapshot.docs.map(doc=> doc.data()));
     })
     
     setCurrentLang(localStorage.getItem('lang') ? localStorage.getItem('lang') : 'eng')
@@ -152,16 +237,16 @@ function PublicPageLayout() {
           <Home workData={filteredWorkData} categoryData={categoryData} handler={handleAddClick} currentLang={currentLang} switchCategory={switchCategory}/>
         </Route>
         <Route path="/lab"   >
-          <Lab currentLang={currentLang} labData={labData}/>
+          <Lab currentLang={currentLang} labData={labData} labInfoData={labInfoData}/>
         </Route>
         <Route path="/about"   >
-          <About currentLang={currentLang} aboutData={aboutData}/>
+          <About currentLang={currentLang} aboutStatsData={aboutStatsData} aboutInfoData={aboutInfoData} aboutStrengthData={aboutStrengthData}/>
         </Route>
         <Route path="/blog"   >
           <Blog />
         </Route>
         <Route path="/contact"   >
-          <Contact currentLang={currentLang} contactData={contactData }/>
+          <Contact currentLang={currentLang} contactData={contactData[0] }/>
         </Route>
       </Switch>
       <Footer currentLang={currentLang}  footerData={footerData} socialitemData={socialitemData}/>

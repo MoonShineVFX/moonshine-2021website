@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: 'Roboto Slab', "微軟正黑體" ,"Microsoft JhengHei","儷黑 Pro","LiHei Pro","文泉驛正黑", "WenQuanYi Zen Hei",serif;
+  font-family: 'Roboto Slab', "微軟正黑體" ,"Microsoft JhengHei","儷黑 Pro","LiHei Pro","文泉驛正黑", "WenQuanYi Zen Hei",serif !important;
   position: relative;
   background-color: #000;
 }
@@ -341,6 +341,7 @@ a {
     text-align: justify;
     line-height: 29px;
     font-weight: lighter;
+    color: #ddd;
   }
   .jsonContent{
     display: flex;

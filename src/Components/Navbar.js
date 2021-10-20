@@ -31,12 +31,12 @@ function Navbar({currentLang , switchLang , navitemData,socialitemData, switchHe
           }
           {socialitemData.length >0 ? 
             socialitemData.map((item,index)=>{
-              const {id ,img , link} = item
+              const {id ,img , link,imgpath} = item
               return(
               
                     <li key={id} >
                       <a href={link} target="_blank" rel="noreferrer">
-                        <img src={process.env.PUBLIC_URL + '/img/'+img} alt="" />
+                        <img src={imgpath} alt="" />
                       </a> 
                     </li>
                 

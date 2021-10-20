@@ -10,6 +10,9 @@
   .cContainter .lab {
     width: 100%;
   }
+  .cContainter .lab .content {
+    text-align: left;
+  }
   .cContainter .jsonContent {
     flex-direction: column;
   }
@@ -157,7 +160,15 @@
   .stickyScroll .text-sections .text-section {
     height: auto;
     max-height: 50rem;
-    margin-top: 50px;
+    margin-top: 0px;
+    margin-bottom: 35px;
+  }
+  .stickyScroll .text-sections .text-section h3 {
+    font-size: 18px;
+    font-weight: 200;
+    margin-bottom: 15px;
+    line-height: 26px;
+    margin-top: 0px;
   }
   .stickyScroll .text-sections .text-section .content {
     text-align: left;

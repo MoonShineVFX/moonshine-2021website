@@ -1,7 +1,6 @@
 import React from 'react'
 
-function About({aboutData,currentLang}) {
-  const {aboutstats,aboutinfo}=aboutData
+function About({aboutStatsData,currentLang,aboutInfoData,aboutStrengthData}) {
   return (
     <div className="uContainer">
       <div className="office mt30 animate__animated animate__fadeIn">
@@ -9,8 +8,8 @@ function About({aboutData,currentLang}) {
       </div>
       <div className="stats animate__animated animate__fadeIn">
         {
-          aboutstats ? 
-          aboutstats.map((item,index)=>{
+          aboutStatsData ? 
+          aboutStatsData.map((item,index)=>{
             const{id, left , left_cht ,center,center_cht,right,right_cht,link} = item
             return(
               <div key={left+id} className="statsContent">
@@ -33,27 +32,27 @@ function About({aboutData,currentLang}) {
         }
       </div>
       <div className="about animate__animated animate__fadeIn">
-        <h2>{currentLang === 'eng' ? aboutinfo.title_1 : aboutinfo.title_1_cht }</h2>
+        <h2>{currentLang === 'eng' ? aboutInfoData[0].title_1 : aboutInfoData[0].title_1_cht }</h2>
         <div className="content">
-            {currentLang === 'eng' ? aboutinfo.description_1 : aboutinfo.description_1_cht }
+            {currentLang === 'eng' ? aboutInfoData[0].description_1 : aboutInfoData[0].description_1_cht }
         </div>
-        <h2>{currentLang === 'eng' ? aboutinfo.title_2 : aboutinfo.title_2_cht }</h2>
+        <h2>{currentLang === 'eng' ? aboutInfoData[0].title_2 : aboutInfoData[0].title_2_cht }</h2>
         <div className="content">
-            {currentLang === 'eng' ? aboutinfo.description_2 : aboutinfo.description_2_cht }
+            {currentLang === 'eng' ? aboutInfoData[0].description_2 : aboutInfoData[0].description_2_cht }
         </div>
 
       </div>
       <div className="strength">
-        {aboutinfo.strengthinfo.length>0 ? 
-          aboutinfo.strengthinfo.map((item,index)=>{
-            const {id,title ,title_cht,description,description_cht,image} = item
+        {aboutStrengthData.length>0 ? 
+          aboutStrengthData.map((item,index)=>{
+            const {id,title ,title_cht,description,description_cht,image,imgpath} = item
             return(
             
               <div key={title+id} className="strengthContent" >
                 <div className="title">{currentLang === 'eng' ? title : title_cht }</div>
                 <div className="description">{currentLang === 'eng' ? description : description_cht }</div>
                 <div className="img">
-                  <img src={image} alt="" />
+                  <img src={imgpath} alt="" />
                 </div>
               </div>
               
