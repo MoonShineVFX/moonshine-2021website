@@ -46,7 +46,7 @@ function Contact({currentLang,contactData}) {
     <div className="cContainter">
       <div id="map" className="mt30">
         <LoadScript
-          googleMapsApiKey="AIzaSyCboUZ-BNysXw4H1czfg43Tp1ia0_dkRfk"
+          googleMapsApiKey="AIzaSyCY5JQ3g9D70gnfALdxc8z18XD7AtNw3wM"
         >
           <GoogleMap
             mapContainerStyle={containerStyle}
