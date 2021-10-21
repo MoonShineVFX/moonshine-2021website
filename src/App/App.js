@@ -13,7 +13,7 @@ function App() {
     <AuthProvider>
     <BrowserRouter>
       <Switch> 
-          <PrivateRoute   path="/admin"   component={DashboardLayout} />
+          <PrivateRoute   path="/admin/:path"   component={DashboardLayout} />
           <Route   path="/login"  component={AuthLayout} />
           <Route   path="/"  component={PublicPageLayout} />
           

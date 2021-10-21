@@ -148,9 +148,9 @@ function Work({handleCreateWork , workData , categoryData,handleDeleteWork , han
                   </tr>
                   
                 )
-              }) :  <tr class="d-flex justify-content-center">
-                      <div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
+              }) :  <tr className="d-flex justify-content-center">
+                      <div className="spinner-border" role="status">
+                        <span className="visually-hidden">Loading...</span>
                       </div>
                     </tr>
             }

@@ -168,7 +168,7 @@ function DashboardLayout() {
         <AdminNav/>
           <div className="main col-10 ms-sm-auto col-lg-10 px-md-4 mt-4" style={{minHeight:'100vh'}}>
             <Switch>
-                <Route path="/admin">
+                <Route path="/admin/work">
                   <Work handleCreateWork={handleCreateWork} workData={workData} categoryData={categoryData} handleDeleteWork={handleDeleteWork} handleUpdateWork={handleUpdateWork}
                   handleUpdateWorkDisplay={handleUpdateWorkDisplay} handleUpdateWorkCatrgory={handleUpdateWorkCatrgory}/> 
                 </Route>
