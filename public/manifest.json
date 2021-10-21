@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "夢想動畫 MoonShine Animation",
+  "name": "夢想動畫是一間以藝術創作者為核心的公司，整合了導演、設計師、動畫師與研發人才，致力於廣告、影像與虛擬內容產製。創立於 2012 年，夢想經歷了許多挑戰，並且與所有夢想的藝術家一起完成了各種創作。我們相信透明與平等的價值，並且持續為這世界帶來好作品。",
   "icons": [
     {
       "src": "favicon.ico",
