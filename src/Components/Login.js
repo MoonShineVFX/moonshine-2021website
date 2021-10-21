@@ -26,7 +26,7 @@ function Login() {
   const { currentUser } = useContext(AuthContext);
 
   if (currentUser) {
-    return <Redirect to="/admin" />;
+    return <Redirect to="/admin/work" />;
   }
   return (
     <div className="login">
