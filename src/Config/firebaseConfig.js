@@ -1,9 +1,9 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyAr65BTpWDL2I0GNYcky_wMKR91zaEfUbE",
-  authDomain: "web-moonshine.firebaseapp.com",
-  projectId: "web-moonshine",
-  storageBucket: "web-moonshine.appspot.com",
-  messagingSenderId: "715820632181",
-  appId: "1:715820632181:web:fa1c6bacfce6196388903c",
-  measurementId: "G-G8S1EHTJQW"
+  apiKey: process.env.REACT_APP_FIREBASE_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
