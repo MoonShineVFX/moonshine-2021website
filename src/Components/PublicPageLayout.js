@@ -21,7 +21,7 @@ import Contact from '../Pages/Front/Contact'
 
 //firebase
 import db from '../Config/firebase'
-import {onSnapshot,collection} from "firebase/firestore"
+import {onSnapshot,collection, query, where, getDocs,orderBy} from "firebase/firestore"
 import { getStorage, ref, getDownloadURL,  } from "firebase/storage";
 import footerData from './footer.json'
 import headerData from './Header.json'
@@ -177,49 +177,79 @@ function PublicPageLayout() {
   }
   //執行撈資料
   useEffect(()=>{
-    // fetchWork().then((d)=>{
-    //   console.log(d)
-    //   setWrokData(d.data)
-    // })
-    onSnapshot(collection(db,"data"),(snapshot)=>{
-      mapWorkData(snapshot.docs.map(doc=> doc.data()))
-    })
+
+    const getWorks = async ()=>{
+      const q = query(collection(db, "data"),orderBy('time_added' , 'desc'))
+      const data = await getDocs(q);
+      mapWorkData(data.docs.map(doc=> doc.data()))
+    }
+    getWorks()
+
     // switchCategory()
-    onSnapshot(collection(db,"category"),(snapshot)=>{
-      setCategoryData(snapshot.docs.map(doc=> doc.data()))
-    })
+    const getCategory = async ()=>{
+      const q = query(collection(db, "category"))
+      const data = await getDocs(q);
+      setCategoryData(data.docs.map(doc=> doc.data()))
+    }
+    getCategory()
+
 
     // setNavitemData()
-    onSnapshot(collection(db,"navitem"),(snapshot)=>{
-      setNavitemData(snapshot.docs.map(doc=> doc.data()))
-    })
-     // setCocialitem()
-     onSnapshot(collection(db,"socialitem"),(snapshot)=>{
-      mapSoicalItemData(snapshot.docs.map(doc=> doc.data()))
-    })
+    const getNavitem = async()=>{
+      const q = query(collection(db, "navitem"))
+      const data = await getDocs(q);
+      setNavitemData(data.docs.map(doc=> doc.data()))
+    }
+    const getSocialitem = async()=>{
+      const q = query(collection(db, "socialitem"))
+      const data = await getDocs(q);
+      mapSoicalItemData(data.docs.map(doc=> doc.data()))
+    }
+    getNavitem()
+    getSocialitem()
+
 
     // setlab
-    onSnapshot(collection(db,"labdata"),(snapshot)=>{
-      mapLabData(snapshot.docs.map(doc=> doc.data()))
-    })
-    onSnapshot(collection(db,"labinfo"),(snapshot)=>{
-      setLabInfoData(snapshot.docs.map(doc=> doc.data()))
-    })
+    const getLabdata = async()=>{
+      const q = query(collection(db, "labdata"))
+      const data = await getDocs(q);
+      mapLabData(data.docs.map(doc=> doc.data()))
+    }
+    const getLabinfo = async()=>{
+      const q = query(collection(db, "labinfo"))
+      const data = await getDocs(q);
+      setLabInfoData(data.docs.map(doc=> doc.data()))
+    }
+    getLabdata()
+    getLabinfo()
+
 
     // setAbout
-    onSnapshot(collection(db,"aboutstats"),(snapshot)=>{
-      setAboutStatsData(snapshot.docs.map(doc=> doc.data()))
-    })
+    const getAboutstats = async()=>{
+      const q = query(collection(db, "aboutstats"))
+      const data = await getDocs(q);
+      setAboutStatsData(data.docs.map(doc=> doc.data()))
+    }
+    const getAboutinfo = async()=>{
+      const q = query(collection(db, "aboutinfo"))
+      const data = await getDocs(q);
+      setAboutInfoData(data.docs.map(doc=> doc.data()))
+    }
+    const getAboutstrength = async()=>{
+      const q = query(collection(db, "aboutstrength"))
+      const data = await getDocs(q);
+      mapAboutStrengthData(data.docs.map(doc=> doc.data()))
+    }
+    const getContact = async()=>{
+      const q = query(collection(db, "contact"))
+      const data = await getDocs(q);
+      setContactData(data.docs.map(doc=> doc.data())[0])
+    }
+    getAboutstats()
+    getAboutinfo()
+    getAboutstrength()
+    getContact()
 
-    onSnapshot(collection(db,"aboutinfo"),(snapshot)=>{
-      setAboutInfoData(snapshot.docs.map(doc=> doc.data()))
-    })
-    onSnapshot(collection(db,"aboutstrength"),(snapshot)=>{
-      mapAboutStrengthData(snapshot.docs.map(doc=> doc.data()));
-    })
-    onSnapshot(collection(db,"contact"),(snapshot)=>{
-      setContactData(snapshot.docs.map(doc=> doc.data()));
-    })
     
     setCurrentLang(localStorage.getItem('lang') ? localStorage.getItem('lang') : 'eng')
   },[])
@@ -246,7 +276,7 @@ function PublicPageLayout() {
           <Blog />
         </Route>
         <Route path="/contact"   >
-          <Contact currentLang={currentLang} contactData={contactData[0] }/>
+          <Contact currentLang={currentLang} contactData={contactData}/>
         </Route>
       </Switch>
       <Footer currentLang={currentLang}  footerData={footerData} socialitemData={socialitemData}/>
