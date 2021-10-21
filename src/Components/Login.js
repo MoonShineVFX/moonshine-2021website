@@ -1,7 +1,7 @@
 import React ,{useState,useContext }from "react";
-import { Link, useHistory,Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {auth} from '../Config/fireauth'
-import { getAuth, signInWithEmailAndPassword , onAuthStateChanged } from "firebase/auth";
+import {  signInWithEmailAndPassword , onAuthStateChanged } from "firebase/auth";
 import { AuthContext } from "./Auth";
 
 function Login() {

@@ -14,7 +14,6 @@ import { getStorage, ref, getDownloadURL,  } from "firebase/storage";
 function DashboardLayout() {
   const [workData, setWorkData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
-  const [labinfoData, setLabinfoData] = useState([]);
   const [labData, setLabData] = useState([]);
   const storage = getStorage();
   //LAB CURD
@@ -176,7 +175,7 @@ function DashboardLayout() {
                   <Category  categoryData={categoryData} handleCreateCategory={handleCreateCategory} handleDeleteCategory={handleDeleteCategory} handleUpdateCategory={handleUpdateCategory}/>
                 </Route>
                 <Route path="/admin/lab">
-                  <Lab  labinfoData={labinfoData} labData={labData} handleCreateLab={handleCreateLab} handleDeleteLab={handleDeleteLab} handleUpdateLab={handleUpdateLab}/>
+                  <Lab   labData={labData} handleCreateLab={handleCreateLab} handleDeleteLab={handleDeleteLab} handleUpdateLab={handleUpdateLab}/>
                 </Route>
               
             </Switch>

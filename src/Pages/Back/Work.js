@@ -6,40 +6,10 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import AddWork from './AddWork'
 import EditWork from './EditWork';
 function Work({handleCreateWork , workData , categoryData,handleDeleteWork , handleUpdateWork,handleUpdateWorkDisplay,handleUpdateWorkCatrgory}) {
-  const {register,handleSubmit } = useForm()
-  const [file, setFile] = useState(null);
-  const [error, setError] = useState(null);
-  const types = ["image/png", "image/jpeg", "image/jpg"];
   const [isChecked, setIsChecked] = useState(false);
   const [switchUi , setSwitchUi] = useState({data: "", uid: ""})
   
-  const onSubmit = data =>{
-    let selectedFile = data.file[0];
-    const imgFileName = Date.now()+'.jpg'
-    const currentData ={
-      "id": Date.now().toString(36),
-      "time_added": new Date().toISOString(),
-      "title": data.title,
-      "intro": data.description,
-      "vimeo_id": data.vimeoid,
-      "img": imgFileName,
-      "sort_num":"0",
-      "display":"1"
-    }
-    if (selectedFile) {
-        if (types.includes(selectedFile.type)) {
-            setError(null);
-            setFile({
-              "filename":imgFileName,
-              "file":selectedFile
-            });
-        } else {
-            setFile(null);
-            setError("Please select an image file (png or jpg)");
-        }
-    }
-    handleCreateWork(currentData)
-  }
+
   const onDelete = (uid)=>{
     confirmAlert({
       title: '確認刪除這筆資料',
