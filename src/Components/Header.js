@@ -13,7 +13,7 @@ function Header({headerItem,currentLang,headerData}) {
           ></iframe>
       </div>
       <div id="site-logo" className="animate__animated animate__fadeIn">
-        <img  src={process.env.PUBLIC_URL + '/img/'+header.img} alt="" />
+        <img  src={`https://storage.googleapis.com/web-moonshine.appspot.com/img_icon/${header.img}`} alt="" />
         <div>{currentLang === 'eng' ? engname : chtname}</div>
       </div>
 

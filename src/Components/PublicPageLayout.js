@@ -203,7 +203,7 @@ function PublicPageLayout() {
     const getSocialitem = async()=>{
       const q = query(collection(db, "socialitem"))
       const data = await getDocs(q);
-      mapSoicalItemData(data.docs.map(doc=> doc.data()))
+      setSocialitemData(data.docs.map(doc=> doc.data()))
     }
     getNavitem()
     getSocialitem()
@@ -238,7 +238,7 @@ function PublicPageLayout() {
     const getAboutstrength = async()=>{
       const q = query(collection(db, "aboutstrength"))
       const data = await getDocs(q);
-      mapAboutStrengthData(data.docs.map(doc=> doc.data()))
+      setAboutStrengthData(data.docs.map(doc=> doc.data()))
     }
     const getContact = async()=>{
       const q = query(collection(db, "contact"))
@@ -267,10 +267,10 @@ function PublicPageLayout() {
           <Home workData={filteredWorkData} categoryData={categoryData} handler={handleAddClick} currentLang={currentLang} switchCategory={switchCategory}/>
         </Route>
         <Route path="/lab"   >
-          <Lab currentLang={currentLang} labData={labData} labInfoData={labInfoData}/>
+          <Lab currentLang={currentLang} labData={labData} labInfoData={labInfoData[0]}/>
         </Route>
         <Route path="/about"   >
-          <About currentLang={currentLang} aboutStatsData={aboutStatsData} aboutInfoData={aboutInfoData} aboutStrengthData={aboutStrengthData}/>
+          <About currentLang={currentLang} aboutStatsData={aboutStatsData} aboutInfoData={aboutInfoData[0]} aboutStrengthData={aboutStrengthData}/>
         </Route>
         <Route path="/blog"   >
           <Blog />

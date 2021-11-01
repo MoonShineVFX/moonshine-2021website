@@ -6,8 +6,6 @@ import AddLab from './AddLab';
 import EditLab from './EditLab';
 function Lab({labinfoData,labData,handleDeleteLabData , handleCreateLab , handleUpdateLab}) {
   const [switchUi , setSwitchUi] = useState({data: "", uid: ""})
-  console.log(labinfoData)
-  console.log(labData)
   const onDelete = (uid)=>{
     confirmAlert({
       title: '確認刪除這筆資料',

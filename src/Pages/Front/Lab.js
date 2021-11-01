@@ -15,10 +15,14 @@ function Lab({labData , currentLang , labInfoData}) {
     
     <div className="cContainter">
       <div className="animate__animated animate__fadeIn lab">
-        <h2>{currentLang === 'eng' ? labInfoData[0].name : labInfoData[0].name_cht }</h2>
+        <h2>{  labInfoData ?
+                    currentLang === 'eng' ? labInfoData.name : labInfoData.name_cht 
+                          : '' }</h2>
         
         <div className="content">
-          {currentLang === 'eng' ? labInfoData[0].description : labInfoData[0].description_cht }
+          {   labInfoData ? 
+                    currentLang === 'eng' ? labInfoData.description : labInfoData.description_cht 
+                    : ''}
         </div>
       </div>
       <div className="animate__animated animate__fadeIn">

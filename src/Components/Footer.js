@@ -17,14 +17,14 @@ function Footer({currentLang,footerData,socialitemData}) {
               
                     <div key={id} className="social">
                       <a href={link} target="_blank" rel="noreferrer">
-                        <img src={process.env.PUBLIC_URL + '/img/'+img} alt="" />
+                        <img src={`https://storage.googleapis.com/web-moonshine.appspot.com/img_icon/${img}`} alt="" />
                       </a> 
                     </div>
                 
               )
             }) : <div></div>
         }
-        <div className="mslogo"><img src={process.env.PUBLIC_URL + '/img/logo.svg'} alt=""/></div>
+        <div className="mslogo"><img src={`https://storage.googleapis.com/web-moonshine.appspot.com/img_icon/logo.svg`} alt=""/></div>
       </div>
       <div className="copyright">{currentLang === 'eng' ? footer.copyright : footer.copyright_cht }</div> 
     </div>
