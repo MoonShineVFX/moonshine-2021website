@@ -2,8 +2,12 @@ import React from 'react'
 import { useForm } from "react-hook-form";
 function AddCategory({handleCreateCategory}) {
   const {register,handleSubmit } = useForm()
+
+  // 新增資料
   const onSubmit = data =>{
     console.log(data)
+
+    // 表單資料成為 JSON 資料
     const currentData = {
       "id": Date.now().toString(36),
       "name": data.name,

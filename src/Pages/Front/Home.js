@@ -1,11 +1,14 @@
 import React,{useState} from 'react'
-import WorkItem from '../../Components/WorkItem'
 
 function Home({workData , handler , categoryData ,currentLang , switchCategory}) {
   const [active ,setActive] = useState('0')
+
+  // 點擊作品
   const handleClick= (dataId) =>{
     handler(dataId)
   }
+
+  // 選擇分類
   const handleCategorySwitch = (id) =>{
     setActive(id)
     switchCategory(id)

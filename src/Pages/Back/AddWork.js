@@ -1,14 +1,23 @@
 import React,{useState} from 'react'
 import { useForm } from "react-hook-form";
+
+//檔案上傳方法
 import { useStorage } from "../../Helper/useStorage";
+
 function AddWrok({handleCreateWork}) {
   const {register,handleSubmit } = useForm()
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const types = ["image/png", "image/jpeg", "image/jpg"];
+
+  // 新增資料
   const onSubmit = data =>{
     let selectedFile = data.file[0];
+
+    // 設定圖檔重新命名
     const imgFileName = Date.now()+'.jpg'
+
+    // 表單資料成為 JSON 資料
     const currentData ={
       "id": Date.now().toString(36),
       "time_added": new Date().toISOString(),
@@ -19,22 +28,24 @@ function AddWrok({handleCreateWork}) {
       "sort_num":"0",
       "display":"1"
     }
+    // 如果有圖檔存在 執行新增資料 否則不執行
     if (selectedFile) {
-        if (types.includes(selectedFile.type)) {
-            setError(null);
-            setFile({
-              "filename":imgFileName,
-              "file":selectedFile,
-              "folder":'data/'
-            });
-        } else {
-            setFile(null);
-            setError("Please select an image file (png or jpg)");
-        }
+      if (types.includes(selectedFile.type)) {
+          setError(null);
+          setFile({
+            "filename":imgFileName,
+            "file":selectedFile,
+            "folder":'data/'
+          });
+      } else {
+          setFile(null);
+          setError("Please select an image file (png or jpg)");
+      }
     }
     handleCreateWork(currentData)
   }
-    // Getting the progress and url from the hook
+
+  // 若setFile有資料會執行檔案上傳
   const { progress, url } = useStorage(file);
   return (
     <div>

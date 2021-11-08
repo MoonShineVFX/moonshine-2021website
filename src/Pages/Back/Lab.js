@@ -6,6 +6,8 @@ import AddLab from './AddLab';
 import EditLab from './EditLab';
 function Lab({labinfoData,labData,handleDeleteLabData , handleCreateLab , handleUpdateLab}) {
   const [switchUi , setSwitchUi] = useState({data: "", uid: ""})
+
+  // 按下確定刪除
   const onDelete = (uid)=>{
     confirmAlert({
       title: '確認刪除這筆資料',
@@ -43,42 +45,42 @@ function Lab({labinfoData,labData,handleDeleteLabData , handleCreateLab , handle
               onClick={()=>{handleClick('create')}}
             >新增LAB</button>
           </h3>
-          <div class="row  g-4">
+          <div className="row g-4">
           {labData.length>0 ? 
             labData.map((item,index)=>{
               const {id,name ,name_cht,description_1, description_1_cht, description_2, description_2_cht,sitelink,title_1,title_1_cht,title_2,title_2_cht,video,uid,imgpath} = item
               return(
                 
-                <div class="col-12">
-                  <div class="card">
-                    <div class="card-body">
+                <div className="col-12">
+                  <div className="card">
+                    <div className="card-body">
                       <h5>#{id}</h5>
-                      <div class="fs-6"><span className="badge  bg-secondary">英文名稱 / 中文名稱</span> {name} /  {name_cht}</div>
+                      <div className="fs-6"><span className="badge  bg-secondary">英文名稱 / 中文名稱</span> {name} /  {name_cht}</div>
 
-                      <div class="card-text"><span className="badge  bg-secondary">內文-1 英文</span><br /> 
+                      <div className="card-text"><span className="badge  bg-secondary">內文-1 英文</span><br /> 
                         <div className="fs-6 fw-bolder">{title_1}</div>
                         <div className="fs-6 fw-light">{description_1}</div>
                         
                       </div>
-                      <div class="card-text"><span className="badge  bg-secondary">內文-1 中文</span><br /> 
+                      <div className="card-text"><span className="badge  bg-secondary">內文-1 中文</span><br /> 
                         <div className="fs-6 fw-bolder">{title_1_cht}</div>
                         <div className="fs-6 fw-light">{description_1_cht}</div>
                         
                       </div>
-                      <div class="card-text"><span className="badge  bg-secondary">內文-2 英文</span><br /> 
+                      <div className="card-text"><span className="badge  bg-secondary">內文-2 英文</span><br /> 
                         <div className="fs-6 fw-bolder">{title_2}</div>
                         <div className="fs-6 fw-light">{description_2}</div>
                         
                       </div>
-                      <div class="card-text"><span className="badge  bg-secondary">內文-2 中文</span><br /> 
+                      <div className="card-text"><span className="badge  bg-secondary">內文-2 中文</span><br /> 
                         <div className="fs-6 fw-bolder">{title_2_cht}</div>
                         <div className="fs-6 fw-light">{description_2_cht}</div>
                         
                       </div>
                       
-                      <p class="card-text"><span className="badge  bg-secondary">網站連結</span><br /><a href={sitelink} target="_blank" rel="noreferrer">{sitelink}</a></p>
-                      <p class="card-text"><span className="badge  bg-secondary">影片連結</span><br /><a href={video} target="_blank" rel="noreferrer">{video}</a></p>
-                      <p class="card-text"><span className="badge  bg-secondary">圖片</span><br /> <img src={imgpath} className="img-thumbnail" style={{width:"200px"}}/></p>
+                      <p className="card-text"><span className="badge  bg-secondary">網站連結</span><br /><a href={sitelink} target="_blank" rel="noreferrer">{sitelink}</a></p>
+                      <p className="card-text"><span className="badge  bg-secondary">影片連結</span><br /><a href={video} target="_blank" rel="noreferrer">{video}</a></p>
+                      <p className="card-text"><span className="badge  bg-secondary">圖片</span><br /> <img src={imgpath} className="img-thumbnail" style={{width:"200px"}}/></p>
                       <div className="d-grid gap-2 d-md-block">
                         <button 
                           type="button" 
@@ -93,9 +95,9 @@ function Lab({labinfoData,labData,handleDeleteLabData , handleCreateLab , handle
                 </div>
                 
               )
-            }) :  <div class="d-flex justify-content-center">
-                    <div class="spinner-border" role="status">
-                      <span class="visually-hidden">Loading...</span>
+            }) :  <div className="d-flex justify-content-center">
+                    <div className="spinner-border" role="status">
+                      <span className="visually-hidden">Loading...</span>
                     </div>
                   </div>
             }

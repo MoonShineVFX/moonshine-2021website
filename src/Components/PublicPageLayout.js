@@ -1,28 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import { Route, Switch} from 'react-router-dom';
 
-//component
+// component 頁面常用元件
 import Header from './Header'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import MobileNavBtn from './MobileNavBtn';
 import MobileNavBar from './MobileNavBar';
 
-// style
+// style SCSS
 import "../App/App.scss"
 
-// Front
-import Home from '../Pages/Front/Home'
-import Lab from '../Pages/Front/Lab'
-import WorkItem from './WorkItem'
+// Front 前台頁面
+import Home from '../Pages/Front/Home'       
+import Lab from '../Pages/Front/Lab'         
+import WorkItem from './WorkItem' 
 import About from '../Pages/Front/About'
 import Blog from '../Pages/Front/Blog'
 import Contact from '../Pages/Front/Contact'
 
-//firebase
+// firebase 資料庫連線
 import db from '../Config/firebase'
 import {onSnapshot,collection, query, where, getDocs,orderBy} from "firebase/firestore"
 import { getStorage, ref, getDownloadURL,  } from "firebase/storage";
+
+// 本地json資料 
 import footerData from './footer.json'
 import headerData from './Header.json'
 function PublicPageLayout() {
@@ -52,16 +54,18 @@ function PublicPageLayout() {
     setSearchResults(results)
     setIsOpen(!isOpen)
   };
-  //開啟作品modal
+  // 開啟作品modal
   const handleOpen = () => {
     setIsOpen(!isOpen)
   }
-  //切換語系
+  // 切換語系
   const switchLang = (data) =>{
     // setLang(data)
     localStorage.setItem('lang' ,data)
     setCurrentLang(localStorage.getItem('lang') ? localStorage.getItem('lang') : 'eng')
   }
+
+  // 切換 Headr 頁面名稱
   const switchHeaderName = (id)=>{
     const result = navitemData.find(d=>{
       return d.id === id
@@ -84,7 +88,7 @@ function PublicPageLayout() {
       
     }
   }
-  //處理作品檔案的圖片路徑
+  // 處理作品的圖片路徑
   const mapWorkData =async (data)=>{
     const twoarr= data.map( async (element) => {
       const imagesRef = ref(storage, `data/${element.img}`);
@@ -108,28 +112,7 @@ function PublicPageLayout() {
     setWorkData(await Promise.all(twoarr))
     setFilteredWorkData(await Promise.all(twoarr))
   }
-  const mapSoicalItemData = async(data)=>{
-    const twoarr= data.map( async (element) => {
-      const imagesRef = ref(storage, `img_icon/${element.img}`);
-      const newimgurl =await getDownloadURL(imagesRef).catch((error) => {
-        switch (error.code) {
-          case 'storage/object-not-found':
-            break;
-          case 'storage/unauthorized':
-            break;
-          case 'storage/canceled':
-            break;
-          case 'storage/unknown':
-            break;
-          default:
-            console.log('')
-        }
-      })
-      return {...element , imgpath :newimgurl}
-     
-    })
-    setSocialitemData(await Promise.all(twoarr))
-  }
+  // 處理LAB的圖片路徑
   const mapLabData = async(data)=>{
     const twoarr= data.map( async (element) => {
       const imagesRef = ref(storage, `img_lab/${element.image}`);
@@ -152,32 +135,13 @@ function PublicPageLayout() {
     })
     setLabData(await Promise.all(twoarr))
   }
-  const mapAboutStrengthData = async(data)=>{
-    // console.log(data.strengthinfo)
-    const twoarr= data.map( async (element) => {
-      const imagesRef = ref(storage, `img_about/${element.image}`);
-      const newimgurl =await getDownloadURL(imagesRef).catch((error) => {
-        switch (error.code) {
-          case 'storage/object-not-found':
-            break;
-          case 'storage/unauthorized':
-            break;
-          case 'storage/canceled':
-            break;
-          case 'storage/unknown':
-            break;
-          default:
-            console.log('')
-        }
-      })
-      return {...element , imgpath :newimgurl}
-     
-    })
-    setAboutStrengthData(await Promise.all(twoarr))
-  }
+
   //執行撈資料
   useEffect(()=>{
-
+    /**
+     * 到 firebase 撈作品資料表
+     * 資料先傳到 mapWorkData 處理過圖片路徑再回傳 setWorkData 給網頁用
+     * **/ 
     const getWorks = async ()=>{
       const q = query(collection(db, "data"),orderBy('time_added' , 'desc'))
       const data = await getDocs(q);
@@ -185,7 +149,10 @@ function PublicPageLayout() {
     }
     getWorks()
 
-    // switchCategory()
+    /**
+     * 到 firebase 撈分類資料表
+     * 不用處理圖片路徑的 直接 set
+     * **/ 
     const getCategory = async ()=>{
       const q = query(collection(db, "category"))
       const data = await getDocs(q);
@@ -193,7 +160,9 @@ function PublicPageLayout() {
     }
     getCategory()
 
-
+    /**
+     * 到 firebase 撈選單資料表
+     * **/ 
     // setNavitemData()
     const getNavitem = async()=>{
       const q = query(collection(db, "navitem"))
@@ -208,8 +177,10 @@ function PublicPageLayout() {
     getNavitem()
     getSocialitem()
 
-
-    // setlab
+    /**
+     * 到 firebase 撈 Lab 資料表
+     * 先傳到 mapLabData 處理過圖片路徑再回傳 setLabData 給網頁用
+     * **/ 
     const getLabdata = async()=>{
       const q = query(collection(db, "labdata"))
       const data = await getDocs(q);
@@ -223,7 +194,9 @@ function PublicPageLayout() {
     getLabdata()
     getLabinfo()
 
-
+    /**
+     * 到 firebase 撈關於公司介紹資料表
+     * **/ 
     // setAbout
     const getAboutstats = async()=>{
       const q = query(collection(db, "aboutstats"))
@@ -250,7 +223,9 @@ function PublicPageLayout() {
     getAboutstrength()
     getContact()
 
-    
+    /**
+     *  如果 localStorage 沒有預設就顯示英文
+     * **/
     setCurrentLang(localStorage.getItem('lang') ? localStorage.getItem('lang') : 'eng')
   },[])
   return (

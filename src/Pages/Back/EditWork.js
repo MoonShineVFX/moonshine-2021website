@@ -1,28 +1,38 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React,{useState,useEffect} from 'react'
 import { useForm } from "react-hook-form";
+//檔案上傳方法
 import { useStorage } from "../../Helper/useStorage";
-//firebase
+
 function EditWork({handleUpdateWork,uid,workData}) {
+  
   const {register,handleSubmit,reset } = useForm({defaultValues: { title: "", intro: "",vimeo_id:"" }})
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const types = ["image/png", "image/jpeg", "image/jpg"];
   const [ singleData , setSingleData] = useState({});
+
+  // 編輯資料
   const onSubmit = data =>{
     let selectedFile = data.file[0];
+    // 設定圖檔重新命名
     const imgFileName = Date.now()+'.jpg'
+
+    // 有換圖檔的JSON資料
     const currentDataWithFile ={
       "title": data.title,
       "intro": data.intro,
       "vimeo_id": data.vimeo_id,
       "img": imgFileName,
     }
+
+    // 沒有換圖檔的JSON資料
     const currentDataWithoutFile ={
       "title": data.title,
       "intro": data.intro,
       "vimeo_id": data.vimeo_id,
     }
+    // 如果有新圖檔 執行編輯資料(有圖檔) 沒有新圖檔 修改文字資料
     if (selectedFile) {
         if (types.includes(selectedFile.type)) {
             setError(null);
@@ -40,10 +50,12 @@ function EditWork({handleUpdateWork,uid,workData}) {
     }
     
   }
+
+  // 顯示現在要編輯的資料
   const getADoc = async(uid) =>{
     
     var findLike = workData.find(function(item){
-      return item.uid === uid;  // 取得陣列 like === '蘿蔔泥'
+      return item.uid === uid;  
     });
     reset(findLike)
     setSingleData(findLike)
@@ -52,7 +64,9 @@ function EditWork({handleUpdateWork,uid,workData}) {
     getADoc(uid)
 
   },[uid])
-    // Getting the progress and url from the hook
+  
+  // Getting the progress and url from the hook
+  // 若setFile有資料會執行檔案上傳
   const { progress, url } = useStorage(file);
   return (
     <div>

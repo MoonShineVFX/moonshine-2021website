@@ -1,5 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import { useForm } from "react-hook-form";
+
+// 檔案上傳方法
 import { useStorage } from "../../Helper/useStorage";
 
 function EditLab({labData,handleUpdateLab,uid}) {
@@ -21,9 +23,15 @@ function EditLab({labData,handleUpdateLab,uid}) {
   const [error, setError] = useState(null);
   const types = ["image/png", "image/jpeg", "image/jpg"];
   const [ singleData , setSingleData] = useState({});
+
+  // 編輯資料
   const onSubmit = data =>{
     let selectedFile = data.file[0];
+
+    // 設定圖檔重新命名
     const imgFileName = Date.now()+'.jpg'
+
+    // 有換圖檔的JSON資料
     const currentDataWithFile ={
       "name": data.name,
       "name_cht": data.name_cht,
@@ -39,6 +47,8 @@ function EditLab({labData,handleUpdateLab,uid}) {
       "sitelink":data.sitelink,
       "image": imgFileName,
     }
+
+    // 沒有換圖檔的JSON資料
     const currentDataWithoutFile ={
       "name": data.name,
       "name_cht": data.name_cht,
@@ -53,6 +63,8 @@ function EditLab({labData,handleUpdateLab,uid}) {
       "video": data.video,
       "sitelink":data.sitelink,
     }
+
+    // 如果有新圖檔 執行編輯資料(有圖檔) 沒有新圖檔 修改文字資料
     if (selectedFile) {
         if (types.includes(selectedFile.type)) {
             setError(null);
@@ -70,10 +82,12 @@ function EditLab({labData,handleUpdateLab,uid}) {
     }
     
   }
+
+  // 顯示現在要編輯的資料
   const getADoc = async(uid) =>{
     
     var findLike = labData.find(function(item){
-      return item.uid === uid;  // 取得陣列 like === '蘿蔔泥'
+      return item.uid === uid;  
     });
     reset(findLike)
     setSingleData(findLike)
@@ -82,6 +96,8 @@ function EditLab({labData,handleUpdateLab,uid}) {
     getADoc(uid)
 
   },[uid])
+
+  // 若setFile有資料會執行檔案上傳
   const { progress, url } = useStorage(file);
   return (
     <div className="miniForm">
@@ -117,8 +133,8 @@ function EditLab({labData,handleUpdateLab,uid}) {
           </div>
 
         </div>
-        <div class="d-grid gap-3">
-          <div class="p-2 bg-light border  ">
+        <div className="d-grid gap-3">
+          <div className="p-2 bg-light border  ">
             <div className="mb-3 input-group-sm">
               <label htmlFor="title_1" className="form-label">介紹1 - 英文標題</label>
               <input type="text" className="form-control" id="title_1"  {...register('title_1', { required: true })}/>
@@ -128,7 +144,7 @@ function EditLab({labData,handleUpdateLab,uid}) {
               <textarea type="text" className="form-control" id="description_1"  {...register('description_1', { required: true })}></textarea>
             </div>
           </div>
-          <div class="p-2 bg-light border ">
+          <div className="p-2 bg-light border ">
             <div className="mb-3 input-group-sm">
               <label htmlFor="title_1_cht" className="form-label">介紹1 - 中文標題</label>
               <input type="text" className="form-control" id="title_1_cht"  {...register('title_1_cht', { required: true })}/>
@@ -138,7 +154,7 @@ function EditLab({labData,handleUpdateLab,uid}) {
               <textarea type="text" className="form-control" id="description_1_cht"  {...register('description_1_cht', { required: true })}></textarea>
             </div>
           </div>
-          <div class="p-2 bg-light border ">
+          <div className="p-2 bg-light border ">
             <div className="mb-3 input-group-sm">
               <label htmlFor="title_1" className="form-label">介紹2 - 英文標題</label>
               <input type="text" className="form-control" id="title_1"  {...register('title_1', { required: true })}/>
@@ -148,7 +164,7 @@ function EditLab({labData,handleUpdateLab,uid}) {
               <textarea type="text" className="form-control" id="description_1"  {...register('description_1', { required: true })}></textarea>
             </div>
           </div>
-          <div class="p-2 bg-light border ">
+          <div className="p-2 bg-light border ">
             <div className="mb-3 input-group-sm">
               <label htmlFor="title_1_cht" className="form-label">介紹2 - 中文標題</label>
               <input type="text" className="form-control" id="title_1_cht"  {...register('title_1_cht', { required: true })}/>
@@ -159,11 +175,6 @@ function EditLab({labData,handleUpdateLab,uid}) {
             </div>
           </div>
         </div>
-
-
-
-
-
 
 
 

@@ -4,6 +4,8 @@ function WorkItem({data,handler}) {
   const {title,vimeo_id,intro } = data
   // let finalIntro= intro.replace('\\n', '\n')
   const [active , setActive] = useState(false)
+
+  // 點擊按鈕或背景關閉
   const handleClick= () =>{
     setActive(!active)
     setTimeout(() => {
@@ -33,11 +35,8 @@ function WorkItem({data,handler}) {
           />
         </div>
         <article>
-          <div className="title">{title}
-          </div>
-          <div className="description">
-          {intro}
-          </div>
+          <div className="title">{title}</div>
+          <div className="description">{intro}</div>
         </article>
       </div>
     </div>

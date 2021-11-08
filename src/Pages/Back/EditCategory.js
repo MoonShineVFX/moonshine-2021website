@@ -1,13 +1,17 @@
 import React ,{useEffect,useState}from 'react'
 import { useForm } from "react-hook-form";
-//firebase
+
+//firebase 連線
 import db from '../../Config/firebase'
 import { doc,getDoc  } from "firebase/firestore"
+
 function EditCategory({handleUpdateCategory,uid}) {
   const {register,handleSubmit,reset } = useForm(
     {defaultValues: { name: "", name_cht: "" }}
   )
   const [cateData , setCateData] =  useState({});
+
+  // 編輯資料
   const onSubmit = data =>{
     console.log(data)
     const currentData = {

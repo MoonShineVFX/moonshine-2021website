@@ -4,6 +4,7 @@ function Blog() {
   const mediumRssFeed = "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/moonshinevfx"
   const MAX_ARTICLES = 10;
   const [articles, setArticles] = useState();
+  // 讀取 medium 文章
   useEffect(() => {
     const loadArticles = async () => {
       fetch(mediumRssFeed, { headers: { Accept: "application/json" } })

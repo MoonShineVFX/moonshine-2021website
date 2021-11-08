@@ -2,10 +2,12 @@ import React,{useState,useEffect} from 'react'
 import ReactPlayer from 'react-player'
 function Lab({labData , currentLang , labInfoData}) {
   const [ height , setHeight] = useState("")
+
+  // 偵測滾動高度
   const onScroll = (e) => {
     setHeight(e.target.documentElement.scrollTop)
   }
-  // TODO 滾動替換影片
+  // 執行滾動替換影片
   useEffect(() => {
     window.addEventListener('scroll', onScroll);
     

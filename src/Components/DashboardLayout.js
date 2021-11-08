@@ -1,12 +1,15 @@
 import React , { useState, useEffect } from 'react'
 import { Route, Switch} from 'react-router-dom';
+
+// component 常用元件
 import AdminNav from '../Components/AdminNav'
 
-//adminpage
+//adminpage 管理頁面
 import Work from '../Pages/Back/Work'
 import Category from "../Pages/Back/Category"
 import Lab from '../Pages/Back/Lab'
-//firebase
+
+//firebase 連線設定
 import db from '../Config/firebase'
 import {onSnapshot,collection,addDoc, updateDoc, doc,deleteDoc  } from "firebase/firestore"
 import { getStorage, ref, getDownloadURL,  } from "firebase/storage";
@@ -16,7 +19,8 @@ function DashboardLayout() {
   const [categoryData, setCategoryData] = useState([]);
   const [labData, setLabData] = useState([]);
   const storage = getStorage();
-  //LAB CURD
+
+  //LAB CURD 方法
   const handleCreateLab = async(data)=>{
     const collectionRef = collection(db ,"labdata")
     await addDoc(collectionRef,data)
