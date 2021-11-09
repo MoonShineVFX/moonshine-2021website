@@ -46,7 +46,7 @@ function About({aboutStatsData,currentLang,aboutInfoData,aboutStrengthData}) {
       <div className="strength">
         {aboutStrengthData.length>0 ? 
           aboutStrengthData.map((item,index)=>{
-            const {id,title ,title_cht,description,description_cht,image,imgpath} = item
+            const {id,title ,title_cht,description,description_cht,image} = item
             return(
             
               <div key={title+id} className="strengthContent" >

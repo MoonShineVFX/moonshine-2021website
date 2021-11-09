@@ -1,5 +1,4 @@
 import React,{useState} from 'react'
-import { useForm } from "react-hook-form";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
@@ -26,9 +25,7 @@ function Work({handleCreateWork , workData , categoryData,handleDeleteWork , han
     });
    
   }
-  const onUpdate = (id)=>{
-    handleUpdateWork(id)
-  }
+
  
   const handleChange = (uid,display) => {
     handleUpdateWorkDisplay(uid,display)
@@ -120,9 +117,12 @@ function Work({handleCreateWork , workData , categoryData,handleDeleteWork , han
                   
                 )
               }) :  <tr className="d-flex justify-content-center">
-                      <div className="spinner-border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                      </div>
+                      <td>
+                        <div className="spinner-border" role="status">
+                          <span className="visually-hidden">Loading...</span>
+                        </div>
+                      </td>
+                     
                     </tr>
             }
             </tbody>

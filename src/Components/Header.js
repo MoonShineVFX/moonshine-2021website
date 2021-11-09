@@ -7,9 +7,11 @@ function Header({headerItem,currentLang,headerData}) {
     <div className="header">
       <div id="intro_bg_video">
         <iframe 
+          title="video"
           src={`${header.video}?loop=1$title=0&background=1&muted=1&autoplay=1#t=3s`} 
           style={{position:"absolute" , top:"0",left:"0",width:"100%",height:"100%"}} 
-          frameBorder="0" allowFullScreen
+          frameBorder="0" 
+          allowFullScreen
           ></iframe>
       </div>
       <div id="site-logo" className="animate__animated animate__fadeIn">

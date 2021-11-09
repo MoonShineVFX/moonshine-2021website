@@ -54,26 +54,23 @@ var useStorage = function useStorage(file) {
     if (file) {
       // storage ref
       (function _callee() {
-        var newTimeName, image, storageRef, uploadTask;
+        var image, storageRef, uploadTask;
         return regeneratorRuntime.async(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                newTimeName = Date.now();
-                _context.next = 3;
+                _context.next = 2;
                 return regeneratorRuntime.awrap(resizeFile(file.file));
 
-              case 3:
+              case 2:
                 image = _context.sent;
-                _context.next = 6;
+                _context.next = 5;
                 return regeneratorRuntime.awrap((0, _storage.ref)(_firestorage["default"], file.folder + file.filename));
 
-              case 6:
+              case 5:
                 storageRef = _context.sent;
                 uploadTask = (0, _storage.uploadBytesResumable)(storageRef, image);
                 uploadTask.on('state_changed', function (snapshot) {
-                  // Observe state change events such as progress, pause, and resume
-                  // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                   var progress = snapshot.bytesTransferred / snapshot.totalBytes * 100;
                   console.log('Upload is ' + progress + '% done');
                   setProgress(progress);
@@ -91,18 +88,15 @@ var useStorage = function useStorage(file) {
                       console.log(' ');
                   }
                 }, function (error) {
-                  // Handle unsuccessful uploads
                   setError(error);
                 }, function () {
-                  // Handle successful uploads on complete
-                  // For instance, get the download URL: https://firebasestorage.googleapis.com/...
                   (0, _storage.getDownloadURL)(uploadTask.snapshot.ref).then(function (downloadURL) {
                     console.log('File available at', downloadURL);
                     setUrl(downloadURL);
                   });
                 });
 
-              case 9:
+              case 8:
               case "end":
                 return _context.stop();
             }

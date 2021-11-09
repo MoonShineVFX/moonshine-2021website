@@ -31,13 +31,10 @@ export const useStorage = (file) => {
         if (file) {
             // storage ref
             (async () => {  
-              const newTimeName = Date.now()
               const image = await resizeFile(file.file);
               const storageRef =await ref(db, file.folder+file.filename);
               const uploadTask =uploadBytesResumable(storageRef, image);
               uploadTask.on('state_changed', (snapshot) => {
-                  // Observe state change events such as progress, pause, and resume
-                  // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                   const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                   console.log('Upload is ' + progress + '% done');
                   setProgress(progress)
@@ -53,12 +50,9 @@ export const useStorage = (file) => {
                   }
                 }, 
                 (error) => {
-                  // Handle unsuccessful uploads
                   setError(error)
                 }, 
                 () => {
-                  // Handle successful uploads on complete
-                  // For instance, get the download URL: https://firebasestorage.googleapis.com/...
                   getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     console.log('File available at', downloadURL);
                     setUrl(downloadURL)

@@ -21,7 +21,7 @@ import Contact from '../Pages/Front/Contact'
 
 // firebase 資料庫連線
 import db from '../Config/firebase'
-import {onSnapshot,collection, query, where, getDocs,orderBy} from "firebase/firestore"
+import {collection, query,  getDocs,orderBy} from "firebase/firestore"
 import { getStorage, ref, getDownloadURL,  } from "firebase/storage";
 
 // 本地json資料 

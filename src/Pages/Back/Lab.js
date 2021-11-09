@@ -51,7 +51,7 @@ function Lab({labinfoData,labData,handleDeleteLabData , handleCreateLab , handle
               const {id,name ,name_cht,description_1, description_1_cht, description_2, description_2_cht,sitelink,title_1,title_1_cht,title_2,title_2_cht,video,uid,imgpath} = item
               return(
                 
-                <div className="col-12">
+                <div className="col-12" key={id+index}>
                   <div className="card">
                     <div className="card-body">
                       <h5>#{id}</h5>

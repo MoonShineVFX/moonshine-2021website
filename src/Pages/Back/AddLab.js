@@ -91,8 +91,8 @@ function AddLab({handleCreateLab}) {
           </div>
 
         </div>
-        <div class="d-grid gap-3">
-          <div class="p-2 bg-light border  ">
+        <div className="d-grid gap-3">
+          <div className="p-2 bg-light border  ">
             <div className="mb-3 input-group-sm">
               <label htmlFor="title_1" className="form-label">介紹1 - 英文標題</label>
               <input type="text" className="form-control" id="title_1"  {...register('title_1', { required: true })}/>
@@ -102,7 +102,7 @@ function AddLab({handleCreateLab}) {
               <textarea type="text" className="form-control" id="description_1"  {...register('description_1', { required: true })}></textarea>
             </div>
           </div>
-          <div class="p-2 bg-light border ">
+          <div className="p-2 bg-light border ">
             <div className="mb-3 input-group-sm">
               <label htmlFor="title_1_cht" className="form-label">介紹1 - 中文標題</label>
               <input type="text" className="form-control" id="title_1_cht"  {...register('title_1_cht', { required: true })}/>
@@ -112,7 +112,7 @@ function AddLab({handleCreateLab}) {
               <textarea type="text" className="form-control" id="description_1_cht"  {...register('description_1_cht', { required: true })}></textarea>
             </div>
           </div>
-          <div class="p-2 bg-light border ">
+          <div className="p-2 bg-light border ">
             <div className="mb-3 input-group-sm">
               <label htmlFor="title_1" className="form-label">介紹2 - 英文標題</label>
               <input type="text" className="form-control" id="title_1"  {...register('title_1', { required: true })}/>
@@ -122,7 +122,7 @@ function AddLab({handleCreateLab}) {
               <textarea type="text" className="form-control" id="description_1"  {...register('description_1', { required: true })}></textarea>
             </div>
           </div>
-          <div class="p-2 bg-light border ">
+          <div className="p-2 bg-light border ">
             <div className="mb-3 input-group-sm">
               <label htmlFor="title_1_cht" className="form-label">介紹2 - 中文標題</label>
               <input type="text" className="form-control" id="title_1_cht"  {...register('title_1_cht', { required: true })}/>

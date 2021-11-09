@@ -25,7 +25,7 @@ function Blog() {
             console.log(item)
             const{guid,thumbnail,title,link,description,pubDate} = item
             return(
-              <div className="blogCard animate__animated animate__fadeIn">
+              <div className="blogCard animate__animated animate__fadeIn" key={guid}>
                 <a href={link} className="thumb" style={{backgroundImage:`url(${thumbnail})`}} target="_blank" rel="noreferrer" ></a>
                 <div className="blogCard-body">
                   <h5 className="blogCard-title"><a href={link} target="_blank" rel="noreferrer" >{title}</a></h5>
