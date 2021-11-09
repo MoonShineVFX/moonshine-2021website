@@ -112,6 +112,10 @@ function EditLab({labData,handleUpdateLab,uid}) {
           <input type="text" className="form-control" id="name_cht"  {...register('name_cht', { required: true })}/>
         </div>
         <div className="mb-3 input-group-sm">
+          <label htmlFor="sitelink">網站連結</label>
+          <input type="text" className="form-control" id="sitelink"  {...register('sitelink', { required: true })}/>
+        </div>
+        <div className="mb-3 input-group-sm">
           <label htmlFor="video">vimeo 影片位置(https://player.vimeo.com/video/435638545)</label>
           <input type="text" className="form-control" id="video"  {...register('video', { required: true })}/>
         </div>

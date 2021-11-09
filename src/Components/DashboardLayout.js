@@ -12,7 +12,7 @@ import ManagerHeader from '../Pages/Back/ManagerHeader';
 
 //firebase 連線設定
 import db from '../Config/firebase'
-import {onSnapshot,collection,addDoc, updateDoc, doc,deleteDoc  } from "firebase/firestore"
+import {onSnapshot,collection,addDoc, updateDoc, doc,deleteDoc ,getDocs,query,orderBy } from "firebase/firestore"
 import { getStorage, ref, getDownloadURL,  } from "firebase/storage";
 
 function DashboardLayout() {
@@ -150,31 +150,40 @@ function DashboardLayout() {
     // const dataRef = collection(db, "data");
 
     // work
-    onSnapshot(collection(db,"data"),(snapshot)=>{
-      mapWorkData(snapshot.docs.map(doc=> ({
-        ...doc.data() ,
-        uid:doc.id 
-        }))
-      )
-    })
+    const getWorks = async ()=>{
+      const q = query(collection(db, "data"),orderBy('time_added' , 'desc'))
+      const data = await getDocs(q);
+      mapWorkData(data.docs.map(doc=> ({...doc.data(),uid:doc.id})))
+    }
+    getWorks()
     
     // category
-    onSnapshot(collection(db,"category"),(snapshot)=>{
-      setCategoryData(snapshot.docs.map(doc=> ({...doc.data(),uid:doc.id})))
-    })
+    const getCategory = async ()=>{
+      const q = query(collection(db, "category"))
+      const data = await getDocs(q);
+      setCategoryData(data.docs.map(doc=> ({...doc.data(),uid:doc.id})))
+    }
+    getCategory()
 
     //  labinfo
     // onSnapshot(collection(db,"labinfo"),(snapshot)=>{
     //   setLabinfoData(snapshot.docs.map(doc=> ({...doc.data(),uid:doc.id})))
     // })
-    onSnapshot(collection(db,"labdata"),(snapshot)=>{
-      mapLabData(snapshot.docs.map(doc=> ({...doc.data(),uid:doc.id})))
-    })
+    const getLabdata = async()=>{
+      const q = query(collection(db, "labdata"))
+      const data = await getDocs(q);
+      mapLabData(data.docs.map(doc=> ({...doc.data(),uid:doc.id})))
+    }
+    getLabdata()
 
     //header
-    onSnapshot(collection(db,"header"),(snapshot)=>{
-      setHeaderData(snapshot.docs.map(doc=> ({...doc.data(),uid:doc.id})))
-    })
+    const getHeaderdata = async()=>{
+      const q = query(collection(db, "header"))
+      const data = await getDocs(q);
+      setHeaderData(data.docs.map(doc=> ({...doc.data(),uid:doc.id})))
+    }
+    getHeaderdata()
+
 
   },[])
   return (

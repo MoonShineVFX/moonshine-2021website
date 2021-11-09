@@ -38,7 +38,13 @@ function AddLab({handleCreateLab}) {
       "display":"1"
     }
 
-    // 如果有圖檔存在 執行新增資料 否則不執行
+    /**
+     * 如果有圖檔存在 執行新增資料 否則不執行 
+     * "filename": 檔案名撐
+     * "file":s 檔案本身
+     * "folder": 對應storage上的資料夾名稱
+     * 
+     * **/ 
     if (selectedFile) {
         if (types.includes(selectedFile.type)) {
             setError(null);
@@ -69,6 +75,10 @@ function AddLab({handleCreateLab}) {
         <div className="mb-3 col input-group-sm">
           <label htmlFor="name_cht" className="form-label">中文名稱</label>
           <input type="text" className="form-control" id="name_cht"  {...register('name_cht', { required: true })}/>
+        </div>
+        <div className="mb-3 input-group-sm">
+          <label htmlFor="sitelink">網站連結</label>
+          <input type="text" className="form-control" id="sitelink"  {...register('sitelink')}/>
         </div>
         <div className="mb-3 input-group-sm">
           <label htmlFor="video">vimeo 影片位置(https://player.vimeo.com/video/435638545)</label>
