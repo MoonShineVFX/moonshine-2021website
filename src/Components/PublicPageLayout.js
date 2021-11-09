@@ -26,7 +26,6 @@ import { getStorage, ref, getDownloadURL,  } from "firebase/storage";
 
 // 本地json資料 
 import footerData from './footer.json'
-import headerData from './Header.json'
 function PublicPageLayout() {
   const [isOpen , setIsOpen] = useState(false)
   const [isToggled, setToggled] = useState(false);
@@ -44,6 +43,7 @@ function PublicPageLayout() {
   const [navitemData, setNavitemData] = useState([]);
   const [socialitemData, setSocialitemData] = useState([]);
   const [headerItem, setHeaderItem] = useState([]);
+  const [headerData, setHeaderData] = useState([]);
   const storage = getStorage();
   const toggleTrueFalse = () => setToggled(!isToggled);
   // 開啟單作品
@@ -218,10 +218,16 @@ function PublicPageLayout() {
       const data = await getDocs(q);
       setContactData(data.docs.map(doc=> doc.data())[0])
     }
+    const getHeader = async()=>{
+      const q = query(collection(db, "header"))
+      const data = await getDocs(q);
+      setHeaderData(data.docs.map(doc=> doc.data())[0])
+    }
     getAboutstats()
     getAboutinfo()
     getAboutstrength()
     getContact()
+    getHeader()
 
     /**
      *  如果 localStorage 沒有預設就顯示英文

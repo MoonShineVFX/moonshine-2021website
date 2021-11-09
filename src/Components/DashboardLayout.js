@@ -8,6 +8,7 @@ import AdminNav from '../Components/AdminNav'
 import Work from '../Pages/Back/Work'
 import Category from "../Pages/Back/Category"
 import Lab from '../Pages/Back/Lab'
+import ManagerHeader from '../Pages/Back/ManagerHeader';
 
 //firebase 連線設定
 import db from '../Config/firebase'
@@ -18,6 +19,7 @@ function DashboardLayout() {
   const [workData, setWorkData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
   const [labData, setLabData] = useState([]);
+  const [headerData, setHeaderData] = useState([]);
   const storage = getStorage();
 
   //LAB CURD 方法
@@ -77,6 +79,12 @@ function DashboardLayout() {
     var newField = {category:id}
     await updateDoc( workDoc ,newField)
   }
+  //Header Update
+  const handleUpdateHeader = async (uid, currentData)=>{
+    const headerDoc = doc(db , 'header' , uid)
+    await updateDoc( headerDoc ,currentData)
+  }
+
   //處理作品檔案的圖片路徑
   const mapWorkData =async (data)=>{
 
@@ -163,6 +171,11 @@ function DashboardLayout() {
       mapLabData(snapshot.docs.map(doc=> ({...doc.data(),uid:doc.id})))
     })
 
+    //header
+    onSnapshot(collection(db,"header"),(snapshot)=>{
+      setHeaderData(snapshot.docs.map(doc=> ({...doc.data(),uid:doc.id})))
+    })
+
   },[])
   return (
     <div className="dashboard container-fluid">
@@ -180,6 +193,9 @@ function DashboardLayout() {
                 </Route>
                 <Route path="/admin/lab">
                   <Lab   labData={labData} handleCreateLab={handleCreateLab} handleDeleteLab={handleDeleteLab} handleUpdateLab={handleUpdateLab}/>
+                </Route>
+                <Route path="/admin/managerheader">
+                  <ManagerHeader headerData={headerData} handleUpdateHeader={handleUpdateHeader}/>
                 </Route>
               
             </Switch>
