@@ -24,7 +24,7 @@ function Footer({currentLang,footerData,socialitemData}) {
               )
             }) : <div></div>
         }
-        <div className="mslogo"><img src={`https://storage.googleapis.com/web-moonshine.appspot.com/img_icon/logo.svg`} alt=""/></div>
+        <div className="mslogo"><img src={process.env.PUBLIC_URL + '/img/2022/svg-08.svg'} alt=""/></div>
       </div>
       <div className="copyright">{currentLang === 'eng' ? footer.copyright : footer.copyright_cht }</div> 
     </div>

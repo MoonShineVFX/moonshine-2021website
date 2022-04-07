@@ -37,7 +37,7 @@ a {
     opacity: 0.5;
   }
   #site-logo{
-    width: 16%;
+    width: 40%;
     position: absolute;
     top: 50%;
     left:50%;
@@ -47,7 +47,9 @@ a {
     justify-content: center;
     align-items: center;
     color:white;
-    img{}
+    img{
+      width: 100%;
+    }
     div{
       margin-top: 15px;
     }
@@ -673,7 +675,7 @@ a {
     .mslogo{
       margin-left: auto;
       img{
-        width: 70px;
+        width: 137px;
         vertical-align: bottom;
       }
     }
@@ -707,7 +709,7 @@ a {
 }
 
 @keyframes gradient {
-  form {
+  from {
     left: 0%;
   }
   
