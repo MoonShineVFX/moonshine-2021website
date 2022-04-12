@@ -63,7 +63,7 @@ function Contact({currentLang,contactData}) {
                 lat: 25.051027,
                 lng: 121.594860
               }}
-              icon='../img/marker.png'
+              icon={process.env.PUBLIC_URL + '/img/2022/MS_landmark.svg'}
             />
             { /* Child components, such as markers, info windows, etc. */ }
             <></>
