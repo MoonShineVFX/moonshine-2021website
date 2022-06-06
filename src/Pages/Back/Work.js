@@ -89,7 +89,7 @@ function Work({handleCreateWork , workData , categoryData,handleDeleteWork , han
                       </span> 
                       <p>{title}</p>
                       <span>VIMEO <a href={`https://vimeo.com/${vimeo_id}`} target="_blank" rel="noreferrer" >{vimeo_id}</a></span> <br />
-                      <span>YT <a href={youtube_id} target="_blank" rel="noreferrer" >{youtube_id}</a></span> <br />
+                      <span>YT <a href={`https://www.youtube.com/watch?v=${youtube_id}`} target="_blank" rel="noreferrer" >{youtube_id}</a></span> <br />
                       <span> {year_of_work ? `Year ${year_of_work}`  : ''}</span>
                       </td>
                     <td> 
