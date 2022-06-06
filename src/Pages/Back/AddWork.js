@@ -91,7 +91,7 @@ function AddWrok({handleCreateWork}) {
         </div>
         <div className="mb-3">
           <label htmlFor="description">簡介(credit)</label>
-          <textarea name="description" className="form-control" id="description" cols="30" rows="10" {...register('description', { required: true })}></textarea>
+          <textarea name="description" className="form-control" id="description" cols="25" rows="10" {...register('description')}></textarea>
         </div>
         <div className="d-grid gap-2 d-md-block">
           <button type="submit" className="btn btn-primary">儲存</button>

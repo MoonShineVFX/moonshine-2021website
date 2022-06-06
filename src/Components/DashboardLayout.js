@@ -196,8 +196,11 @@ function DashboardLayout() {
   }
   
   const getWorks = async ()=>{
-    const q = query(collection(db, "data"),orderBy('time_added' , 'desc'))
+    const q = query(collection(db, "data"),orderBy('sort_num' , 'desc'))
     const data = await getDocs(q);
+    // data.docs.map(doc=> {
+    //   console.log(doc)
+    // })
     mapWorkData(data.docs.map(doc=> ({...doc.data(),uid:doc.id})))
   }
   const getCategory = async ()=>{

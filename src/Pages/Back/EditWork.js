@@ -115,7 +115,7 @@ function EditWork({handleUpdateWork,uid,workData}) {
         </div>
         <div className="mb-3">
           <label htmlFor="intro">簡介(credit)</label>
-          <textarea name="intro" className="form-control" id="intro" cols="30" rows="10" {...register('intro', { required: true })}></textarea>
+          <textarea name="intro" className="form-control" id="intro" cols="25" rows="10" {...register('intro')}></textarea>
         </div>
         <div className="d-grid gap-2 d-md-block">
           <button type="submit" className="btn btn-primary">儲存</button>
