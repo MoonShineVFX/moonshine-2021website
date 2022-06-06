@@ -39,29 +39,65 @@ function DashboardLayout() {
   //CATEGORY CURD
   const handleCreateCategory = async(data)=>{
     const collectionRef = collection(db ,"category")
-    await addDoc(collectionRef,data)
+    try {
+      await addDoc(collectionRef,data)
+      getCategory()
+    } catch (error) {
+      
+    }
+    
   }
   const handleDeleteCategory = async(uid)=>{
     const categoryDoc = doc(db , 'category' , uid)
-    await deleteDoc(categoryDoc)
+    try {
+      await deleteDoc(categoryDoc)
+      getCategory()
+    } catch (error) {
+      
+    }
+    
   }
   const handleUpdateCategory = async(uid,currentData)=>{
     const categoryDoc = doc(db , 'category' , uid)
-    await updateDoc( categoryDoc ,currentData)
-
+    try {
+      await updateDoc( categoryDoc ,currentData)
+      getCategory()
+    } catch (error) {
+      
+    }
+   
   }
   //WORK CURD
   const handleCreateWork = async(data) =>{
     const collectionRef = collection(db ,"data")
-    await addDoc(collectionRef,data)
+    try {
+      await addDoc(collectionRef,data)
+      
+    } catch (error) {
+      console.log(error)
+    }
+    
   }
   const handleDeleteWork = async(uid)=>{
     const workDoc = doc(db , 'data' , uid)
-    await deleteDoc(workDoc)
+    
+    try {
+      await deleteDoc(workDoc)
+      getWorks()
+    } catch (error) {
+      
+    }
   }
   const handleUpdateWork = async(uid,currentData)=>{
     const workDoc = doc(db , 'data' , uid)
-    await updateDoc( workDoc ,currentData)
+   
+    try {
+      await updateDoc( workDoc ,currentData)
+      getWorks()
+    } catch (error) {
+      
+    }
+
   }
   const handleUpdateWorkDisplay = async(uid,display)=>{
     const workDoc = doc(db , 'data' , uid)
@@ -71,13 +107,28 @@ function DashboardLayout() {
     }else{
       newField.display="1"
     }
-    await updateDoc( workDoc ,newField)
+    try {
+      await updateDoc( workDoc ,newField)
+      getWorks()
+    } catch (error) {
+      
+    }
+    
 
   }
   const handleUpdateWorkCatrgory = async (id,uid)=>{
     const workDoc = doc(db , 'data' , uid)
     var newField = {category:id}
-    await updateDoc( workDoc ,newField)
+    try {
+      console.log('start up')
+      await updateDoc( workDoc ,newField)
+      console.log('success up')
+      getWorks()
+    } catch (error) {
+      console.log(error)
+    }
+
+
   }
   //Header Update
   const handleUpdateHeader = async (uid, currentData)=>{
@@ -144,25 +195,24 @@ function DashboardLayout() {
     setLabData(await Promise.all(twoarr))
   }
   
-
+  const getWorks = async ()=>{
+    const q = query(collection(db, "data"),orderBy('time_added' , 'desc'))
+    const data = await getDocs(q);
+    mapWorkData(data.docs.map(doc=> ({...doc.data(),uid:doc.id})))
+  }
+  const getCategory = async ()=>{
+    const q = query(collection(db, "category"))
+    const data = await getDocs(q);
+    setCategoryData(data.docs.map(doc=> ({...doc.data(),uid:doc.id})))
+  }
 
   useEffect(()=>{
     // const dataRef = collection(db, "data");
 
     // work
-    const getWorks = async ()=>{
-      const q = query(collection(db, "data"),orderBy('time_added' , 'desc'))
-      const data = await getDocs(q);
-      mapWorkData(data.docs.map(doc=> ({...doc.data(),uid:doc.id})))
-    }
     getWorks()
     
     // category
-    const getCategory = async ()=>{
-      const q = query(collection(db, "category"))
-      const data = await getDocs(q);
-      setCategoryData(data.docs.map(doc=> ({...doc.data(),uid:doc.id})))
-    }
     getCategory()
 
     //  labinfo

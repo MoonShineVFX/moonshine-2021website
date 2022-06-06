@@ -44,8 +44,8 @@ function Category({categoryData ,handleCreateCategory,handleDeleteCategory,handl
           <thead className="thead-color">
               <tr>
                 <th scope="col">#id</th>
-                <th scope="col">作品名稱</th>
-                <th scope="col">作品名稱英文</th>
+                <th scope="col">分類名稱-英文</th>
+                <th scope="col">分類名稱</th>
                 <th scope="col">編輯/刪除</th>
               </tr>
             </thead>
