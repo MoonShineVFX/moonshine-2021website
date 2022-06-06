@@ -88,7 +88,7 @@ function EditWork({handleUpdateWork,uid,workData}) {
         </div>
         <div className="mb-3">
           <label htmlFor="vimeo_id">vimeo 影片 ID (example: 594440744)</label>
-          <input type="text" className="form-control" id="vimeo_id"  {...register('vimeo_id', { required: true })}/>
+          <input type="text" className="form-control" id="vimeo_id"  {...register('vimeo_id')}/>
 
         </div>
         <div className="mb-3">

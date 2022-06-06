@@ -64,7 +64,7 @@ function AddWrok({handleCreateWork,latestSortNum}) {
         </div>
         <div className="mb-3">
           <label htmlFor="vimeoid">vimeo 影片 ID (example: 594440744)</label>
-          <input type="text" className="form-control" id="vimeoid"  {...register('vimeoid', { required: true })}/>
+          <input type="text" className="form-control" id="vimeoid"  {...register('vimeoid')}/>
 
         </div>
         <div className="mb-3">

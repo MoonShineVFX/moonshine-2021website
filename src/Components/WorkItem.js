@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import ReactPlayer from 'react-player'
 function WorkItem({data,handler}) {
-  const {title,vimeo_id,intro } = data
+  const {title,vimeo_id,intro,youtube_id } = data
   // let finalIntro= intro.replace('\\n', '\n')
   const [active , setActive] = useState(false)
 
@@ -27,7 +27,7 @@ function WorkItem({data,handler}) {
         <div className="thumb player-wrapper" >
           <ReactPlayer 
             className='react-player'
-            url={`https://vimeo.com/${vimeo_id}`} 
+            url={youtube_id ? `${youtube_id}` : `https://vimeo.com/${vimeo_id}`} 
             width= "100%"
             height= "100%"
             controls={true}
