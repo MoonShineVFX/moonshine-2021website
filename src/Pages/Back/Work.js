@@ -1,14 +1,14 @@
 import React,{useState} from 'react'
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
-
+import {SortableContainer, SortableElement} from 'react-sortable-hoc';
 // 新增修改作品頁面
 import AddWork from './AddWork'
 import EditWork from './EditWork';
-function Work({handleCreateWork , workData , categoryData,handleDeleteWork , handleUpdateWork,handleUpdateWorkDisplay,handleUpdateWorkCatrgory,latestSortNum}) {
+function Work({handleCreateWork , workData , categoryData,handleDeleteWork , handleUpdateWork,handleUpdateWorkDisplay,handleUpdateWorkCatrgory,latestSortNum,handleUpdateWorkSortNum}) {
   const [isChecked, setIsChecked] = useState(false);
   const [switchUi , setSwitchUi] = useState({data: "", uid: ""})
-  
+  const [value, setValue] = useState("");
 
   const onDelete = (uid)=>{
     confirmAlert({
@@ -44,6 +44,13 @@ function Work({handleCreateWork , workData , categoryData,handleDeleteWork , han
     })
     console.log(switchUi)
   }
+  const _handleKeyDown = (e,uid) => {
+    if (e.key === 'Enter') {
+      console.log(e.target.value);
+      handleUpdateWorkSortNum(e.target.value , uid)
+    }
+   
+  }
   
 
  
@@ -77,12 +84,14 @@ function Work({handleCreateWork , workData , categoryData,handleDeleteWork , han
                     <td > <img src={imgpath ? imgpath : 'https://via.placeholder.com/150?text=Process'} alt="" /></td>
                     <td className="title">
 
-                      <span>id #{id} / Sort {sort_num} </span> 
+                      <span>id #{id} / <label htmlFor=""> 
+                        Sort:<input type="text" size="6"  defaultValue={sort_num} onChange={e => setValue(e.target.value)} onKeyDown={e => _handleKeyDown(e,uid)}/></label> 
+                      </span> 
                       <p>{title}</p>
                       <span>VIMEO <a href={`https://vimeo.com/${vimeo_id}`} target="_blank" rel="noreferrer" >{vimeo_id}</a></span> <br />
                       <span> {year_of_work ? `Year ${year_of_work}`  : ''}</span>
                       </td>
-                    <td>
+                    <td> 
                       <ul className="categoryList">
                         {
                           categoryData ? 

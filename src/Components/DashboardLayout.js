@@ -131,6 +131,19 @@ function DashboardLayout() {
 
 
   }
+  const handleUpdateWorkSortNum = async(sortnum , uid) =>{
+    const workDoc = doc(db , 'data' , uid)
+    var newField = {sort_num:sortnum}
+    try {
+      console.log('start up')
+      await updateDoc( workDoc ,newField)
+      console.log('success up')
+      getWorks()
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
   //Header Update
   const handleUpdateHeader = async (uid, currentData)=>{
     const headerDoc = doc(db , 'header' , uid)
@@ -253,7 +266,7 @@ function DashboardLayout() {
             <Switch>
                 <Route path="/admin/work">
                   <Work handleCreateWork={handleCreateWork} workData={workData} categoryData={categoryData} handleDeleteWork={handleDeleteWork} handleUpdateWork={handleUpdateWork}
-                  handleUpdateWorkDisplay={handleUpdateWorkDisplay} handleUpdateWorkCatrgory={handleUpdateWorkCatrgory} latestSortNum={latestSortNum}/> 
+                  handleUpdateWorkDisplay={handleUpdateWorkDisplay} handleUpdateWorkCatrgory={handleUpdateWorkCatrgory} latestSortNum={latestSortNum} handleUpdateWorkSortNum={handleUpdateWorkSortNum}/> 
                 </Route>
                 <Route path="/admin/category">
                   <Category  categoryData={categoryData} handleCreateCategory={handleCreateCategory} handleDeleteCategory={handleDeleteCategory} handleUpdateCategory={handleUpdateCategory}/>
