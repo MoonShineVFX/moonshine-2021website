@@ -1,5 +1,5 @@
 .mobile-menu{display: none;}
-@media (max-width: 414px){
+@media (max-width: 420px){
   .cContainter{
     width: 100%;
     padding: 25px;
@@ -136,7 +136,9 @@
   }
   .catrgories{
     overflow-x: auto;
+
     ul{
+      justify-content: flex-start;
       li{
         padding: 20px 11px;
       }
