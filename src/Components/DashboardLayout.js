@@ -20,6 +20,7 @@ function DashboardLayout() {
   const [categoryData, setCategoryData] = useState([]);
   const [labData, setLabData] = useState([]);
   const [headerData, setHeaderData] = useState([]);
+  const [latestSortNum, setLatestSortNum] = useState(0);
   const storage = getStorage();
 
   //LAB CURD 方法
@@ -139,9 +140,13 @@ function DashboardLayout() {
   //處理作品檔案的圖片路徑
   const mapWorkData =async (data)=>{
     //sort by sort_num
+   
     var dataSorted = data.sort(function(a, b) {
       return b.sort_num - a.sort_num;
     });
+    let latestSortNum = (parseInt(dataSorted[0].sort_num)+1).toString()
+    setLatestSortNum(latestSortNum)
+    console.log(dataSorted[0].sort_num)
     const twoarr= dataSorted.map( async (element) => {
       const imagesRef = ref(storage, `data/${element.img}`);
       const newimgurl =await getDownloadURL(imagesRef).catch((error) => {
@@ -163,7 +168,7 @@ function DashboardLayout() {
             console.log('')
         }
       })
-      return {...element , imgpath :newimgurl}
+      return {...element , imgpath :newimgurl , latestSortNum :latestSortNum}
      
     })
     setWorkData(await Promise.all(twoarr))
@@ -248,7 +253,7 @@ function DashboardLayout() {
             <Switch>
                 <Route path="/admin/work">
                   <Work handleCreateWork={handleCreateWork} workData={workData} categoryData={categoryData} handleDeleteWork={handleDeleteWork} handleUpdateWork={handleUpdateWork}
-                  handleUpdateWorkDisplay={handleUpdateWorkDisplay} handleUpdateWorkCatrgory={handleUpdateWorkCatrgory}/> 
+                  handleUpdateWorkDisplay={handleUpdateWorkDisplay} handleUpdateWorkCatrgory={handleUpdateWorkCatrgory} latestSortNum={latestSortNum}/> 
                 </Route>
                 <Route path="/admin/category">
                   <Category  categoryData={categoryData} handleCreateCategory={handleCreateCategory} handleDeleteCategory={handleDeleteCategory} handleUpdateCategory={handleUpdateCategory}/>

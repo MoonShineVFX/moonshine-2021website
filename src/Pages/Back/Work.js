@@ -5,7 +5,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 // 新增修改作品頁面
 import AddWork from './AddWork'
 import EditWork from './EditWork';
-function Work({handleCreateWork , workData , categoryData,handleDeleteWork , handleUpdateWork,handleUpdateWorkDisplay,handleUpdateWorkCatrgory}) {
+function Work({handleCreateWork , workData , categoryData,handleDeleteWork , handleUpdateWork,handleUpdateWorkDisplay,handleUpdateWorkCatrgory,latestSortNum}) {
   const [isChecked, setIsChecked] = useState(false);
   const [switchUi , setSwitchUi] = useState({data: "", uid: ""})
   
@@ -77,7 +77,7 @@ function Work({handleCreateWork , workData , categoryData,handleDeleteWork , han
                     <td > <img src={imgpath ? imgpath : 'https://via.placeholder.com/150?text=Process'} alt="" /></td>
                     <td className="title">
 
-                      <span>id #{id} / Sort {sort_num}</span> 
+                      <span>id #{id} / Sort {sort_num} </span> 
                       <p>{title}</p>
                       <span>VIMEO <a href={`https://vimeo.com/${vimeo_id}`} target="_blank" rel="noreferrer" >{vimeo_id}</a></span> <br />
                       <span> {year_of_work ? `Year ${year_of_work}`  : ''}</span>
@@ -137,7 +137,7 @@ function Work({handleCreateWork , workData , categoryData,handleDeleteWork , han
         switch (switchUi.string) {
           case 'create':
               return (
-                <AddWork handleCreateWork={handleCreateWork}/>
+                <AddWork handleCreateWork={handleCreateWork} latestSortNum={latestSortNum}/>
               )
           case 'edit':
               return (
@@ -145,7 +145,7 @@ function Work({handleCreateWork , workData , categoryData,handleDeleteWork , han
               )
           default:
               return (
-                <AddWork handleCreateWork={handleCreateWork}/>
+                <AddWork handleCreateWork={handleCreateWork} latestSortNum={latestSortNum}/>
               )
         }
       })()}

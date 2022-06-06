@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 //檔案上傳方法
 import { useStorage } from "../../Helper/useStorage";
 
-function AddWrok({handleCreateWork}) {
+function AddWrok({handleCreateWork,latestSortNum}) {
   const {register,handleSubmit } = useForm()
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
@@ -26,7 +26,7 @@ function AddWrok({handleCreateWork}) {
       "vimeo_id": data.vimeoid,
       "youtube_id": data.yturl,
       "img": imgFileName,
-      "sort_num":"0",
+      "sort_num":latestSortNum,
       "display":"1",
       "year_of_work":data.yearofwork
     }
