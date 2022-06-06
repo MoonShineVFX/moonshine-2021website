@@ -23,8 +23,9 @@ function EditWork({handleUpdateWork,uid,workData}) {
       "title": data.title,
       "intro": data.intro,
       "vimeo_id": data.vimeo_id,
-      "yt_url": data.yturl,
+      "youtube_id": data.yturl,
       "img": imgFileName,
+      "year_of_work":data.yearofwork
     }
 
     // 沒有換圖檔的JSON資料
@@ -32,7 +33,8 @@ function EditWork({handleUpdateWork,uid,workData}) {
       "title": data.title,
       "intro": data.intro,
       "vimeo_id": data.vimeo_id,
-      "yt_url": data.yturl,
+      "youtube_id": data.yturl,
+      "year_of_work":data.yearofwork
     }
     // 如果有新圖檔 執行編輯資料(有圖檔) 沒有新圖檔 修改文字資料
     if (selectedFile) {
@@ -79,13 +81,18 @@ function EditWork({handleUpdateWork,uid,workData}) {
           <input type="text" className="form-control" id="title"  {...register('title', { required: true })}/>
         </div>
         <div className="mb-3">
+          <label htmlFor="vimeoid">作品年分(2022)</label>
+          <input type="text" className="form-control" id="yearofwork"  {...register('yearofwork')}/>
+
+        </div>
+        <div className="mb-3">
           <label htmlFor="vimeo_id">vimeo 影片 ID (example: 594440744)</label>
           <input type="text" className="form-control" id="vimeo_id"  {...register('vimeo_id', { required: true })}/>
 
         </div>
         <div className="mb-3">
           <label htmlFor="vimeoid">YT 影片 URL</label>
-          <input type="text" className="form-control" id="yturl"  {...register('yturl', { required: true })}/>
+          <input type="text" className="form-control" id="yturl"  {...register('yturl')}/>
 
         </div>
         <div className="mb-3">

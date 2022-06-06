@@ -70,15 +70,17 @@ function Work({handleCreateWork , workData , categoryData,handleDeleteWork , han
             <tbody>
             {workData.length>0 ? 
               workData.map((item,index)=>{
-                const {uid,id,title ,img,vimeo_id,display,imgpath , category} = item
+                const {uid,id,title ,img,vimeo_id,display,imgpath , category,year_of_work} = item
                 return(
                 
                   <tr key={title+id}>
                     <td > <img src={imgpath ? imgpath : 'https://via.placeholder.com/150?text=Process'} alt="" /></td>
                     <td className="title">
-                      <span>id #{id}</span> <br />
+                      <span>id #{id}</span> 
                       <p>{title}</p>
-                      <span>VIMEO <a href={`https://vimeo.com/${vimeo_id}`} target="_blank" rel="noreferrer" >{vimeo_id}</a></span> </td>
+                      <span>VIMEO <a href={`https://vimeo.com/${vimeo_id}`} target="_blank" rel="noreferrer" >{vimeo_id}</a></span> <br />
+                      <span> {year_of_work ? `Year ${year_of_work}`  : ''}</span>
+                      </td>
                     <td>
                       <ul className="categoryList">
                         {

@@ -24,10 +24,11 @@ function AddWrok({handleCreateWork}) {
       "title": data.title,
       "intro": data.description,
       "vimeo_id": data.vimeoid,
-      "yt_url": data.vimeoid,
+      "youtube_id": data.yturl,
       "img": imgFileName,
       "sort_num":"0",
-      "display":"1"
+      "display":"1",
+      "year_of_work":data.yearofwork
     }
     // 如果有圖檔存在 執行新增資料 否則不執行
     if (selectedFile) {
@@ -57,13 +58,18 @@ function AddWrok({handleCreateWork}) {
           <input type="text" className="form-control" id="title"  {...register('title', { required: true })}/>
         </div>
         <div className="mb-3">
+          <label htmlFor="vimeoid">作品年分(2022)</label>
+          <input type="text" className="form-control" id="yearofwork"  {...register('yearofwork')}/>
+
+        </div>
+        <div className="mb-3">
           <label htmlFor="vimeoid">vimeo 影片 ID (example: 594440744)</label>
           <input type="text" className="form-control" id="vimeoid"  {...register('vimeoid', { required: true })}/>
 
         </div>
         <div className="mb-3">
           <label htmlFor="vimeoid">YT 影片 URL</label>
-          <input type="text" className="form-control" id="yturl"  {...register('yturl', { required: true })}/>
+          <input type="text" className="form-control" id="yturl"  {...register('yturl')}/>
 
         </div>
         <div className="mb-3">
