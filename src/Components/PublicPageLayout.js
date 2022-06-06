@@ -90,7 +90,10 @@ function PublicPageLayout() {
   }
   // 處理作品的圖片路徑
   const mapWorkData =async (data)=>{
-    const twoarr= data.map( async (element) => {
+    let dataSorted = data.sort(function(a, b) {
+      return b.sort_num - a.sort_num;
+    });
+    const twoarr= dataSorted.map( async (element) => {
       const imagesRef = ref(storage, `data/${element.img}`);
       const newimgurl =await getDownloadURL(imagesRef).catch((error) => {
         switch (error.code) {
