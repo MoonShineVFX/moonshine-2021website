@@ -6,7 +6,7 @@ import { useStorage } from "../../Helper/useStorage";
 
 function EditWork({handleUpdateWork,uid,workData}) {
   
-  const {register,handleSubmit,reset } = useForm({defaultValues: { title: "", intro: "",vimeo_id:"" }})
+  const {register,handleSubmit,reset } = useForm({defaultValues: { title: "", intro: "",vimeo_id:"",youtube_id:"" ,year_of_work:""}})
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const types = ["image/png", "image/jpeg", "image/jpg"];
@@ -23,9 +23,9 @@ function EditWork({handleUpdateWork,uid,workData}) {
       "title": data.title,
       "intro": data.intro,
       "vimeo_id": data.vimeo_id,
-      "youtube_id": data.yturl,
+      "youtube_id": data.youtube_id,
       "img": imgFileName,
-      "year_of_work":data.yearofwork
+      "year_of_work":data.year_of_work
     }
 
     // 沒有換圖檔的JSON資料
@@ -33,8 +33,8 @@ function EditWork({handleUpdateWork,uid,workData}) {
       "title": data.title,
       "intro": data.intro,
       "vimeo_id": data.vimeo_id,
-      "youtube_id": data.yturl,
-      "year_of_work":data.yearofwork
+      "youtube_id": data.youtube_id,
+      "year_of_work":data.year_of_work
     }
     // 如果有新圖檔 執行編輯資料(有圖檔) 沒有新圖檔 修改文字資料
     if (selectedFile) {
@@ -83,7 +83,7 @@ function EditWork({handleUpdateWork,uid,workData}) {
         </div>
         <div className="mb-3">
           <label htmlFor="vimeoid">作品年分(2022)</label>
-          <input type="text" className="form-control" id="yearofwork"  {...register('yearofwork')}/>
+          <input type="text" className="form-control" id="year_of_work"  {...register('year_of_work')}/>
 
         </div>
         <div className="mb-3">
@@ -93,7 +93,7 @@ function EditWork({handleUpdateWork,uid,workData}) {
         </div>
         <div className="mb-3">
           <label htmlFor="vimeoid">YT 影片 URL</label>
-          <input type="text" className="form-control" id="yturl"  {...register('yturl')}/>
+          <input type="text" className="form-control" id="youtube_id"  {...register('youtube_id')}/>
 
         </div>
         <div className="mb-3">
