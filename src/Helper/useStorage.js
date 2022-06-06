@@ -14,9 +14,9 @@ export const useStorage = (file) => {
       Resizer.imageFileResizer(
         file,
         500,
-        300,
+        283,
         "JPEG",
-        80,
+        100,
         0,
         (uri) => {
           resolve(uri);

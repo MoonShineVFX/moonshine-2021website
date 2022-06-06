@@ -41,7 +41,7 @@ var useStorage = function useStorage(file) {
 
   var resizeFile = function resizeFile(file) {
     return new Promise(function (resolve) {
-      _reactImageFileResizer["default"].imageFileResizer(file, 500, 300, "JPEG", 80, 0, function (uri) {
+      _reactImageFileResizer["default"].imageFileResizer(file, 500, 283, "JPEG", 100, 0, function (uri) {
         resolve(uri);
       }, "file");
     });

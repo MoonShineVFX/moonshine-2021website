@@ -42,7 +42,8 @@ function EditWork({handleUpdateWork,uid,workData}) {
             setError(null);
             setFile({
               "filename":imgFileName,
-              "file":selectedFile
+              "file":selectedFile,
+              "folder":'data/'
             });
         } else {
             setFile(null);

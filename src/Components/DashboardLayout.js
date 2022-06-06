@@ -138,8 +138,11 @@ function DashboardLayout() {
 
   //處理作品檔案的圖片路徑
   const mapWorkData =async (data)=>{
-
-    const twoarr= data.map( async (element) => {
+    //sort by sort_num
+    var dataSorted = data.sort(function(a, b) {
+      return b.sort_num - a.sort_num;
+    });
+    const twoarr= dataSorted.map( async (element) => {
       const imagesRef = ref(storage, `data/${element.img}`);
       const newimgurl =await getDownloadURL(imagesRef).catch((error) => {
         switch (error.code) {
