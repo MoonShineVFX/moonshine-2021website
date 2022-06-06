@@ -4,8 +4,9 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 import AddCategory from './AddCategory';
 import EditCategory from './EditCategory';
-function Category({categoryData ,handleCreateCategory,handleDeleteCategory,handleUpdateCategory}) {
+function Category({categoryData ,handleCreateCategory,handleDeleteCategory,handleUpdateCategory,handleUpdateCategorySortNum}) {
   const [switchUi , setSwitchUi] = useState({data: "", uid: ""})
+  const [value, setValue] = useState("");
   const onDelete = (uid)=>{
     confirmAlert({
       title: '確認刪除這筆資料',
@@ -29,6 +30,13 @@ function Category({categoryData ,handleCreateCategory,handleDeleteCategory,handl
     })
     console.log(switchUi)
   }
+  const _handleKeyDown = (e,uid) => {
+    if (e.key === 'Enter') {
+      console.log(e.target.value);
+      handleUpdateCategorySortNum(e.target.value , uid)
+    }
+  }  
+  
   return (
     <div className="row">
       <div className="col-10">
@@ -52,11 +60,12 @@ function Category({categoryData ,handleCreateCategory,handleDeleteCategory,handl
             <tbody>
             {categoryData.length>0 ? 
               categoryData.map((item,index)=>{
-                const {id,name ,name_cht,uid} = item
+                const {id,name ,name_cht,uid,sort_num} = item
                 return(
                 
                   <tr key={name+id}>
-                    <td className="id">{id}</td>
+                    <td className="id">ID:{id} <br /> <label htmlFor=""> 
+                        Sort:<input type="text" size="6"  defaultValue={sort_num} onChange={e => setValue(e.target.value)} onKeyDown={e => _handleKeyDown(e,uid)}/></label>  </td>
                     <td className="title"> {name}</td>
                     <td className="title">{name_cht} </td>
 

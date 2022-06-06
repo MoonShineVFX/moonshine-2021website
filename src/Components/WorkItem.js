@@ -27,7 +27,7 @@ function WorkItem({data,handler}) {
         <div className="thumb player-wrapper" >
           <ReactPlayer 
             className='react-player'
-            url={youtube_id ? `${youtube_id}` : `https://vimeo.com/${vimeo_id}`} 
+            url={vimeo_id.length>0 ? `https://vimeo.com/${vimeo_id}` : `https://www.youtube.com/watch?v=${youtube_id}`} 
             width= "100%"
             height= "100%"
             controls={true}

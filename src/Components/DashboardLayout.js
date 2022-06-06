@@ -68,6 +68,16 @@ function DashboardLayout() {
     }
    
   }
+  const handleUpdateCategorySortNum = async (sortnum,uid)=>{
+    const categoryDoc = doc(db , 'category' , uid)
+    var newField = {sort_num:sortnum}
+    try {
+      await updateDoc( categoryDoc ,newField)
+      getCategory()
+    } catch (error) {
+      
+    }
+  }
   //WORK CURD
   const handleCreateWork = async(data) =>{
     const collectionRef = collection(db ,"data")
@@ -117,6 +127,7 @@ function DashboardLayout() {
     
 
   }
+  
   const handleUpdateWorkCatrgory = async (id,uid)=>{
     const workDoc = doc(db , 'data' , uid)
     var newField = {category:id}
@@ -131,6 +142,7 @@ function DashboardLayout() {
 
 
   }
+
   const handleUpdateWorkSortNum = async(sortnum , uid) =>{
     const workDoc = doc(db , 'data' , uid)
     var newField = {sort_num:sortnum}
@@ -154,7 +166,7 @@ function DashboardLayout() {
   const mapWorkData =async (data)=>{
     //sort by sort_num
    
-    var dataSorted = data.sort(function(a, b) {
+    let dataSorted = data.sort(function(a, b) {
       return b.sort_num - a.sort_num;
     });
     let latestSortNum = (parseInt(dataSorted[0].sort_num)+1).toString()
@@ -215,6 +227,18 @@ function DashboardLayout() {
     })
     setLabData(await Promise.all(twoarr))
   }
+  const mapCategoryData = async (data)=>{
+    let dataSorted = data.sort(function(a, b) {
+      return b.sort_num - a.sort_num;
+    });
+    let latestSortNum = (parseInt(dataSorted[0].sort_num)+1).toString()
+    const twoarr= dataSorted.map( async (element) => {
+  
+      return {...element , latestSortNum :latestSortNum}
+     
+    })
+    setCategoryData(await Promise.all(twoarr))
+  }
   
   const getWorks = async ()=>{
     const q = query(collection(db, "data"),orderBy('time_added' , 'asc'))
@@ -222,9 +246,10 @@ function DashboardLayout() {
     mapWorkData(data.docs.map(doc=> ({...doc.data(),uid:doc.id})))
   }
   const getCategory = async ()=>{
-    const q = query(collection(db, "category"))
+    const q = query(collection(db, "category"),orderBy('sort_num' , 'desc'))
     const data = await getDocs(q);
-    setCategoryData(data.docs.map(doc=> ({...doc.data(),uid:doc.id})))
+    mapCategoryData(data.docs.map(doc=> ({...doc.data(),uid:doc.id})))
+    // setCategoryData(data.docs.map(doc=> ({...doc.data(),uid:doc.id})))
   }
 
   useEffect(()=>{
@@ -269,7 +294,7 @@ function DashboardLayout() {
                   handleUpdateWorkDisplay={handleUpdateWorkDisplay} handleUpdateWorkCatrgory={handleUpdateWorkCatrgory} latestSortNum={latestSortNum} handleUpdateWorkSortNum={handleUpdateWorkSortNum}/> 
                 </Route>
                 <Route path="/admin/category">
-                  <Category  categoryData={categoryData} handleCreateCategory={handleCreateCategory} handleDeleteCategory={handleDeleteCategory} handleUpdateCategory={handleUpdateCategory}/>
+                  <Category  categoryData={categoryData} handleCreateCategory={handleCreateCategory} handleDeleteCategory={handleDeleteCategory} handleUpdateCategory={handleUpdateCategory} handleUpdateCategorySortNum={handleUpdateCategorySortNum}/>
                 </Route>
                 <Route path="/admin/lab">
                   <Lab   labData={labData} handleCreateLab={handleCreateLab} handleDeleteLab={handleDeleteLab} handleUpdateLab={handleUpdateLab}/>

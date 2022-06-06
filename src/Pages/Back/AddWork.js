@@ -82,7 +82,7 @@ function AddWrok({handleCreateWork,latestSortNum}) {
             {url && (
                       <p>
                         <b>圖片位置: </b>
-                        <a href={url} className="text-break">{url}</a>
+                        <a href={url} className="text-break">Image Url(open)</a>
                       </p>
             )}
             {url && <img src={url} className="img-fluid"/>}

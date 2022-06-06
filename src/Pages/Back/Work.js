@@ -77,7 +77,7 @@ function Work({handleCreateWork , workData , categoryData,handleDeleteWork , han
             <tbody>
             {workData.length>0 ? 
               workData.map((item,index)=>{
-                const {uid,id,title ,img,vimeo_id,display,imgpath , category,year_of_work,sort_num} = item
+                const {uid,id,title ,img,vimeo_id,display,imgpath , category,year_of_work,sort_num,youtube_id} = item
                 return(
                 
                   <tr key={title+id}>
@@ -89,6 +89,7 @@ function Work({handleCreateWork , workData , categoryData,handleDeleteWork , han
                       </span> 
                       <p>{title}</p>
                       <span>VIMEO <a href={`https://vimeo.com/${vimeo_id}`} target="_blank" rel="noreferrer" >{vimeo_id}</a></span> <br />
+                      <span>YT <a href={youtube_id} target="_blank" rel="noreferrer" >{youtube_id}</a></span> <br />
                       <span> {year_of_work ? `Year ${year_of_work}`  : ''}</span>
                       </td>
                     <td> 
