@@ -4,6 +4,10 @@ function Header({headerItem,currentLang,headerData}) {
   const {engname,chtname} = headerItem
   return (
     <div className="header">
+      <div className='tpnlogo'>
+        <img  src={process.env.PUBLIC_URL + '/img/2022/tpn-white.png'} alt=""  />
+      </div>
+      
       <div id="intro_bg_video">
         <iframe 
           title="video"

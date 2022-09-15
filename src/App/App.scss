@@ -54,6 +54,17 @@ a {
       margin-top: 15px;
     }
   }
+
+  .tpnlogo{
+    position: absolute;
+    z-index: 2;
+    bottom: 5px;
+    left: 5px;
+    width: 18%;
+    img{
+      width: 100%;
+    }
+  }
 }
 .site-menu {
   list-style-type: none;
