@@ -216,6 +216,19 @@
       display: none;
   }
 }
+@media (max-width: 1024px){
+  .header{
+    .tpnlogo{
+      img{
+        width: 100%;
+      }
+    }
+  }
+
+}
+
+
+
 @media (max-width: 1280px){
   .mobile-menu-btn-bar {
       display: none;
@@ -223,6 +236,7 @@
   .cContainter{
     width: 90%;
   }
+
 }
 
 
