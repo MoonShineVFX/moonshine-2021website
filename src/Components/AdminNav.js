@@ -15,7 +15,7 @@ function AdminNav() {
           {/* <li className="nav-item"><Link to="/admin/about">管理簡介頁</Link></li> */}
           
           {/* <li className="nav-item"><Link to="/admin/contact">管理聯絡頁</Link></li> */}
-          <li  className="m-3" style={{marginTop:'auto'}}><button onClick={() => signOut(auth)} className="btn btn-primary">Sign out</button></li>
+          <li  className="m-3" style={{marginTop:'auto'}}><button onClick={() => signOut(auth)} className="btn btn-primary">Logout</button></li>
         </ul>
       </div>
 

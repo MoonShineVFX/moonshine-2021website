@@ -31,12 +31,12 @@ function Navbar({currentLang , switchLang , navitemData,socialitemData, switchHe
           }
           {socialitemData.length >0 ? 
             socialitemData.map((item,index)=>{
-              const {id ,img , link} = item
+              const {id ,img , link,name} = item
               return(
               
                     <li key={id} >
                       <a href={link} target="_blank" rel="noreferrer">
-                        <img src={`https://storage.googleapis.com/web-moonshine.appspot.com/img_icon/${img}`} alt="" />
+                        <img src={`https://storage.googleapis.com/web-moonshine.appspot.com/img_icon/${img}`} alt="" className={'c'+name}/>
                       </a> 
                     </li>
                 

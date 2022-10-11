@@ -21,7 +21,7 @@ import Contact from '../Pages/Front/Contact'
 
 // firebase 資料庫連線
 import db from '../Config/firebase'
-import {collection, query,  getDocs,orderBy} from "firebase/firestore"
+import {collection, query,  getDocs,orderBy,where} from "firebase/firestore"
 import { getStorage, ref, getDownloadURL,  } from "firebase/storage";
 
 // 本地json資料 
@@ -157,7 +157,7 @@ function PublicPageLayout() {
      * 不用處理圖片路徑的 直接 set
      * **/ 
     const getCategory = async ()=>{
-      const q = query(collection(db, "category"))
+      const q = query(collection(db, "category"), where("display", "==", '1'))
       const data = await getDocs(q);
       setCategoryData(data.docs.map(doc=> doc.data()))
     }
@@ -173,7 +173,7 @@ function PublicPageLayout() {
       setNavitemData(data.docs.map(doc=> doc.data()))
     }
     const getSocialitem = async()=>{
-      const q = query(collection(db, "socialitem"))
+      const q = query(collection(db, "socialitem"),orderBy('id' , 'desc'))
       const data = await getDocs(q);
       setSocialitemData(data.docs.map(doc=> doc.data()))
     }
