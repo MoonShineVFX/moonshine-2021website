@@ -1,52 +1,62 @@
 import React from 'react'
-import {Link} from "react-router-dom";
-function Navbar({currentLang , switchLang , navitemData,socialitemData, switchHeaderName}) {
-  // const [currentLang, setCurrentLang] = useState("");
+import { FaVimeoV,FaLinkedin,FaFacebookF,FaInstagram } from "react-icons/fa";
+import { Link ,useLocation  } from "react-router-dom";
+function Navbar({data , toggleTrueFalse,socialmedia}) {
 
-  const handleSwitch = (data)=>{
-    switchLang(data)
-  }
-  const handleNavItem = (id)=>{
-    switchHeaderName(id)
-  }
-
+  const { pathname } = useLocation();
   return (
-        <ul className="site-menu">
-          {navitemData.length >0 ? 
-            navitemData.map((item)=>{
-              const {id,engname ,chtname,path} = item
-              return(
-              
-                    <li key={id} >
+    <div id="navbar" className='flex justify-between items-center text-white top-3 left-1/2 -translate-x-2/4 w-11/12 fixed z-50 site-menu xs:hidden '>
+      <div className="logo">
+        <Link
+          to="/"
+        >
+          <img src={process.env.PUBLIC_URL+'/images/logo.png'} alt="" />
+        </Link>
 
-                      <Link to={"/"+path} onClick={()=> handleNavItem(id)}>
-                        {currentLang === 'eng' ? engname : chtname}  
-                      </Link>
-                    </li>
-                
-              )
-            }) : <li >
-                    <div className="text-placeholder"></div>
-                </li>
-          }
-          {socialitemData.length >0 ? 
-            socialitemData.map((item,index)=>{
-              const {id ,img , link,name} = item
+      </div>
+      <div className="navlist">
+        <ul className='menu_list'>
+          { data?
+            data.map((item,index)=>{
               return(
-              
-                    <li key={id} >
-                      <a href={link} target="_blank" rel="noreferrer">
-                        <img src={`https://storage.googleapis.com/web-moonshine.appspot.com/img_icon/${img}`} alt="" className={'c'+name}/>
-                      </a> 
-                    </li>
-                
+                <li key={index}>
+                  <Link 
+                    to={item.type}
+                    className={ pathname.substring(1) === item.type ? 'active' : ''}
+                  >
+                    {item.chtName}
+                  </Link>
+                </li>
               )
-            }) : <li></li>
+            }): ""
           }
-          <li onClick={()=> handleSwitch('eng')}><span>English</span></li>
-          <li onClick={()=> handleSwitch('cht')}><span>中文</span></li>
         </ul>
-        
+        <ul className='social_list'>
+          {
+            socialmedia.length ? 
+            socialmedia.map((item,index)=>{
+              const {id,image, link}=item
+              return(
+                <li key={id} className="social hover:-translate-y-1 transition">
+                  <a href={link} target="_blank" rel="noreferrer">
+                    <img src={process.env.PUBLIC_URL+ '/images/socialicon/' + image} alt="" />
+                  </a> 
+                </li>
+              )
+            }) : <div>loading </div>
+          }
+          <li className= "mx-3 text-white"      >
+            <p >繁</p>
+          </li>
+          <li className="  text-zinc-500">
+            <p >EN</p>
+          </li>
+
+        </ul>
+      </div>
+
+
+    </div>
   )
 }
 

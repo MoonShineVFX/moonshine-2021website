@@ -1,19 +1,36 @@
-import React,{useState} from 'react'
+import React, { useState, useEffect } from 'react'
+import { useRecoilState } from 'recoil';
+import { formDisplayState,formStatusState,adminCategoryState } from './atoms/fromTypes';
+//components
+import CategoryForm from './Components/CategoryForm';
+
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+//helper
+import {getAllCategoryForDashboard, createCategory, deleteCategory, updateCategory} from '../../Helper/getfunction'
+import {LoadingAnim} from '../../Helper/HtmlComponents'
 
-import AddCategory from './AddCategory';
-import EditCategory from './EditCategory';
-function Category({categoryData ,handleCreateCategory,handleDeleteCategory,handleUpdateCategory,handleUpdateCategorySortNum}) {
-  const [switchUi , setSwitchUi] = useState({data: "", uid: ""})
-  const [value, setValue] = useState("");
+
+function Category() {
+  const [categoryData, setCategoryData] = useState([]);
+
+  const [showModal, setShowModal] = useRecoilState(formDisplayState);
+  const [formStatus, setFormStatus] = useRecoilState(formStatusState);
+  const [singleCategory, setSingleCategory] = useRecoilState(adminCategoryState);
+
+  const [file, setFile] = useState(null);
+  const [error, setError] = useState(null);
+  const types = ["image/png", "image/jpeg", "image/jpg"];
+
   const onDelete = (uid)=>{
     confirmAlert({
       title: '確認刪除這筆資料',
       buttons: [
         {
           label: '確定',
-          onClick: () => handleDeleteCategory(uid)
+          onClick: () =>  deleteCategory(uid,function(res){
+            fetchCategoryDoneFun('刪除資料失敗，錯誤訊息:',res)
+          })
         },
         {
           label: '取消',
@@ -22,96 +39,160 @@ function Category({categoryData ,handleCreateCategory,handleDeleteCategory,handl
     });
    
   }
-  // 按下功能切換
-  const handleClick=(string,uid)=>{
-    setSwitchUi({
-      string,
-      uid
-    })
-    console.log(switchUi)
-  }
-  const _handleKeyDown = (e,uid) => {
-    if (e.key === 'Enter') {
-      console.log(e.target.value);
-      handleUpdateCategorySortNum(e.target.value , uid)
+  const fetchCategoryDoneFun = (customStr, res)=>{
+    setShowModal(false)
+    if(res === 'success'){
+      getAllCategoryForDashboard((res)=>{
+        setCategoryData(res)
+      })
+    }else{
+      showErrorAlert(customStr,res)
     }
-  }  
-  
-  return (
-    <div className="row">
-      <div className="col-10">
-        
-        <h3>分類列表    
-          <button 
-            type="button" 
-            className="btn btn-primary standardBtn ms-2" 
-            onClick={()=>{handleClick('create')}}
-          >新增分類</button>
-        </h3>
-        <table className="table cmsWork table-hover ">
-          <thead className="thead-color">
-              <tr>
-                <th scope="col">#id</th>
-                <th scope="col">分類名稱-英文</th>
-                <th scope="col">分類名稱</th>
-                <th scope="col">編輯/刪除</th>
-              </tr>
-            </thead>
-            <tbody>
-            {categoryData.length>0 ? 
-              categoryData.map((item,index)=>{
-                const {id,name ,name_cht,uid,sort_num} = item
-                return(
-                
-                  <tr key={name+id}>
-                    <td className="id">ID:{id} <br /> <label htmlFor=""> 
-                        Sort:<input type="text" size="6"  defaultValue={sort_num} onChange={e => setValue(e.target.value)} onKeyDown={e => _handleKeyDown(e,uid)}/></label>  </td>
-                    <td className="title"> {name}</td>
-                    <td className="title">{name_cht} </td>
+  }
+  const showErrorAlert = (str,res) =>{
+    confirmAlert({
+      title: str+ res,
+      buttons: [
+        {
+          label: '確定',
+        },
+        {
+          label: '取消',
+        }
+      ]
+    });
+  }
+  function convertToSlug(Text) {
+    return Text.toLowerCase()
+               .replace(/ /g, '-')
+               .replace(/[^\w-]+/g, '');
+  }
+  const handleCreateCategory = (data) =>{
+    let currentData ={
+      "id": Date.now().toString(36),
+      "time_added": new Date(+new Date() + 8 * 3600 * 1000).toISOString().replace(/T/, ' ').replace(/\..+/, '')  ,
+      "name": data.name,
+      "name_cht": data.name_cht,
+      "slug":convertToSlug(data.name),
+      "video_url": data.video_url,
+      "cover_video":data.cover_video,
+      "sort_num": data.sort_num ? data.sort_num : '666',
+    }
+    createCategory(currentData,function(res){
+      console.log(res)
+      fetchCategoryDoneFun('新增資料失敗，錯誤訊息:',res)
+    })
+  }
+  const handleEditCategory = (uid,data) =>{
+    let selectedFile = data.file[0];
+    // 設定圖檔重新命名
+    const imgFileName = Date.now()+'.jpg'
+    let currentDataWithoutImg ={
+      "name": data.name,
+      "name_cht": data.name_cht,
+      "slug":convertToSlug(data.name),
+      "cover_video":data.cover_video,
+      "video_url": data.video_url,
+      "sort_num": data.sort_num ? data.sort_num : '666',
+    }
+    // 如果有圖檔存在 執行新增資料 否則不執行
+    if (selectedFile) {
+      if (types.includes(selectedFile.type)) {
+          setError(null);
+          setFile({
+            "filename":imgFileName,
+            "file":selectedFile,
+            "folder":'data/',
+            "maxWidth":500,
+            "maxHeight":283,
+            "compressFormat":"JPEG",
+            "quality":75
+          });
+      } else {
+          setFile(null);
+          setError("Please select an image file (png or jpg)");
+      }
+      updateCategory(uid,{...currentDataWithoutImg , "img": imgFileName },function(res){
+        console.log(res)
+        fetchCategoryDoneFun('編輯資料失敗，錯誤訊息:',res)
 
-                    <td>
-                      <div className="d-grid gap-2 d-md-block">
-                        <button 
-                          type="button" 
-                          className="btn btn-success btn-sm"
-                          onClick={()=>{handleClick('edit' , uid)}} >編輯</button>
-                        <button type="button" className="btn btn-light btn-sm" onClick={()=> {onDelete(uid)}}>刪除</button>
-                      </div>
+      })
+    } else{
+      updateCategory(uid,currentDataWithoutImg,function(res){
+        console.log(res)
+        fetchCategoryDoneFun('編輯資料失敗，錯誤訊息:',res)
+      })
+    }
+  }
+  useEffect(()=>{
+    getAllCategoryForDashboard((res)=>{
+      setCategoryData(res)
+    })
+
+
+  },[])
+  return (
+    <section className='w-full bg-white p-5 text-black relative'>
+      <div className='w-full border-b mb-10'>
+        <h1>管理分類</h1>
+      </div>
+      <button 
+          className='text-xs  rounded-md bg-black text-white py-2 px-6 hover:bg-slate-600'
+          onClick={() => {
+            setShowModal(true);
+            setFormStatus('ADD')
+          }}
+
+        >新增分類 </button>
+      <div id="table" className='w-full mt-5' >
+        <table className="table-auto   border border-slate-200 w-full rounded-md ">
+          <thead>
+            <tr>
+              <th className='bg-zinc-100 border-b border-zinc-300 text-left'>分類ID</th>
+              <th className='bg-zinc-100 border-b border-zinc-300 text-left'>排序</th>
+              <th className='bg-zinc-100 border-b border-zinc-300 text-left'>分類名稱(英 - 中)</th>
+              <th className='bg-zinc-100 border-b border-zinc-300 text-left'>Slug</th>
+              <th className='bg-zinc-100 border-b border-zinc-300 text-left'>狀態</th>
+              <th className='bg-zinc-100 border-b border-zinc-300 text-left'>編輯</th>
+            </tr>
+          </thead>
+          <tbody className='divide-y divide-slate-200'>
+            {
+              categoryData ?
+              categoryData.map((item,index)=>{
+                const {uid,id, name, name_cht,sort_num,display,slug} =item
+                return(
+                  <tr className=' hover:bg-zinc-200' key={id+name}>
+                    <td className='p-2 text-xs'>{id}</td>
+                    <td className='p-2 text-xs'>{sort_num}</td>
+                    <td className='p-2 text-xs'>{name} - {name_cht}</td>
+                    <td className='p-2 text-xs'>{slug}</td>
+                    <td className='p-2 text-xs'>{display === '1' ? '顯示' : '不顯示'}</td>
+                    <td className='p-2 text-xs'>
+                      <button 
+                      className='text-xs  rounded-md bg-black text-white py-2 px-6 hover:bg-slate-600 '
+                      onClick={() => {
+                        setShowModal(true);
+                        setSingleCategory(item)
+                        setFormStatus('EDIT')
+                      }}>編輯</button>
+                      <button 
+                      className='text-xs  rounded-md bg-black text-white py-2 px-6 hover:bg-slate-600 '
+                      onClick={()=> {onDelete(uid)}}>刪除</button>
+
                     </td>
                   </tr>
-                  
                 )
-              }) :  <tr class="d-flex justify-content-center">
-                      <div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                      </div>
-                    </tr>
+              }): <LoadingAnim />
             }
-            </tbody>
+
+          
+          </tbody>
         </table>
-        
       </div>
-      <div className="col-2 position-sticky bg-light text-muted align-self-start py-3 fixed-top" style={{minHeight:'100vh' , marginTop:'-25px'}}>
-      {(() => {
-          switch (switchUi.string) {
-            case 'create':
-                return (
-                  <AddCategory handleCreateCategory={handleCreateCategory}/>
-                )
-            case 'edit':
-                return (
-                  <EditCategory handleUpdateCategory={handleUpdateCategory} uid={switchUi.uid}/>
-                )
-            default:
-                return (
-                  <AddCategory handleCreateCategory={handleCreateCategory}/>
-                )
-          }
-      })()}
-        
-      </div>
-      
-    </div>
+
+      {showModal && <CategoryForm  handleCreateCategory={handleCreateCategory} handleEditCategory={handleEditCategory} />}
+    </section>
   )
 }
 

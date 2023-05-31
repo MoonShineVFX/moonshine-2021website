@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Resizer from "react-image-file-resizer";
 //firebase
-import db from '../Config/firestorage'
+import db from '../firebaseConfig/firestorage'
 import {ref,uploadBytesResumable, getDownloadURL,getStorage  } from "firebase/storage"
 
 
@@ -12,11 +12,11 @@ export const useStorage = (file) => {
     const resizeFile = (file) =>
     new Promise((resolve) => {
       Resizer.imageFileResizer(
-        file,
-        500,
-        283,
-        "JPEG",
-        100,
+        file.file,
+        file.maxWidth,
+        file.maxHeight,
+        file.compressFormat,
+        file.quality,
         0,
         (uri) => {
           resolve(uri);
@@ -31,7 +31,7 @@ export const useStorage = (file) => {
         if (file) {
             // storage ref
             (async () => {  
-              const image = await resizeFile(file.file);
+              const image = await resizeFile(file);
               const storageRef =await ref(db, file.folder+file.filename);
               const uploadTask =uploadBytesResumable(storageRef, image);
               uploadTask.on('state_changed', (snapshot) => {

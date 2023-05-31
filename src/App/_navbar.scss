@@ -1,0 +1,102 @@
+#navbar{
+
+  .logo{
+    img{
+      height: 10px;
+    }
+  }
+  .navlist{
+    display: flex;
+    ul{
+      display: flex;
+      font-size: 8pt;
+      li{
+        cursor: pointer;
+        a{
+          padding: 1rem;
+          display: block;
+          color:#999999;
+          transition: 0.3s;
+          img.imglogo{
+            height:10px ;
+          }
+          &.active,&:hover{
+            color: white;
+            font-weight: bold;
+          }
+
+        }
+      }
+      .lang_btngroup{
+        display: flex;
+        align-items: center;
+        li{
+          &.divider{
+            color:#7a7a7a;
+          }
+          &.active{
+            color: white;
+            font-weight: bold;
+            a{
+              color:white
+            }
+          }
+          a{
+            padding: 1rem 5px;
+
+          }
+        }
+      }
+    }
+    ul.social_list{
+      align-items: center;
+      li{
+        a{
+          padding: 1rem 0.6rem;
+          img{
+            height: 12px;
+            vertical-align: bottom;
+            transition: 0.2s;
+          }
+        }
+      }
+    }
+  }
+  .mobileNavBtn{
+    display: none;
+  }
+}
+
+.bigNav-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+.bigNav-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.bigNav-exit {
+  opacity: 1;
+}
+.bigNav-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* ANIMATIONS */
+.slide-enter {
+  opacity: 0;
+}
+.slide-enter-active {
+  opacity: 0.4;
+  transition: opacity 1000ms ease-in-out;
+}
+.slide-exit {
+  opacity: 0.4;
+}
+.slide-exit-active {
+  opacity: 0;
+  transition: opacity 1000ms ease-in-out;
+}

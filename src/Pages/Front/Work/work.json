@@ -1,0 +1,64 @@
+{
+  "works":[
+      {
+        "id": 1,
+        "image": "work01.png",
+        "imageBg": "work01.png",
+        "title": "1983"
+      },
+      {
+        "id": 2,
+        "image": "work02.png",
+        "imageBg": "work02.png",
+        "title": "Russian doll"
+      },
+      {
+        "id": 3,
+        "image": "work03.png",
+        "imageBg": "work03.png",
+        "title": "The rain"
+      },
+      {
+        "id": 4,
+        "image": "work04.png",
+        "imageBg": "work04.png",
+        "title": "Sex education"
+      },
+      {
+        "id": 5,
+        "image": "work05.png",
+        "imageBg": "work05.png",
+        "title": "Elite"
+      },
+      {
+        "id": 6,
+        "image": "work01.png",
+        "imageBg": "work06.png",
+        "title": "Black mirror"
+      },
+      {
+        "id": 7,
+        "image": "work02.png",
+        "imageBg": "work06.png",
+        "title": "Black mirror"
+      },
+      {
+        "id": 8,
+        "image": "work03.png",
+        "imageBg": "work06.png",
+        "title": "Black mirror"
+      },
+      {
+        "id": 9,
+        "image": "work04.png",
+        "imageBg": "work06.png",
+        "title": "Black mirror"
+      },
+      {
+        "id": 10,
+        "image": "work05.png",
+        "imageBg": "work06.png",
+        "title": "Black mirror"
+      }
+    ]
+}

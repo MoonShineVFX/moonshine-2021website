@@ -1,0 +1,39 @@
+#about{
+
+  .about_content {
+    .left{
+
+    }
+    .right{
+
+    }
+  }
+}
+
+
+.img-1, .img-2, .img-3, .img-4 {
+	z-index: -18;
+	animation-name: fade;
+	animation-duration: 16s;
+	animation-iteration-count: infinite;
+  filter: brightness(0.3);
+}
+
+.img-1 { animation-delay: 0s;   }
+.img-2 { animation-delay: 5s;   }
+.img-3 { animation-delay: 9s;   }
+.img-4 { animation-delay: 13s;  }
+@keyframes fade {
+	00.00%	{ opacity: 0;   z-index: -10; }
+	06.25%	{ opacity: 1; z-index: -10; }
+	31.25%	{ opacity: 1; z-index: -12; }
+	37.50%	{ opacity: 0;   z-index: -14; }
+	100.0%	{ opacity: 0;   z-index: -16; }
+}
+@keyframes iris {
+	00.0%	{   clip-path: circle(0% at 50% 0%); z-index: -10; }
+	12.5%	{   clip-path: circle(120% at 50% 0%); z-index: -10; }
+	31.25%	{ clip-path: circle(120% at 50% 0%); z-index: -12; }
+	37.50%	{ clip-path: circle(0% at 50% 0%); z-index: -14; }
+	100%	{   clip-path: circle(0% at 50% 0%); z-index: -16; }
+}

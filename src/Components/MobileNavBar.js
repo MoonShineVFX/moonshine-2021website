@@ -1,60 +1,37 @@
 import React from 'react'
-import {Link} from "react-router-dom";
-function MobileNavBar({isToggled,currentLang,switchLang,navitemData,socialitemData,switchHeaderName}) {
-  const handleSwitch = (data)=>{
-    switchLang(data)
-  }
-  const handleNavItem = (id)=>{
-    switchHeaderName(id)
-  }
+import { Link ,useLocation  } from "react-router-dom";
+function MobileNavbar({data}) {
   return (
-    <ul className={isToggled ?  "mobile-menu active" : "mobile-menu"} id="mobile-menu">
-      {navitemData.length >0 ? 
-        navitemData.map((item)=>{
-          const {id,engname ,chtname,path} = item
-          return(
-          
-                <li key={id} >
-
-                  <Link to={"/"+path} onClick={()=> handleNavItem(id)}>
-                    {currentLang === 'eng' ? engname : chtname}  
-                  </Link>
-                </li>
-            
-          )
-        }) : <li >
-                <div className="text-placeholder"></div>
-            </li>
-      }
-      <li className="langChange">
-        <span onClick={()=> handleSwitch('eng')}>English</span> 
-        <span onClick={()=> handleSwitch('cht')}>中文</span>
-      </li>
-
-
-      <li>
-        <ul className="mobile-menu-icon">
-        {socialitemData.length >0 ? 
-          socialitemData.map((item,index)=>{
-            const {id ,img , link} = item
-            return(
-            
-                  <li key={id} >
-                    <a href={link} target="_blank" rel="noreferrer">
-                      <img src={process.env.PUBLIC_URL + '/img/'+img} alt="" />
-                    </a> 
-                  </li>
+    <div className='xs:block hidden fixed bg-neutral-900 bottom-0 z-40 shadow inset-x-0 text-stone-500'>
+      <div className='flex justify-between'>
+          <Link 
+              key='home'
+              to='/'
+              className='w-full focus:text-stone-300 hover:text-stone-300 justify-center inline-block text-center pt-2 pb-1'
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" className="inline-block  mb-1" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5Z"/></svg>
+              <span className="tab tab-home block text-xs">HOME</span>
               
-            )
-          }) : <li></li>
-        }
-        </ul>
-      </li>
-		
-		
+            </Link>
+      { data?
+            data.map((item,index)=>{
+              return(
+                  <Link 
+                    key={index}
+                    to={item.type}
+                    className='w-full focus:text-stone-300 hover:text-stone-300 justify-center inline-block text-center pt-2 pb-1'
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" className="inline-block  mb-1" fill="currentColor"><path d={item.icon}/></svg>
+                    <span className="tab tab-home block text-xs">{item.engName}</span>
+                    
+                  </Link>
 
-	  </ul>
+              )
+            }): ""
+          }
+      </div>
+    </div>
   )
 }
 
-export default MobileNavBar
+export default MobileNavbar

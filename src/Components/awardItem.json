@@ -1,0 +1,53 @@
+{
+  "award":[
+    {
+      "id":1,
+      "image":"logo01.png",
+      "title":"STARLUX AIRLINE - Star Wonderers",
+      "awardtitle":"41th The Telly Awards",
+      "subtitle":"Branded Content Craft-Fully Animated piece \nBranded Content Craft-Art Direction \nBranded Content General-Travel"
+    },
+    {
+      "id":2,
+      "image":"logo02.png",
+      "title":"The Last Queen",
+      "awardtitle":"79th Venice International Film Festival",
+      "subtitle":"Giornate degli Autori Award"
+    },
+    {
+      "id":7,
+      "image":"logo01.png",
+      "title":"STARLUX AIRLINE - Star Wonderers",
+      "awardtitle":"41th The Telly Awards",
+      "subtitle":"Branded Content Craft-Visual Effects \nBranded Content Craft-3D Animation \nBranded Content Craft-Use of Animation"
+    },
+    {
+      "id":3,
+      "image":"logo03.png",
+      "title":"Moondream Reality : Formosan Harmony",
+      "awardtitle":"2022 MUSE Awards  Muse Creative Award",
+      "subtitle":"Experiential & Immersive / Platinum Winner"
+    },
+    {
+      "id":4,
+      "image":"logo04.png",
+      "title":"Incantation",
+      "awardtitle":"Nominated for the 59th Golden Horse Award",
+      "subtitle":"Best Visual Effects"
+    },
+    {
+      "id":5,
+      "image":"logo08.png",
+      "title":"ROG 2021 Brand Video",
+      "awardtitle":"2022 Red Dot Design Awards ",
+      "subtitle":"Film & Animation"
+    },
+    {
+      "id":6,
+      "image":"logo08.png",
+      "title":"ROG Zephyrus Duo 16 Product Video",
+      "awardtitle":"2022 Red Dot Design Awards",
+      "subtitle":"Film & Animation"
+    }
+  ]
+}
