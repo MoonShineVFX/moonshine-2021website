@@ -53,7 +53,7 @@ function WatchArticle() {
 									{data.article_images.map((item,index)=>{
 										return(
 											<div className='' data-aos="fade-up" data-aos-duration="1500">
-												<img src={'https://storage.googleapis.com/web-moonshine-2022.appspot.com/img_article/'+item} alt="" className='max-w-full'/>
+												<img src={'https://storage.googleapis.com/web-moonshine.appspot.com/img_article/'+item} alt="" className='max-w-full'/>
 											</div>
 										)
 									})}
