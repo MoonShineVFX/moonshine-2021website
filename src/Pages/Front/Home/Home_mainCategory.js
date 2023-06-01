@@ -52,7 +52,7 @@ function Home_mainCategory() {
 
   return (
     <div>
-      <ul className='grid lg:grid-cols-4 w-full md:h-screen grid-cols-1 h-auto aspect-square mt-0 md:p-0 md:mt-0 relative'>
+      <ul className='grid lg:grid-cols-2 w-full md:h-screen grid-cols-1 h-auto aspect-square mt-0 md:p-0 md:mt-0 relative'>
         {
           categoryData ? 
           categoryData.map((item,index)=>{

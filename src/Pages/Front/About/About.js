@@ -10,6 +10,10 @@ function About() {
     'bg_about05.png',
     'bg_about06.png',
     'bg_about07.png',
+    'bg_about08.png',
+    'bg_about09.png',
+    'bg_about10.png',
+    'bg_about11.png',
   ];
   return (
     <div>
@@ -117,14 +121,14 @@ function About() {
                 <div className=' text-xl mb-5 font-bold'>TAIPEI</div>
                 <div className=' text-sm'>
                   02-2785-7037 <br />
-                  info@moonshine.tw <br />
+                  Producer@moonshine.tw <br />
                   3F, No.481, Sec. 6, Zhongxiao E. Rd., Nangang Dist., Taipei City 115, Taiwan (R.O.C.)
                 </div>
               </div>
               <div>
                 <div className=' text-xl mb-5 font-bold'>KAOHSIUNG</div>
                 <div className=' text-sm'>
-                  info@moonshine.tw   <br />
+                  Producer@moonshine.tw  <br />
                   A5CF., No. 1, Zhen'ai Rd., Yancheng Dist., Kaohsiung City 803003 , Taiwan (R.O.C.) 
                 </div>
               </div>

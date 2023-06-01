@@ -59,9 +59,9 @@ function By_Category() {
   const hasCategoryDoGetWoks =({cid,is_Sub}) => {
     console.log(cid,is_Sub)
     getWorksByCategoryCid(cid,(res)=>{
-      if(is_Sub === false){
-        setFilteredWorkData(res)
-      }
+      // if(is_Sub === false){
+      //   setFilteredWorkData(res)
+      // }
       setWorkData(res)
     })
   }
@@ -99,7 +99,7 @@ function By_Category() {
            {currentCategory && currentCategory.name}
           </div>
           <div className='h-[1px] w-[60px] bg-white mt-12 mb-3'></div>
-          <ul className='flex justify-start items-center gap-5 h-16 uppercase font-light text-lg'>
+          {/* <ul className='flex justify-start items-center gap-5 h-16 uppercase font-light text-lg'>
           {category && category.sub_category &&
             category.sub_category.map((item,index)=>{
               const{id, title , name_cht } = item
@@ -113,14 +113,14 @@ function By_Category() {
               )
             })
           }
-           </ul>
+           </ul> */}
         </div>
 
         <div id='workContainer'>
           <motion.div className={' grid xs:w-5/6 xs:mx-auto mx-auto transition-all ' + (category && currentSubCategory.id === 'vfx01' ? ' grid-cols-2 lg:grid-cols-4' : ' grid-cols-1 lg:grid-cols-3')}>
           <AnimatePresence>
-          {filteredWorkData ?
-            filteredWorkData.map((item,index)=>{
+          {workData ?
+            workData.map((item,index)=>{
               const {id,title ,img,imgpath,display,article} = item
               return(
                 <motion.div 
