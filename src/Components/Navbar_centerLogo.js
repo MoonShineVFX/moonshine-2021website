@@ -48,50 +48,51 @@ function Navbar_centerLogo({data ,nav_Work, toggleTrueFalse,socialmedia}) {
           </Link>
 
         </div>
-
-          <div className={' gap-10 transition-all delay-300 hidden md:flex  ' + (stickyClass === true  ? ' translate-y-0 '  : '  -translate-y-20 '  )}>
-            <ul className='flex items-center gap-10  text-base' >
-              { nav_Work?
-                nav_Work.map((item,index)=>{
+        <div className='flex  space-x-10 items-center'>
+          <div className={' space-x-10  transition-all delay-300 hidden md:flex  ' + (stickyClass === true  ? ' translate-y-0 '  : '  -translate-y-20 '  )}>
+              <ul className='flex items-center gap-10  text-base' >
+                { nav_Work?
+                  nav_Work.map((item,index)=>{
+                    return(
+                      <li key={index} className=" font-light ">
+                        <a 
+                          href={'/works/'+item.type}
+                          className="hover:tracking-widest text-[1rem] font-bold text-zinc-300 hover:text-zinc-100 transition-all"
+                        >
+                          {item.engName}
+                        </a>
+                      </li>
+                    )
+                  }): ""
+                }
+              </ul>
+              <ul className='flex items-center space-x-10  text-base capitalize' >
+              { data?
+                data.map((item,index)=>{
                   return(
                     <li key={index} className=" font-light ">
-                      <a 
-                        // to={item.type}
-                        href={'/works/'+item.type}
-                        className="hover:tracking-widest text-[1rem] font-bold text-zinc-400 hover:text-zinc-100 transition-all"
+                      <Link 
+                        to={item.type}
+                        className="hover:tracking-widest text-[1rem] font-bold hover:text-zinc-100 transition-all text-zinc-300 "
                       >
                         {item.engName}
-                      </a>
+                      </Link>
                     </li>
                   )
                 }): ""
               }
             </ul>
-            <ul className='flex items-center gap-10 text-base capitalize' >
-            { data?
-              data.map((item,index)=>{
-                return(
-                  <li key={index} className=" font-light ">
-                    <Link 
-                      to={item.type}
-                      className="hover:tracking-widest text-[1rem] font-bold hover:text-zinc-100 transition-all text-zinc-400 "
-                    >
-                      {item.engName}
-                    </Link>
-                  </li>
-                )
-              }): ""
-            }
-          </ul>
           </div>
 
-        <div className='' onClick={()=>{setShowMessage(true)}}>
-          <div className=" rounded-full  w-8 h-7 p-1 flex flex-col justify-between group cursor-pointer">
-            <span className="block w-full h-0.5 bg-gray-100 group-hover:w-7 transition-all"></span>
-            <span className="block w-full h-0.5 bg-gray-100 group-hover:w-7 transition-all"></span>
-            <span className="block w-full h-0.5 bg-gray-100 group-hover:w-7 transition-all"></span>
+          <div className='' onClick={()=>{setShowMessage(true)}}>
+            <div className=" rounded-full  w-8 h-7 p-1 flex flex-col justify-between group cursor-pointer">
+              <span className="block w-full h-0.5 bg-gray-100 group-hover:w-7 transition-all"></span>
+              <span className="block w-full h-0.5 bg-gray-100 group-hover:w-7 transition-all"></span>
+              <span className="block w-full h-0.5 bg-gray-100 group-hover:w-7 transition-all"></span>
+            </div>
           </div>
         </div>
+
       </div>
       <CSSTransition
         in={showMessage}
@@ -128,7 +129,6 @@ function Navbar_centerLogo({data ,nav_Work, toggleTrueFalse,socialmedia}) {
               }): ""
             }
           </ul>
-          <div className='w-5 h-1 bg-white '></div>
           <ul className='flex flex-col items-center  mb-5 gap-5 lg:gap-10' >
             { data?
               data.map((item,index)=>{
