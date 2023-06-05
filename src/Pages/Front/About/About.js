@@ -37,7 +37,7 @@ function About() {
                 <div className='w-2/3'>
                   <div className='pt-[126%] relative  '>
                     <img  
-                      src={process.env.PUBLIC_URL+'/images/about/p001.png'}
+                      src='https://resource.moonshine.tw/msweb/for_global/teams/p001.png'
                       className='rounded-sm grayscale contrast-125 absolute top-1/2 left-0 -translate-y-1/2  object-cover w-full h-full'
                     />
                   </div>
@@ -50,7 +50,7 @@ function About() {
                 <div className='w-2/3'>
                   <div className='pt-[126%] relative  '>
                   <img  
-                      src={process.env.PUBLIC_URL+'/images/about/p003.jpg'}
+                      src='https://resource.moonshine.tw/msweb/for_global/teams/p003.jpg'
                       className='rounded-sm grayscale contrast-125 absolute top-1/2 left-0 -translate-y-1/2  object-cover w-full h-full'
                     />
                   </div>
@@ -63,7 +63,7 @@ function About() {
                 <div className='w-2/3'>
                   <div className='pt-[126%] relative  '>
                   <img  
-                      src={process.env.PUBLIC_URL+'/images/about/p002.png'}
+                      src='https://resource.moonshine.tw/msweb/for_global/teams/p002.png'
                       className='rounded-sm  grayscale contrast-125 absolute top-1/2 left-0 -translate-y-1/2  object-cover w-full h-full'
                     />
                   </div>
