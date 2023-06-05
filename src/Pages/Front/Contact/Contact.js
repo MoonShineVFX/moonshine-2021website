@@ -50,7 +50,7 @@ function Contact() {
         <h1 className='text-3xl font-bold mb-5' >Contact</h1>
         <div id="map" className="mt30">
           <LoadScript
-            googleMapsApiKey="AIzaSyApNCPFkYkG39dPQkZjxrH6q3RrNITXkns"
+            googleMapsApiKey="AIzaSyAr65BTpWDL2I0GNYcky_wMKR91zaEfUbE"
           >
             <GoogleMap
               mapContainerStyle={containerStyle}
@@ -79,7 +79,7 @@ function Contact() {
               <div>
                 <div className=' text-xl mb-5 font-bold'>TAIPEI</div>
                 <div className=' text-sm'>
-                  info@moonshine.tw <br />
+                  Producer@moonshine.tw <br />
                   4F., No.188, Xingshan Rd., Neihu Dist., Taipei City 114066, Taiwan (R.O.C.) <br /><br />
                   02-2785-7037 
                 </div>
@@ -87,7 +87,7 @@ function Contact() {
               <div>
                 <div className=' text-xl mb-5 font-bold'>KAOHSIUNG</div>
                 <div className=' text-sm'>
-                  info@moonshine.tw   <br />
+                  Producer@moonshine.tw   <br />
                   A5CF., No. 1, Zhen'ai Rd., Yancheng Dist., Kaohsiung City 803003 , Taiwan (R.O.C.) 
                 </div>
               </div>

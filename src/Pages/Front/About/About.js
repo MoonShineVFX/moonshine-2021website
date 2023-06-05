@@ -23,9 +23,57 @@ function About() {
           <h1 className='text-2xl lg:text-3xl font-light  leading-normal ' >Creation and Illumination, attained by MOONSHINE's animation and visual effects.</h1>
           <div className='h-[1px] w-[120px] bg-white mt-10' ></div>
           <div className="text-lg mt-5 font-light" data-aos="fade" data-aos-duration="1500">
-          Moonshine Studio is an artist-centered VFX company based in Taiwan. We are an integrated collective of directors, designers, artists and technologists, collaborating on projects for the advertising, film and VR industries.
+            Moonshine Studio is an artist-centered VFX company based in Taiwan. We are an integrated collective of directors, designers, artists and technologists, collaborating on projects for the advertising, film and VR industries.
             <div className="mb-6"></div>
             Founded in 2012, Moonshine Studio has been through some challenges, and have done some cool things with our talents. We believe in the value of transparency and equity and constantly strive to deliver great work to the world.
+          </div>
+          <div className="mb-14 mt-36" data-aos="fade" data-aos-duration="1500">
+            <div className="text-3xl font-light">
+             Our Team
+            </div>
+            <div className='h-[1px] w-[120px] bg-white mt-10' ></div>
+            <div className='grid md:grid-cols-3 gap-10 text-center mt-16 space-y-5 md:space-y-0'>
+              <div className='flex flex-col items-center'>
+                <div className='w-2/3'>
+                  <div className='pt-[126%] relative  '>
+                    <img  
+                      src={process.env.PUBLIC_URL+'/images/about/p001.png'}
+                      className='rounded-sm grayscale contrast-125 absolute top-1/2 left-0 -translate-y-1/2  object-cover w-full h-full'
+                    />
+                  </div>
+                </div>
+                <div className="text-lg mt-5 font-light">
+                  Triston Huang / CG Supervisor
+                </div>
+              </div>
+              <div className='flex flex-col items-center'>
+                <div className='w-2/3'>
+                  <div className='pt-[126%] relative  '>
+                  <img  
+                      src={process.env.PUBLIC_URL+'/images/about/p003.jpg'}
+                      className='rounded-sm grayscale contrast-125 absolute top-1/2 left-0 -translate-y-1/2  object-cover w-full h-full'
+                    />
+                  </div>
+                </div>
+                <div className="text-lg mt-5 font-light">
+                  Howard Shih / Animation Supervisor
+                </div>
+              </div>
+              <div className='flex flex-col items-center'>
+                <div className='w-2/3'>
+                  <div className='pt-[126%] relative  '>
+                  <img  
+                      src={process.env.PUBLIC_URL+'/images/about/p002.png'}
+                      className='rounded-sm  grayscale contrast-125 absolute top-1/2 left-0 -translate-y-1/2  object-cover w-full h-full'
+                    />
+                  </div>
+                </div>
+                <div className="text-lg mt-5 font-light">
+                  Evan Wen / VFX Supervisor
+                </div>
+              </div>
+            </div>
+
           </div>
           <div className="mb-14 mt-36" data-aos="fade" data-aos-duration="1500">
             <div className="text-3xl font-light">
@@ -38,6 +86,7 @@ function About() {
               We offer 360-degree service from concept to screen. Being an integrated company, we are able to execute a project from script writing to concept art, from story board to animatic, from shoot to post-production.
             </div>
           </div>
+
         </div>
       </div>
       <div className="about_content flex flex-col w-10/12 lg:w-3/4 mx-auto gap-20">
