@@ -79,7 +79,7 @@ function Contact() {
               <div>
                 <div className=' text-xl mb-5 font-bold'>TAIPEI</div>
                 <div className=' text-sm'>
-                  Producer@moonshine.tw <br />
+                Cynthiahou@moonshine.tw <br />
                   4F., No.188, Xingshan Rd., Neihu Dist., Taipei City 114066, Taiwan (R.O.C.) <br /><br />
                   02-2785-7037 
                 </div>
@@ -87,14 +87,14 @@ function Contact() {
               <div>
                 <div className=' text-xl mb-5 font-bold'>KAOHSIUNG</div>
                 <div className=' text-sm'>
-                  Producer@moonshine.tw   <br />
+                Cynthiahou@moonshine.tw   <br />
                   A5CF., No. 1, Zhen'ai Rd., Yancheng Dist., Kaohsiung City 803003 , Taiwan (R.O.C.) 
                 </div>
               </div>
               <div>
                 <div className=' text-xl mb-5 font-bold'>MONTREAL</div>
                 <div className=' text-sm'>
-                  Producer@moonshine.tw<br />
+                Cynthiahou@moonshine.tw<br />
                   1330 Rue Olier, apt 101, Montreal, QC H3C 1W4, Canada 
                 </div>
               </div>

@@ -43,14 +43,14 @@ function About() {
                   </div>
                 </div>
                 <div className="text-lg mt-5 font-light">
-                  Triston Huang / CG Supervisor
+                  Triston Huang / CG Supervisor 
                 </div>
               </div>
               <div className='flex flex-col items-center'>
                 <div className='w-2/3'>
                   <div className='pt-[126%] relative  '>
                   <img  
-                      src='https://resource.moonshine.tw/msweb/for_global/teams/p003.jpg'
+                      src='https://resource.moonshine.tw/msweb/for_global/teams/p003.png'
                       className='rounded-sm grayscale contrast-125 absolute top-1/2 left-0 -translate-y-1/2  object-cover w-full h-full'
                     />
                   </div>
@@ -170,21 +170,21 @@ function About() {
                 <div className=' text-xl mb-5 font-bold'>TAIPEI</div>
                 <div className=' text-sm'>
                   02-2785-7037 <br />
-                  Producer@moonshine.tw <br />
+                  Cynthiahou@moonshine.tw <br />
                   3F, No.481, Sec. 6, Zhongxiao E. Rd., Nangang Dist., Taipei City 115, Taiwan (R.O.C.)
                 </div>
               </div>
               <div>
                 <div className=' text-xl mb-5 font-bold'>KAOHSIUNG</div>
                 <div className=' text-sm'>
-                  Producer@moonshine.tw  <br />
+                Cynthiahou@moonshine.tw  <br />
                   A5CF., No. 1, Zhen'ai Rd., Yancheng Dist., Kaohsiung City 803003 , Taiwan (R.O.C.) 
                 </div>
               </div>
               <div>
                 <div className=' text-xl mb-5 font-bold'>MONTREAL</div>
                 <div className=' text-sm'>
-                  Producer@moonshine.tw<br />
+                Cynthiahou@moonshine.tw<br />
                   1330 Rue Olier, apt 101, Montreal, QC H3C 1W4, Canada 
                 </div>
               </div>
