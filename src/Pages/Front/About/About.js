@@ -94,7 +94,7 @@ function About() {
           <div className='lg;w-4/6 relative'>
             <div 
               className=' absolute top-0 w-full h-full' 
-              style={{background: `linear-gradient(90deg,#000,transparent 35%,transparent 65%,#000)`}}></div>
+              style={{background: `linear-gradient(90deg,#000,transparent 15%,transparent 85%,#000)`}}></div>
             <img src={process.env.PUBLIC_URL+'/images/about/about-s01.png'} alt=""  />
           </div>
          
@@ -115,10 +115,10 @@ function About() {
           <div className='lg:w-4/6 relative order-1 md:order-2'>
             <div 
               className=' absolute top-0 w-full h-full' 
-              style={{background: `linear-gradient(90deg,#000,transparent 35%,transparent 65%,#000)`}}></div>
+              style={{background: `linear-gradient(90deg,#000,transparent 15%,transparent 85%,#000)`}}></div>
             <div 
               className=' absolute top-0 w-full h-full' 
-              style={{background: `linear-gradient(1turn,#000,transparent 50%,transparent 65%,#000)`}}></div>
+              style={{background: `linear-gradient(1turn,#000,transparent 15%,transparent 85%,#000)`}}></div>
             <img src={process.env.PUBLIC_URL+'/images/about/about-s02.png'} alt="" />
           </div>
           
@@ -127,10 +127,10 @@ function About() {
           <div className='lg:w-4/6 relative'>
             <div 
               className=' absolute top-0 w-full h-full' 
-              style={{background: `linear-gradient(90deg,#000,transparent 35%,transparent 65%,#000)`}}></div>
+              style={{background: `linear-gradient(90deg,#000,transparent 15%,transparent 85%,#000)`}}></div>
             <div 
               className=' absolute top-0 w-full h-full' 
-              style={{background: `linear-gradient(1turn,#000,transparent 50%,transparent 65%,#000)`}}></div>
+              style={{background: `linear-gradient(1turn,#000,transparent 15%,transparent 85%,#000)`}}></div>
             <img src={process.env.PUBLIC_URL+'/images/about/about-s03.png'} alt="" />
           </div>          
           <div className='lg:w-2/3 mt-6 lg:mt-0'>
@@ -150,10 +150,10 @@ function About() {
           <div className='lg:w-4/6 relative order-1 md:order-2'>
             <div 
               className=' absolute top-0 w-full h-full' 
-              style={{background: `linear-gradient(90deg,#000,transparent 35%,transparent 65%,#000)`}}></div>
+              style={{background: `linear-gradient(90deg,#000,transparent 15%,transparent 85%,#000)`}}></div>
             <div 
               className=' absolute top-0 w-full h-full' 
-              style={{background: `linear-gradient(1turn,#000,transparent 50%,transparent 65%,#000)`}}></div>
+              style={{background: `linear-gradient(1turn,#000,transparent 15%,transparent 85%,#000)`}}></div>
             <img src={process.env.PUBLIC_URL+'/images/about/about-s04.png'} alt=""  />
           </div>
           
