@@ -22,7 +22,7 @@ function SwiperBgImages({imgData}) {
             return(
               <SwiperSlide key={index}>
                 <div className='w-full bg-cover bg-no-repeat bg-bottom h-auto pt-[45%]'
-                  style={{backgroundImage: `url(${'https://resource.moonshine.tw/msweb/img_about/banner/'+ item})`}}
+                  style={{backgroundImage: `url(${'https://resource.moonshine.tw/msweb/for_global/img_about/banner/'+ item})`}}
                 >
 
                 </div>
