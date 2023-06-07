@@ -10,9 +10,7 @@ function Footer({footerData,socialmedia,partnerjsonData,awardData}) {
   return (
     <div className="flex flex-col items-center pt-24 mb-16 w-full mx-auto ">
 
-      {
-        awardData && <SwipeAwardPerView awardData={awardData}  animationStart= {currentSection === 3 ? true : false} />
-      }
+
       
       <div className="flex flex-wrap justify-around md:justify-between mx-auto md:flex-row mt-24 w-4/5 border-t pt-4 gap-6">
         {socialmedia.length >0 ? 

@@ -10,6 +10,7 @@ import socialMediaData from '../../../Components/socialitemData.json'
 import partnerjsonData from '../../../Components/partnerItem.json'
 import awardjsonData from '../../../Components/awardItem.json'
 import { sectionState } from '../../../atoms/modalAtom';
+import Award from './Award';
 import { useRecoilState } from 'recoil';
 function FullpageScroll(){
   const {socialmedia} = socialMediaData
@@ -36,11 +37,12 @@ function FullpageScroll(){
             <div className="section">
               <Home_mainAbout />
             </div>
+            <div className='section'>
+              <Award  awardData={award}/>
+            </div>
             <div className="section">
               <Home_mainService />
-            </div>
-            <div className='section fp-auto-height'>
-              <Footer footerData={footerData} socialmedia={socialmedia} awardData={award}/>
+              <Footer footerData={footerData} socialmedia={socialmedia}/>
             </div>
           </ReactFullpage.Wrapper>
         );

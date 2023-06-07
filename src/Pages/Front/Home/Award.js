@@ -1,28 +1,14 @@
 import React from 'react'
-
-function Award() {
+import SwipeAwardPerView from '../../../Components/SwipeAwardPerView'
+import { sectionState } from '../../../atoms/modalAtom';
+import {  useRecoilValue } from 'recoil';
+function Award({awardData}) {
+  const currentSection = useRecoilValue(sectionState)
   return (
-    <div id="award" className='mt-36 xs:mt-20'>
-      <div className="home_header center">
-        <h1>Award</h1>
-      </div>
-      <ul className="award_list w-3/4 mx-auto mt-20 flex justify-between xs:w-full xs:gap-3">
-        <li>
-          <img src={process.env.PUBLIC_URL + '/images/award/a01.png'} alt="" />
-        </li>
-        <li>
-          <img src={process.env.PUBLIC_URL + '/images/award/a01.png'} alt="" />
-        </li>
-        <li>
-          <img src={process.env.PUBLIC_URL + '/images/award/a01.png'} alt="" />
-        </li>
-        <li>
-          <img src={process.env.PUBLIC_URL + '/images/award/a01.png'} alt="" />
-        </li>
-        <li>
-          <img src={process.env.PUBLIC_URL + '/images/award/a01.png'} alt="" />
-        </li>
-      </ul>
+    <div className="flex flex-col items-center pt-24 mb-16 w-full mx-auto ">
+      {
+        awardData && <SwipeAwardPerView awardData={awardData}  animationStart= {currentSection === 2 ? true : false} />
+      }
     </div>
   )
 }
