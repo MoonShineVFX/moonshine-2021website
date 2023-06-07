@@ -168,14 +168,14 @@ function About() {
                 <div className=' text-xl mb-5 font-bold'>TAIPEI</div>
                 <div className=' text-sm'>
                   02-2785-7037 <br />
-                  Cynthiahou@moonshine.tw <br />
+                  Producer@moonshine.tw <br />
                   3F, No.481, Sec. 6, Zhongxiao E. Rd., Nangang Dist., Taipei City 115, Taiwan (R.O.C.)
                 </div>
               </div>
               <div>
                 <div className=' text-xl mb-5 font-bold'>KAOHSIUNG</div>
                 <div className=' text-sm'>
-                Cynthiahou@moonshine.tw  <br />
+                Producer@moonshine.tw  <br />
                   A5CF., No. 1, Zhen'ai Rd., Yancheng Dist., Kaohsiung City 803003 , Taiwan (R.O.C.) 
                 </div>
               </div>

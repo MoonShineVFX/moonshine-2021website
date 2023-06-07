@@ -51,8 +51,10 @@ function Contact() {
         <div id="map" className="mt30">
           <LoadScript
             googleMapsApiKey="AIzaSyAr65BTpWDL2I0GNYcky_wMKR91zaEfUbE"
+            language={'en'}
           >
             <GoogleMap
+
               mapContainerStyle={containerStyle}
               center={center}
               zoom={17}
@@ -79,7 +81,7 @@ function Contact() {
               <div>
                 <div className=' text-xl mb-5 font-bold'>TAIPEI</div>
                 <div className=' text-sm'>
-                Cynthiahou@moonshine.tw <br />
+                Producer@moonshine.tw <br />
                   4F., No.188, Xingshan Rd., Neihu Dist., Taipei City 114066, Taiwan (R.O.C.) <br /><br />
                   02-2785-7037 
                 </div>
@@ -87,7 +89,7 @@ function Contact() {
               <div>
                 <div className=' text-xl mb-5 font-bold'>KAOHSIUNG</div>
                 <div className=' text-sm'>
-                Cynthiahou@moonshine.tw   <br />
+                Producer@moonshine.tw   <br />
                   A5CF., No. 1, Zhen'ai Rd., Yancheng Dist., Kaohsiung City 803003 , Taiwan (R.O.C.) 
                 </div>
               </div>
