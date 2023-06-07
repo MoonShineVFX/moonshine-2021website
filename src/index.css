@@ -85,3 +85,8 @@
 .swiper-pagination-bullet{
   background-color: #fff;
 }
+
+
+.myAward .swiper-pagination{
+  /* bottom:3% !important; */
+}

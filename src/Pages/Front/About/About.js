@@ -3,16 +3,14 @@ import ImgHeader from '../../../Components/ImgHeader'
 import SwiperBgImages from '../Components/SwiperBgImages'
 function About() {
   const bgimages = [
+    'bg_about08.png',
     'bg_about01.png',
     'bg_about02.png',
     'bg_about03.png',
     'bg_about04.png',
     'bg_about05.png',
-    'bg_about06.png',
     'bg_about07.png',
-    'bg_about08.png',
     'bg_about09.png',
-    'bg_about10.png',
     'bg_about11.png',
   ];
   return (

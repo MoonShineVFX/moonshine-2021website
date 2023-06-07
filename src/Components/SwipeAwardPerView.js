@@ -14,7 +14,7 @@ function SwipeAwardPerView({awardData,animationStart}) {
           clickable: true,
         }}
         modules={[Pagination]}
-        className="mySwiper"
+        className="myAward min-h-[45vh]"
         breakpoints={{
           480: {
             slidesPerView: 2,
