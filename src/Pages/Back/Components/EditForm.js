@@ -176,7 +176,7 @@ function EditForm({categoryData,handleCreateWork , handleEditWork}) {
                   {...register('article')}
                   className="mr-2"
                 />
-                 互動作品介紹頁面
+                 是否開啟作品介紹頁面
 
               </div>
 
