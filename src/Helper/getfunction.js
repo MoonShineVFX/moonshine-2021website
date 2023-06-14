@@ -1,6 +1,6 @@
 // firebase 資料庫連線
 import db from '../firebaseConfig/firebase'
-import {collection, query,  getDocs,orderBy,where,limit,limitToLast,startAfter,endBefore,addDoc,deleteDoc,doc,updateDoc} from "firebase/firestore"
+import {collection, query,getDoc,  getDocs,orderBy,where,limit,limitToLast,startAfter,endBefore,addDoc,deleteDoc,doc,updateDoc} from "firebase/firestore"
 import { getStorage, ref, getDownloadURL,  } from "firebase/storage";
 import { async } from '@firebase/util';
 const storage = getStorage();
@@ -373,4 +373,23 @@ export const updateService = async (uid,currentData,callback)=>{
   } catch (error) {
     callback(error)
   }
+}
+export const uploadImgToBunny = async (pathname,item,token) =>{
+  const requestOptions = {
+    method: 'PUT',
+    headers: { 
+      'Content-Type': 'application/json',
+      'AccessKey': token
+    },
+    body: item
+  };
+  const response = await fetch('https://storage.bunnycdn.com/moonshine'+pathname, requestOptions)
+  const data = await response
+  return data
+}
+export const authGetBunnyKey= async (callback)=>{
+  const docRef = doc(db, "private", "settings");
+  const docSnap = await getDoc(docRef);
+  callback(docSnap.data())
+
 }

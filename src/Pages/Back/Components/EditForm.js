@@ -1,13 +1,17 @@
 import React, { useEffect,useState } from 'react'
 import { constSelector, useRecoilState, useRecoilValue } from 'recoil';
 import { formDisplayState, workState,formStatusState } from '../atoms/fromTypes'
-import { useForm } from 'react-hook-form';
-
+import { useForm,useFieldArray,Controller } from 'react-hook-form';
+import {uploadImgToBunny,authGetBunnyKey} from '../../../Helper/getfunction'
 
 function EditForm({categoryData,handleCreateWork , handleEditWork}) {
-  const {register, handleSubmit, reset, formState: { errors }} = useForm(
+  const {register, handleSubmit, reset,control,setValue, formState: { errors }} = useForm(
     {defaultValues: { title: "", intro: "",sort_num:"",youtube_id:"" ,year_of_work:"",video_url:"",vimeo_id:"", youtube_id:"",article:false}});
-  
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'img_list',
+  });
+  const [token ,setToken] = useState('')
   const onSubmit = (data) => {
     console.log(data)
     if(data.method === 'ADD'){
@@ -30,6 +34,29 @@ function EditForm({categoryData,handleCreateWork , handleEditWork}) {
     console.log(e.target.value)
     filterCurrentCategory(e.target.value)
   }
+  const handleFileChange = (e, index) => {
+    const file = e.target.files[0];
+    let pathname = '/msweb/for_global/data/'
+    if (file) {
+      const currentDateTime = Date.now()
+      const fileExtension = file.name.split('.').pop();
+      const renamedFile = new File([file.slice()], currentDateTime+'.'+fileExtension, { type: file.type });
+      pathname = pathname+currentDateTime+'.'+fileExtension
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imageDataUrl = reader.result;
+        // 在此處可以對圖片數據進行處理或顯示預覽圖片
+        console.log(imageDataUrl);
+        uploadImgToBunny(pathname,renamedFile,token)
+          .then((data)=>{
+            // 將 imageUrl 回填到表單中對應的 input 欄位
+            setValue(`img_list.${index}.img`, 'https://resource.moonshine.tw/'+pathname);
+          })
+          .catch((error) => console.error(error));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   const filterCurrentCategory = (cid) =>{
     const filteredCategory =  categoryData.filter((value)=> {
       return value.id === cid
@@ -41,8 +68,13 @@ function EditForm({categoryData,handleCreateWork , handleEditWork}) {
     if(work){
       filterCurrentCategory(work.category)
     }
+
+    authGetBunnyKey((res)=>{
+      setToken(res.bunnyApi)
+      console.log(res.bunnyApi)
+    })
     
-  },[])
+  },[token])
   return (
     <div className={'w-full h-screen  absolute top-0 left-0 z-20 '}>
       <div className=' opacity-30 fixed inset-0 bg-black ' onClick={handleClose}></div>
@@ -50,7 +82,7 @@ function EditForm({categoryData,handleCreateWork , handleEditWork}) {
         <div className='text-xl text-center font-bold'>{formStatus === 'ADD' ? '新增作品' : '編輯作品'}</div>
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           <div className='flex gap-4'>
-            <div className='main w-1/2'>
+            <div className='main w-2/5'>
               <div className="mb-3">
                 <label htmlFor="exampleURL0" className="form-label inline-block mb-2 text-gray-700">作品名稱</label>
                 <input
@@ -158,7 +190,7 @@ function EditForm({categoryData,handleCreateWork , handleEditWork}) {
 
               
             </div>
-            <div className='left w-1/2'>
+            <div className='left w-3/5'>
               <div className="mb-3">
                 <label htmlFor="exampleURL0" className="form-label inline-block mb-2 text-gray-700">Credit</label>
                 <textarea
@@ -176,9 +208,54 @@ function EditForm({categoryData,handleCreateWork , handleEditWork}) {
                   {...register('article')}
                   className="mr-2"
                 />
-                 是否開啟作品介紹頁面
+                 是否啟用作品介紹頁面
 
               </div>
+              <div className="mb-3">
+                <label htmlFor="exampleURL0" className="form-label inline-block mb-2 text-gray-700">
+                  作品劇照列表
+                </label>
+                <ul>
+                  {fields.map((item, index) => (
+                    <li key={item.id} className="flex items-center space-x-2 mb-2">
+                      <Controller
+                        render={({ field }) => (
+                          <input
+                            {...field}
+                            className="form-control block w-2/3 px-3 py-2 text-xs font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                          />
+                        )}
+                        name={`img_list.${index}.img`}
+                        control={control}
+                      />
+                      <button
+                        type="button"
+                        className="py-2 px-3 bg-black text-white rounded-md text-sm"
+                        onClick={() => remove(index)}
+                      >
+                        Remove
+                      </button>
+                      <label htmlFor={`img_list.${index}.file`} className="py-2 px-3 bg-black text-white rounded-md text-sm">
+                        上傳
+                        <input
+                          id={`img_list.${index}.file`}
+                          type="file"
+                          className="hidden"
+                          onChange={(e) => handleFileChange(e, index)}
+                        />
+                      </label>
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  type="button"
+                  className="py-2 px-4 bg-black text-white rounded-md text-sm"
+                  onClick={() => append({ img: "https://xxx.com/001.jpg" })}
+                >
+                  新增一張
+                </button>
+              </div>
+
 
 
               <div className="mb-3">

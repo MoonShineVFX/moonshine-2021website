@@ -60,7 +60,7 @@ function WatchArticle() {
 								</div>
 							}
 							{
-								data.intro &&
+								data?.intro &&
 								<div className=' whitespace-pre-line text-base mt-20 leading-8 w-full' data-aos="fade-up" data-aos-duration="1500">
 										<div className='text-lg font-bold'>{data.title}</div>
 										{data.intro}
