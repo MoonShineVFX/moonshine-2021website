@@ -40,7 +40,7 @@ function WatchArticle() {
 				{
 					data ?
 						<div className='flex justify-center flex-col items-center relative'>
-							<div className=' text-lg lg:text-3xl font-normal mt-10 lg:mt-20 mb-6'>{data.title}</div>
+							<div className=' text-lg lg:text-3xl font-bold text-white/80 mt-10 lg:mt-20 mb-12'>{data.title}</div>
 
 							{data.article_text &&
 								<div className='text-base my-10 leading-normal lg:my-20 lg:leading-8' data-aos="fade-up" data-aos-duration="1500">
@@ -72,6 +72,18 @@ function WatchArticle() {
 					: <div>Loading..</div>
 				}
 			</div>
+			{data?.img_list&& 
+				<div className=' grid grid-cols-2 space-x-1 '>
+					{data.img_list.map((item,index)=>{
+						const {isCover,img} = item
+						return(
+							<div className={`${isCover ? ' col-span-2' : 'col-span-1' }   `} data-aos="fade-up" data-aos-duration="1500">
+								<img src={img} alt="" className='max-w-full'/>
+							</div>
+						)
+					})}
+				</div>
+			}
 		</section>
   )
 }

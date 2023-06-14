@@ -71,7 +71,6 @@ function EditForm({categoryData,handleCreateWork , handleEditWork}) {
 
     authGetBunnyKey((res)=>{
       setToken(res.bunnyApi)
-      console.log(res.bunnyApi)
     })
     
   },[token])
@@ -218,6 +217,19 @@ function EditForm({categoryData,handleCreateWork , handleEditWork}) {
                 <ul>
                   {fields.map((item, index) => (
                     <li key={item.id} className="flex items-center space-x-2 mb-2">
+                      <Controller
+                        render={({ field }) => (
+                          <input
+                            {...field}
+                            type="checkbox"
+                            defaultChecked={item.isCover}
+                            className="form-control block px-3 py-2 text-xs font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                          />
+                        )}
+                        name={`img_list.${index}.isCover`}
+                        control={control}
+               
+                      />
                       <Controller
                         render={({ field }) => (
                           <input

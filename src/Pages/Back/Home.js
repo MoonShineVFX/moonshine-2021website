@@ -155,6 +155,7 @@ function Home() {
       "sub_category":data.sub_category ,
       "article":data.article?  data.article : false,
       "article_text": data.article_text?data.article_text : '',
+      "img_list": data.img_list || null
     }
     // 如果有圖檔存在 執行新增資料 否則不執行
     if (selectedFile) {
