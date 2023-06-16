@@ -65,7 +65,7 @@ function CategoryForm({handleCreateCategory, handleEditCategory}) {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="exampleURL0" className="form-label inline-block mb-2 text-gray-700">影片位置(直接貼上youtube or vimeo 網址)</label>
+                <label htmlFor="exampleURL0" className="form-label inline-block mb-2 text-gray-700">影片位置(直接貼上vimeo 網址，需已開放分享)</label>
                 <input
                   type="text"
                   className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
@@ -80,11 +80,11 @@ function CategoryForm({handleCreateCategory, handleEditCategory}) {
                 
                   <div className="flex items-center mb-4">
                       <input  id="default-radio-1" type="radio" value="1" name="default-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" {...register("display")}/>
-                      <label htmlFor="default-radio-1" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">顯示作品</label>
+                      <label htmlFor="default-radio-1" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">顯示此類</label>
                   </div>
                   <div className="flex items-center">
                       <input  id="default-radio-2" type="radio" value="0" name="default-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"  {...register("display")}/>
-                      <label htmlFor="default-radio-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">不顯示此作品</label>
+                      <label htmlFor="default-radio-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">不顯示此類</label>
                   </div>
               </div>
 
@@ -94,7 +94,7 @@ function CategoryForm({handleCreateCategory, handleEditCategory}) {
                 formStatus === 'EDIT' && 
                 <div className="mb-3 ">
                   <div className='mb-3'>
-                    <h1 className='mb-2'>設定作品縮圖</h1>
+                    <h1 className='mb-2'>設定縮圖</h1>
 
                     <input type="file" className="custom form-control border p-2" id="file" name="photo" {...register('file')} />
                   </div>

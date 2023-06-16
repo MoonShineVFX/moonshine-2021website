@@ -73,7 +73,7 @@ function WatchArticle() {
 				}
 			</div>
 			{data?.img_list&& 
-				<div className=' grid grid-cols-2 space-x-1 '>
+				<div className=' grid grid-cols-2 space-x-1 space-y-1 '>
 					{data.img_list.map((item,index)=>{
 						const {isCover,img} = item
 						return(

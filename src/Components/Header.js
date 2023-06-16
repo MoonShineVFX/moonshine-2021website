@@ -1,14 +1,21 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import ReactPlayer from 'react-player'
 import { motion } from "framer-motion"
 import { categoryState,videoModalState, videoState } from '../atoms/modalAtom';
 import {  useRecoilValue ,useRecoilState } from 'recoil';
 import VideoModal from './NetflixSlider/VideoModal';
+import { FaPlay } from "react-icons/fa";
 function Header({v_url,header_title,start_time,tpa_display}) {
   const isShowModal = useRecoilValue(videoModalState);
   const [currentVideo, setCurrentVideo] = useRecoilState(videoState);
   const [showModal, setShowModal] = useRecoilState(videoModalState);
+  const [playing, setPlaying] = useState(true);
   const player = React.createRef()
+  useEffect(()=>{
+    if(!isShowModal){
+      setPlaying(true)
+    }
+  },[isShowModal])
   return (
     <div id="header" className='relative w-full h-[68vh] bg-no-repeat bg-center bg-cover xs:h-[35vh]'>
       {tpa_display &&       
@@ -23,7 +30,7 @@ function Header({v_url,header_title,start_time,tpa_display}) {
         <ReactPlayer
           url={v_url}
           className='react-player'
-          playing
+          playing={playing}
           playsinline
           muted
           loop
@@ -38,13 +45,14 @@ function Header({v_url,header_title,start_time,tpa_display}) {
           }}
         />
       </div>
-      <div className='absolute bottom-5 left-5 bg-zinc-800 hover:bg-zinc-900 px-4 py-2 rounded-md cursor-pointer font-normal hidden'
+      <div className='absolute bottom-5 left-5 bg-zinc-900 text-white/80 text-sm flex items-center gap-2   hover:bg-zinc-700 px-4 py-2 rounded-md cursor-pointer font-bold '
         onClick={() => {
           setShowModal(true);
           setCurrentVideo(v_url);
+          setPlaying(false)
         }}
       >
-        PLAY FULL VIDEO       
+        <FaPlay size={'14'} /> Play full video
       </div>
       <div className="caption absolute   flex flex-col justify-center items-center bottom-0 ">
           {/* <img src={ process.env.PUBLIC_URL + '/images/MS_logo.svg'} alt="" className='w-1/3' /> */}
