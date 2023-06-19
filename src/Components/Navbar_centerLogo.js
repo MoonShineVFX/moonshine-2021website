@@ -38,7 +38,7 @@ function Navbar_centerLogo({data ,nav_Work, toggleTrueFalse,socialmedia}) {
   },[location,currentSection])
   
   return (
-    <div id="navbar" className={`fixed top-0 w-full z-30 transition-all duration-500 ` + (stickyClass === true ? ' bg-black '  : ' bg-transparent '  )}>
+    <div id="navbar" className={`fixed top-0 w-full z-30 transition-all duration-500 ` + (stickyClass === true ? ' bg-black '  : ' bg-black '  )}>
       <div className='flex justify-between items-center mx-4 md:mx-10 my-5'>
         <div className=" ">
           <Link
@@ -49,7 +49,7 @@ function Navbar_centerLogo({data ,nav_Work, toggleTrueFalse,socialmedia}) {
 
         </div>
         <div className='flex  space-x-10 items-center'>
-          <div className={' space-x-10  transition-all delay-300 hidden md:flex  ' + (stickyClass === true  ? ' translate-y-0 '  : '  -translate-y-20 '  )}>
+          <div className={' space-x-10  transition-all delay-300 hidden md:flex  ' + (stickyClass === true  ? ' translate-y-0 '  : '  translate-y-0 '  )}>
               <ul className='flex items-center gap-10  text-base' >
                 { nav_Work?
                   nav_Work.map((item,index)=>{

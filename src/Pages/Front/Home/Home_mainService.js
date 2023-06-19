@@ -69,20 +69,39 @@ function Home_mainService() {
           {serviceData &&
           serviceData.map((item,index)=>{
             const {title , link , cover_video,start_time,video_poster} = item
+            const isLinkClickable = link !== '/';
+            const hrefValue = isLinkClickable ? link : '#';
             return(
-              <a key={'service0'+index} href={link} target={"_blank"}>
-                <div className=' relative group  transition-all cursor-pointer md:opacity-100 flex justify-center items-center h-full'>
-                  {/* <img src={process.env.PUBLIC_URL+'/images/about/'+ cover_image} alt="" className='w-full object-cover opacity-50 group-hover:opacity-100 transition-all'/> */}
-                  <AboutVideoContainer url={cover_video} start_time={start_time}/> 
-                  <div className='video_img_cover block lg:hidden bg-center bg-cover bg-no-repeat h-screen  max-h-[25vh] w-full brightness-75'
-                    style={{backgroundImage : `url(${process.env.PUBLIC_URL+'/images/service/'+video_poster})`}}
-                  >
-                  </div>
-                  <div className=' absolute  w-full text-center  font-bold uppercase  group-hover:tracking-[.25em] transition-all text-[1.2rem] tracking-[.15em] md:break-all  '>
-                    {title}
-                  </div>
-                </div>
-              </a>
+              <div key={'service0'+index} >
+                {
+                  isLinkClickable ? (
+                    <a href={hrefValue} target={"_blank"} className=' relative group  transition-all cursor-pointer md:opacity-100 flex justify-center items-center h-full'>
+                      {/* <img src={process.env.PUBLIC_URL+'/images/about/'+ cover_image} alt="" className='w-full object-cover opacity-50 group-hover:opacity-100 transition-all'/> */}
+                      <AboutVideoContainer url={cover_video} start_time={start_time}/> 
+                      <div className='video_img_cover block lg:hidden bg-center bg-cover bg-no-repeat h-screen  max-h-[25vh] w-full brightness-75'
+                        style={{backgroundImage : `url(${process.env.PUBLIC_URL+'/images/service/'+video_poster})`}}
+                      >
+                      </div>
+                      <div className=' absolute  w-full text-center  font-bold uppercase  group-hover:tracking-[.25em] transition-all text-[1.2rem] tracking-[.15em] md:break-all  '>
+                        {title}
+                      </div>
+                    </a>
+                  ):(
+                    <div className=' relative group  transition-all md:opacity-100 flex justify-center items-center h-full'>
+                      {/* <img src={process.env.PUBLIC_URL+'/images/about/'+ cover_image} alt="" className='w-full object-cover opacity-50 group-hover:opacity-100 transition-all'/> */}
+                      <AboutVideoContainer url={cover_video} start_time={start_time}/> 
+                      <div className='video_img_cover block lg:hidden bg-center bg-cover bg-no-repeat h-screen  max-h-[25vh] w-full brightness-75'
+                        style={{backgroundImage : `url(${process.env.PUBLIC_URL+'/images/service/'+video_poster})`}}
+                      >
+                      </div>
+                      <div className=' absolute  w-full text-center  font-bold uppercase  group-hover:tracking-[.25em] transition-all text-[1.2rem] tracking-[.15em] md:break-all  '>
+                        {title}
+                      </div>
+                    </div>
+                  )
+                }
+
+              </div>
             )
           })
 

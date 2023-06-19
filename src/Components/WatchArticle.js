@@ -36,7 +36,7 @@ function WatchArticle() {
 					/>
       	</div>
 			}
-			<div className='w-10/12 lg:w-8/12 mx-auto'>
+			<div className='w-10/12 lg:w-10/12 mx-auto'>
 				{
 					data ?
 						<div className='flex justify-center flex-col items-center relative'>
@@ -59,11 +59,23 @@ function WatchArticle() {
 									})}
 								</div>
 							}
+							{data?.img_list&& 
+								<div className=' grid grid-cols-2 space-x-1 space-y-1 '>
+									{data.img_list.map((item,index)=>{
+										const {isCover,img} = item
+										return(
+											<div className={`${isCover ? ' col-span-2' : 'col-span-1' }   `} data-aos="fade-up" data-aos-duration="1500">
+												<img src={img} alt="" className='max-w-full'/>
+											</div>
+										)
+									})}
+								</div>
+							}
 							{
 								data?.intro &&
-								<div className=' whitespace-pre-line text-base mt-20 leading-8 w-full' data-aos="fade-up" data-aos-duration="1500">
+								<div className=' whitespace-pre-line text-sm mt-20 leading-1 w-full' data-aos="fade-up" data-aos-duration="1500">
 										<div className='text-lg font-bold'>{data.title}</div>
-										{data.intro}
+										<div className='text-white/80 mt-5'>{data.intro}</div>
 								</div>
 							}
 
@@ -72,18 +84,7 @@ function WatchArticle() {
 					: <div>Loading..</div>
 				}
 			</div>
-			{data?.img_list&& 
-				<div className=' grid grid-cols-2 space-x-1 space-y-1 '>
-					{data.img_list.map((item,index)=>{
-						const {isCover,img} = item
-						return(
-							<div className={`${isCover ? ' col-span-2' : 'col-span-1' }   `} data-aos="fade-up" data-aos-duration="1500">
-								<img src={img} alt="" className='max-w-full'/>
-							</div>
-						)
-					})}
-				</div>
-			}
+
 		</section>
   )
 }
