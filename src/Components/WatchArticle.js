@@ -23,7 +23,7 @@ function WatchArticle() {
   return (
     <section id="watch_article">
 			{data &&
-				<div className=" relative aspect-video">
+				<div className=" relative aspect-video h-[56.25vw] 3xl:h-[49.25vw]">
 					<ReactPlayer
 						url={data.video_url}
 						className='react-player'
@@ -31,7 +31,8 @@ function WatchArticle() {
 						controls
 						muted
 						width='100vw'
-						height='56.25vw'
+						height='100%'
+
 
 					/>
       	</div>
