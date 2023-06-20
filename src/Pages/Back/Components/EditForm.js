@@ -222,7 +222,7 @@ function EditForm({categoryData,handleCreateWork , handleEditWork}) {
                           <input
                             {...field}
                             type="checkbox"
-                            defaultChecked={item.isCover}
+                            defaultChecked={item?.isCover }
                             className="form-control block px-3 py-2 text-xs font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                           />
                         )}
@@ -262,7 +262,7 @@ function EditForm({categoryData,handleCreateWork , handleEditWork}) {
                 <button
                   type="button"
                   className="py-2 px-4 bg-black text-white rounded-md text-sm"
-                  onClick={() => append({ img: "https://xxx.com/001.jpg" })}
+                  onClick={() => append({ img: "https://xx.com/01.jpg" , isCover: false })}
                 >
                   新增一張
                 </button>
