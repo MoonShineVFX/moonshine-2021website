@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
-import { EffectFade,Autoplay } from "swiper";
-function SwiperBgImages({imgData}) {
+import { EffectFade, Autoplay } from "swiper";
+function SwiperBgImages({ imgData }) {
   return (
-    <div className='relative w-full  bg-no-repeat bg-bottom bg-cover '>
+    <div className="relative w-full  bg-no-repeat bg-bottom bg-cover ">
       <Swiper
         spaceBetween={30}
         effect={"fade"}
@@ -13,28 +13,28 @@ function SwiperBgImages({imgData}) {
         autoplay
         autoHeight
         loop={true}
-        height={'300'}
-        modules={[EffectFade,Autoplay]}
+        height={"300"}
+        modules={[EffectFade, Autoplay]}
         className="mySwiper h-auto lg:h-[80vh]"
       >
-        {
-          imgData.map((item,index)=>{
-            return(
-              <SwiperSlide key={index}>
-                <div className='w-full bg-cover bg-no-repeat bg-bottom h-auto pt-[45%]'
-                  style={{backgroundImage: `url(${'https://resource.moonshine.tw/msweb/for_global/img_about/banner/'+ item})`}}
-                >
-
-                </div>
-              </SwiperSlide>
-            )
-          })
-        }
-
-
+        {imgData.map((item, index) => {
+          return (
+            <SwiperSlide key={index}>
+              <div
+                className="w-full bg-cover bg-no-repeat bg-bottom h-auto pt-[45%]"
+                style={{
+                  backgroundImage: `url(${
+                    "https://r2.web.moonshine.tw/msweb/for_global/img_about/banner/" +
+                    item
+                  })`,
+                }}
+              ></div>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </div>
-  )
+  );
 }
 
-export default SwiperBgImages
+export default SwiperBgImages;
