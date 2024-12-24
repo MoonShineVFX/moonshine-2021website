@@ -34,6 +34,8 @@ function EditForm({ categoryData, handleCreateWork, handleEditWork }) {
     name: "img_list",
   });
   const [token, setToken] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const [previewImage, setPreviewImage] = useState(null);
   const onSubmit = (data) => {
     console.log(data);
     if (data.method === "ADD") {
@@ -69,15 +71,16 @@ function EditForm({ categoryData, handleCreateWork, handleEditWork }) {
       const reader = new FileReader();
       reader.onload = () => {
         const imageDataUrl = reader.result;
-        // 在此處可以對圖片數據進行處理或顯示預覽圖片
+        // 在此處可以對圖片數據進行處理或顯示預覽圖���
         console.log(imageDataUrl);
         uploadImgToBunny(pathname, renamedFile, token)
           .then((data) => {
             // 將 imageUrl 回填到表單中對應的 input 欄位
-            setValue(
-              `img_list.${index}.img`,
-              "https://r2.web.moonshine.tw/" + pathname
-            );
+
+            console.log(data);
+            if (data.success) {
+              setValue(`img_list.${index}.img`, data.data.uri);
+            }
           })
           .catch((error) => console.error(error));
       };
@@ -458,6 +461,7 @@ function EditForm({ categoryData, handleCreateWork, handleEditWork }) {
           </div>
         </form>
       </div>
+      {uploading && <div>上傳中...</div>}
     </div>
   );
 }

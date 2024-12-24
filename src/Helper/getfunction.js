@@ -18,6 +18,7 @@ import {
 } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { async } from "@firebase/util";
+import { FaTemperatureHigh } from "react-icons/fa";
 const storage = getStorage();
 
 /**
@@ -469,19 +470,57 @@ export const updateService = async (uid, currentData, callback) => {
     callback(error);
   }
 };
-export const uploadImgToBunny = async (pathname, item, token) => {
-  // const requestOptions = {
-  //   method: 'PUT',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     'AccessKey': token
-  //   },
-  //   body: item
-  // };
-  // const response = await fetch('https://storage.bunnycdn.com/moonshine'+pathname, requestOptions)
-  // const data = await response
-  // return data
-  return "TODO UPLOAD";
+export const uploadImgToBunny = async (pathname, file) => {
+  try {
+    // 檢查檔案類型
+    const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+    if (!allowedTypes.includes(file.type)) {
+      throw new Error("不支援的檔案類型，請上傳 JPG、PNG 或 GIF 圖片");
+    }
+
+    // 檢查檔案大小 (例如限制 5MB)
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    if (file.size > maxSize) {
+      throw new Error("檔案大小不能超過 5MB");
+    }
+
+    // 準備上傳資料
+    const formData = new FormData();
+    formData.append("source_image", file);
+    formData.append("prefix", "msvfx");
+
+    // 發送上傳請求
+    const apiUrl =
+      process.env.REACT_APP_API_URL || "https://ms-api.moonshine-studio.net/";
+    const response = await fetch(`${apiUrl}upload`, {
+      method: "POST",
+      headers: {
+        Authorization: `${process.env.REACT_APP_MS_APITOKEN}`,
+      },
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => null);
+      throw new Error(
+        errorData?.message ||
+          `上傳失敗: ${response.status} ${response.statusText}`
+      );
+    }
+
+    const data = await response.json();
+    return {
+      success: true,
+      data: data,
+      url: data.url, // 假設 API 返回圖片 URL
+    };
+  } catch (error) {
+    console.error("圖片上傳錯誤:", error);
+    return {
+      success: false,
+      error: error.message,
+    };
+  }
 };
 export const authGetBunnyKey = async (callback) => {
   const docRef = doc(db, "private", "settings");
